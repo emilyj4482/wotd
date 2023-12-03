@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LocationInfo: Decodable {
+struct LocationInfo: Codable {
     let location: [Location]
     
     enum CodingKeys: String, CodingKey {
@@ -15,10 +15,10 @@ struct LocationInfo: Decodable {
     }
 }
 
-struct Location: Decodable {
-    let x: Double
-    let y: Double
-    let address: [Address]
+struct Location: Codable {
+    let x: String
+    let y: String
+    let address: Address
     
     enum CodingKeys: String, CodingKey {
         case x
@@ -28,7 +28,7 @@ struct Location: Decodable {
     
 }
 
-struct Address: Decodable {
+struct Address: Codable {
     let depth1: String
     let depth2: String
     let depth3: String

@@ -11,6 +11,12 @@ struct MainView: View {
     
     @State var timeStamp: Date = .now
     
+    var x: String = "127.454499829132"
+    var y: String = "36.7423562993671"
+    @State var dt: String = ""
+    
+    
+    
     var nt = NetworkManager()
     
     var body: some View {
@@ -24,6 +30,7 @@ struct MainView: View {
                     print(timeStamp.timeIntervalSince1970)
                     print(type(of: timeStamp.timeIntervalSince1970))
                     print(Int(floor(timeStamp.timeIntervalSince1970)))
+                    self.dt = String(Int(floor(timeStamp.timeIntervalSince1970)))
                 } label: {
                     Text("Print dt")
                         .font(.system(size: 15, weight: .bold))
@@ -39,6 +46,7 @@ struct MainView: View {
                 Spacer()
                 
                 Button {
+                    nt.getOpenWeather(x: x, y: y, dt: dt)
                     
                 } label: {
                     Text("GET OpenWeather API")
@@ -51,7 +59,7 @@ struct MainView: View {
                 .padding()
                 
                 Button {
-                    nt.getKakao()
+                    nt.getKakao(location: "청주시 오창읍")
                 } label: {
                     Text("GET KakaoMap API")
                         .font(.system(size: 15, weight: .bold))
