@@ -17,7 +17,7 @@ struct MainView: View {
     
     
     
-    var nt = NetworkManager()
+    var am = APIManager()
     
     var body: some View {
         NavigationStack {
@@ -46,7 +46,7 @@ struct MainView: View {
                 Spacer()
                 
                 Button {
-                    nt.getOpenWeather(x: x, y: y, dt: dt)
+                    am.getOpenWeather(x: x, y: y, dt: dt)
                     
                 } label: {
                     Text("GET OpenWeather API")
@@ -59,7 +59,7 @@ struct MainView: View {
                 .padding()
                 
                 Button {
-                    nt.getKakao(location: "청주시 오창읍")
+                    am.getKakao(location: "청주시 오창읍")
                 } label: {
                     Text("GET KakaoMap API")
                         .font(.system(size: 15, weight: .bold))
