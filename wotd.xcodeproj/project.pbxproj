@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A131106F2B1DBC7500F8437E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A131106E2B1DBC7500F8437E /* NetworkManager.swift */; };
-		A13110712B1DCC9900F8437E /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13110702B1DCC9900F8437E /* Resource.swift */; };
 		A150F3242B19B4650007C285 /* wotdApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A150F3232B19B4650007C285 /* wotdApp.swift */; };
 		A150F3262B19B4650007C285 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A150F3252B19B4650007C285 /* MainView.swift */; };
 		A150F3282B19B4670007C285 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A150F3272B19B4670007C285 /* Assets.xcassets */; };
@@ -20,7 +19,6 @@
 
 /* Begin PBXFileReference section */
 		A131106E2B1DBC7500F8437E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		A13110702B1DCC9900F8437E /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		A150F3202B19B4650007C285 /* wotd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wotd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A150F3232B19B4650007C285 /* wotdApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wotdApp.swift; sourceTree = "<group>"; };
 		A150F3252B19B4650007C285 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 			children = (
 				A150F3312B19C4110007C285 /* APIManager.swift */,
 				A131106E2B1DBC7500F8437E /* NetworkManager.swift */,
-				A13110702B1DCC9900F8437E /* Resource.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -182,7 +179,6 @@
 				A150F3362B19C5D90007C285 /* LocationInfo.swift in Sources */,
 				A150F3242B19B4650007C285 /* wotdApp.swift in Sources */,
 				A150F3382B19C5EB0007C285 /* WeatherInfo.swift in Sources */,
-				A13110712B1DCC9900F8437E /* Resource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
