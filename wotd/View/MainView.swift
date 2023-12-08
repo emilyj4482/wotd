@@ -15,7 +15,8 @@ struct MainView: View {
     var y: String = "36.7423562993671"
     @State var dt: String = ""
     
-    
+    @State var tf: String = ""
+    @State var text: String = ""
     
     var am = APIManager()
     
@@ -40,10 +41,22 @@ struct MainView: View {
                         .clipShape(.buttonBorder)
                 }
                 
-                Text("\(timeStamp.timeIntervalSince1970)")
+                Text("\(Int(floor(timeStamp.timeIntervalSince1970)))")
                     .padding()
                 
                 Spacer()
+                
+                TextField("type a city name", text: $tf)
+                    .padding()
+                
+                Button(action: {
+                    text = tf
+                }, label: {
+                    Text("Button")
+                })
+                
+                Text(text)
+                    .padding()
                 
                 Button {
                     am.getOpenWeather(x: x, y: y, dt: dt)
@@ -59,7 +72,7 @@ struct MainView: View {
                 .padding()
                 
                 Button {
-                    am.getKakao(location: "청주시 오창읍")
+                    am.getKakao(location: text)
                 } label: {
                     Text("GET KakaoMap API")
                         .font(.system(size: 15, weight: .bold))

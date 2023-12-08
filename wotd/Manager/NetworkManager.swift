@@ -51,9 +51,14 @@ final class NetworkManager {
                     if isLocationInfo {
                         let information = try decoder.decode(LocationInfo.self, from: data)
                         print(information.location[0].address)
+                        print(information.location[0].x)
+                        print(information.location[0].y)
+                        
                     } else {
                         let information = try decoder.decode(WeatherInfo.self, from: data)
-                        print(information.weather[0].temp - 273.15)
+                        // 섭씨 온도로 변환한 뒤 반올림
+                        let temp = information.weather[0].temp - 273.15
+                        print("현재 날씨 >>> \(round(temp))")
                     }
                 } catch let error {
                     print("ERROR >>> \(error)")
