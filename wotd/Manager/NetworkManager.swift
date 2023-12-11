@@ -13,7 +13,7 @@ final class NetworkManager {
     
     let session = URLSession(configuration: URLSessionConfiguration.default)
     
-    func request(urlComponent: String, queries: [URLQueryItem], headerKey: String?, headerValue: String?, isLocationInfo: Bool) {
+    func request(urlComponent: String, queries: [URLQueryItem], headerKey: String?, headerValue: String?) -> URLRequest {
         // query를 제외한 url
         var url = URLComponents(string: urlComponent)
         
@@ -23,10 +23,10 @@ final class NetworkManager {
         }
         
         // request URL
-        guard let requestURL = url?.url else { return }
+        // guard let requestURL = url?.url else { return }
         
         // request
-        var request = URLRequest(url: requestURL)
+        var request = URLRequest(url: url!.url!)
         
         // request method
         request.httpMethod = "GET"
@@ -36,6 +36,10 @@ final class NetworkManager {
             request.setValue(headerValue, forHTTPHeaderField: headerKey ?? "")
         }
         
+        return request
+    }
+    
+    func dataTask() {
         // dataTask
         let dataTask = session.dataTask(with: request) { data, response, error in
             guard

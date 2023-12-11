@@ -15,6 +15,7 @@
 		A150F3322B19C4110007C285 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A150F3312B19C4110007C285 /* APIManager.swift */; };
 		A150F3362B19C5D90007C285 /* LocationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A150F3352B19C5D90007C285 /* LocationInfo.swift */; };
 		A150F3382B19C5EB0007C285 /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A150F3372B19C5EB0007C285 /* WeatherInfo.swift */; };
+		A18F204F2B2704CD0017F3FF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F204E2B2704CD0017F3FF /* Request.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		A150F3312B19C4110007C285 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		A150F3352B19C5D90007C285 /* LocationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfo.swift; sourceTree = "<group>"; };
 		A150F3372B19C5EB0007C285 /* WeatherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
+		A18F204E2B2704CD0017F3FF /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				A150F3352B19C5D90007C285 /* LocationInfo.swift */,
 				A150F3372B19C5EB0007C285 /* WeatherInfo.swift */,
+				A18F204E2B2704CD0017F3FF /* Request.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				A150F3322B19C4110007C285 /* APIManager.swift in Sources */,
 				A150F3262B19B4650007C285 /* MainView.swift in Sources */,
 				A150F3362B19C5D90007C285 /* LocationInfo.swift in Sources */,
+				A18F204F2B2704CD0017F3FF /* Request.swift in Sources */,
 				A150F3242B19B4650007C285 /* wotdApp.swift in Sources */,
 				A150F3382B19C5EB0007C285 /* WeatherInfo.swift in Sources */,
 			);
