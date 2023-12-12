@@ -76,6 +76,7 @@ final class NetworkManager {
                 let decoder = JSONDecoder()
                 do {
                     let information = try decoder.decode(WeatherInfo.self, from: data)
+                    print(information.weather[0].description[0])
                     // 섭씨 온도로 변환한 뒤 반올림
                     let temp = information.weather[0].temp - 273.15
                     print("현재 날씨 >>> \(round(temp))")
