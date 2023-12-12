@@ -10,15 +10,13 @@ import SwiftUI
 struct MainView: View {
     
     @State var timeStamp: Date = .now
-    
-    var x: String = "127.454499829132"
-    var y: String = "36.7423562993671"
+
     @State var dt: String = ""
     
     @State var tf: String = ""
-    @State var text: String = ""
+    @State var text: String = "city name to be shown here"
     
-    var am = APIManager()
+    var nm = NetworkManager.shared
     
     var body: some View {
         NavigationStack {
@@ -28,10 +26,7 @@ struct MainView: View {
                     .padding()
                 
                 Button {
-                    print(timeStamp.timeIntervalSince1970)
-                    print(type(of: timeStamp.timeIntervalSince1970))
-                    print(Int(floor(timeStamp.timeIntervalSince1970)))
-                    self.dt = String(Int(floor(timeStamp.timeIntervalSince1970)))
+                    print(getDtString(timeStamp))
                 } label: {
                     Text("Print dt")
                         .font(.system(size: 15, weight: .bold))
@@ -44,37 +39,28 @@ struct MainView: View {
                 Text("\(Int(floor(timeStamp.timeIntervalSince1970)))")
                     .padding()
                 
-                Spacer()
-                
                 TextField("type a city name", text: $tf)
                     .padding()
-                
-                Button(action: {
-                    text = tf
-                }, label: {
-                    Text("Button")
-                })
-                
-                Text(text)
-                    .padding()
-                
+
                 Button {
-                    am.getOpenWeather(x: x, y: y, dt: dt)
-                    
+                    text = tf
                 } label: {
-                    Text("GET OpenWeather API")
+                    Text("Print city")
                         .font(.system(size: 15, weight: .bold))
                         .tint(.white)
                         .padding(15)
                         .background(.mint)
                         .clipShape(.buttonBorder)
                 }
-                .padding()
+                .padding(.top)
+                
+                Text(text)
+                    .padding()
                 
                 Button {
-                    am.getKakao(location: text)
+                    nm.setData(location: text, dt: dt)
                 } label: {
-                    Text("GET KakaoMap API")
+                    Text("Get API data")
                         .font(.system(size: 15, weight: .bold))
                         .tint(.white)
                         .padding(15)
@@ -88,6 +74,22 @@ struct MainView: View {
             }
             .navigationTitle("wotd")
         }
+        .onAppear(perform: {
+            // 현재 시간을 dt 값에 세팅
+            dt = getDtString(timeStamp)
+            print(dt)
+        })
+    }
+}
+
+extension MainView {
+    func getDtString(_ timeStamp: Date) -> String {
+        // Date type인 timestamp를 dt 형태로 변환
+        let dt = timeStamp.timeIntervalSince1970
+        // 소수점 버리고 Int로 변환
+        let dtInteger = Int(floor(dt))
+        
+        return String(dtInteger)
     }
 }
 

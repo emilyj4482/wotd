@@ -9,7 +9,7 @@ import Foundation
 
 struct Request {
     let urlComponent: String
-    let params: [String: String]
+    var params: [String: String]
     let header: [String: String]
     
     var queries: [URLQueryItem] {
@@ -18,27 +18,17 @@ struct Request {
         }
     }
     
-    /*var url: URLComponents {
-        return URLComponents(string: urlComponent)!
-    } */
-    
     var request: URLRequest {
         
         var url = URLComponents(string: urlComponent)!
-        
         url.queryItems = queries
         
-        // guard let requestURL = url?.url else { return }
-        
         var request = URLRequest(url: url.url!)
-        
         request.httpMethod = "GET"
-        
 
         header.forEach { key, value in
             request.addValue(value, forHTTPHeaderField: key)
         }
-        
         return request
     }
     
