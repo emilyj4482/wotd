@@ -28,7 +28,8 @@ final class NetworkManager {
             "lat": "",
             "lon": "",
             "dt": "",
-            "appid": "f27181cb10370ef77a1d09ab93c3fa2f"
+            "appid": "f27181cb10370ef77a1d09ab93c3fa2f",
+            "units": "metric"
         ]
     )
     
@@ -38,7 +39,8 @@ final class NetworkManager {
             "lat": "",
             "lon": "",
             "date": "",
-            "appid": "f27181cb10370ef77a1d09ab93c3fa2f"
+            "appid": "f27181cb10370ef77a1d09ab93c3fa2f",
+            "units": "metric"
         ]
     )
     
@@ -91,7 +93,8 @@ final class NetworkManager {
                 do {
                     let information = try decoder.decode(WeatherDescription.self, from: data)
                     print(information.weather[0].description[0])
-                    print(getTemp(information.weather[0].temp))
+                    print(information.weather[0].temp)
+                    print(formatTemp(information.weather[0].temp))
                 } catch let error {
                     print("ERROR >>> \(error)")
                 }
@@ -111,8 +114,8 @@ final class NetworkManager {
                 let decoder = JSONDecoder()
                 do {
                     let information = try decoder.decode(WeatherInfo.self, from: data)
-                    print("MAX >>> \(getTemp(information.temperature.max))")
-                    print("MIN >>> \(getTemp(information.temperature.min))")
+                    print("MAX >>> \(formatTemp(information.temperature.max))")
+                    print("MIN >>> \(formatTemp(information.temperature.min))")
                 } catch let error {
                     print("ERROR >>> \(error)")
                 }
@@ -121,14 +124,9 @@ final class NetworkManager {
     }
 }
 
-
-
-
 extension NetworkManager {
-    func getTemp(_ temp: Double) -> Double {
-        // 섭씨 온도로 변환한 뒤 반올림
-        let temp = temp - 273.15
-        print("반올림 전 온도 : \(temp)")
-        return round(temp)
+    // 소수점 첫번째 자리까지 표시
+    func formatTemp(_ temp: Double) -> String {
+        return String(format: "%.1f", temp)
     }
 }
