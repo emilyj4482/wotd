@@ -21,6 +21,7 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                /*
                 DatePicker("Date", selection: $timeStamp, displayedComponents: .date)
                     .datePickerStyle(.compact)
                     .padding()
@@ -38,26 +39,16 @@ struct MainView: View {
                 
                 Text("\(Int(floor(timeStamp.timeIntervalSince1970)))")
                     .padding()
+                */
                 
                 TextField("type a city name", text: $tf)
                     .padding()
-
-                Button {
-                    text = tf
-                } label: {
-                    Text("Print city")
-                        .font(.system(size: 15, weight: .bold))
-                        .tint(.white)
-                        .padding(15)
-                        .background(.mint)
-                        .clipShape(.buttonBorder)
-                }
-                .padding(.top)
                 
                 Text(text)
                     .padding()
                 
                 Button {
+                    text = tf
                     nm.setData(location: text, dt: dt)
                 } label: {
                     Text("Get API data")
@@ -74,11 +65,11 @@ struct MainView: View {
             }
             .navigationTitle("wotd")
         }
-        .onAppear(perform: {
+        .onAppear {
             // 현재 시간을 dt 값에 세팅
             dt = getDtString(timeStamp)
             print(dt)
-        })
+        }
     }
 }
 
