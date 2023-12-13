@@ -2,7 +2,7 @@
 //  WeatherInfo.swift
 //  wotd
 //
-//  Created by EMILY on 01/12/2023.
+//  Created by EMILY on 13/12/2023.
 //
 
 import Foundation
@@ -10,35 +10,23 @@ import Foundation
 struct WeatherInfo: Decodable {
     let x: Double
     let y: Double
-    let weather: [Weather]
+    let date: String
+    let temperature: Temperature
     
     enum CodingKeys: String, CodingKey {
         case x = "lon"
         case y = "lat"
-        case weather = "data"
+        case date
+        case temperature
     }
 }
 
-struct Weather: Decodable {
-    let temp: Double
-    let sunrise: Int
-    let sunset: Int
-    let description: [Description]
+struct Temperature: Decodable {
+    let min: Double
+    let max: Double
     
-    enum CodingKeys: String, CodingKey {
-        case temp
-        case sunrise
-        case sunset
-        case description = "weather"
-    }
-}
-
-struct Description: Decodable {
-    let main: String
-    let detail: String
-    
-    enum CodingKeys: String, CodingKey {
-        case main
-        case detail = "description"
-    }
+    let night: Double       // 00:00
+    let morning: Double     // 06:00
+    let afternoon: Double   // 12:00
+    let evening: Double     // 18:00
 }

@@ -12,6 +12,7 @@ struct MainView: View {
     @State var timeStamp: Date = .now
 
     @State var dt: String = ""
+    @State var date: String = ""
     
     @State var tf: String = ""
     @State var text: String = "city name to be shown here"
@@ -21,7 +22,7 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                /*
+                
                 DatePicker("Date", selection: $timeStamp, displayedComponents: .date)
                     .datePickerStyle(.compact)
                     .padding()
@@ -39,7 +40,7 @@ struct MainView: View {
                 
                 Text("\(Int(floor(timeStamp.timeIntervalSince1970)))")
                     .padding()
-                */
+                
                 
                 TextField("type a city name", text: $tf)
                     .padding()
@@ -49,7 +50,7 @@ struct MainView: View {
                 
                 Button {
                     text = tf
-                    nm.setData(location: text, dt: dt)
+                    nm.setData(location: text, dt: dt, date: date)
                 } label: {
                     Text("Get API data")
                         .font(.system(size: 15, weight: .bold))
@@ -69,6 +70,8 @@ struct MainView: View {
             // 현재 시간을 dt 값에 세팅
             dt = getDtString(timeStamp)
             print(dt)
+            date = getDateString(timeStamp)
+            print(date)
         }
     }
 }
@@ -81,6 +84,14 @@ extension MainView {
         let dtInteger = Int(floor(dt))
         
         return String(dtInteger)
+    }
+    
+    func getDateString(_ timeStamp: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let date = dateFormatter.string(from: timeStamp)
+        return date
     }
 }
 
