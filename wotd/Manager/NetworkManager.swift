@@ -48,10 +48,10 @@ final class NetworkManager {
         kakaoRequest.params.updateValue(location, forKey: "query")
         openWeatherDtRequest.params.updateValue(dt, forKey: "dt")
         openWeatherDateRequest.params.updateValue(date, forKey: "date")
-        kakaoDataTask()
+        // kakaoDataTask()
     }
     
-    private func setCoordinates(x: String, y: String) {
+    func setCoordinates(x: String, y: String) {
         openWeatherDtRequest.params.updateValue(y, forKey: "lat")
         openWeatherDtRequest.params.updateValue(x, forKey: "lon")
         openWeatherDateRequest.params.updateValue(y, forKey: "lat")
@@ -102,7 +102,7 @@ final class NetworkManager {
         }.resume()
     }
     
-    private func openWeatherDataTask2() {
+    func openWeatherDataTask2() {
         session.dataTask(with: openWeatherDateRequest.request) { [unowned self] data, response, error in
             guard
                 let statusCode = (response as? HTTPURLResponse)?.statusCode,
@@ -114,6 +114,7 @@ final class NetworkManager {
                 let decoder = JSONDecoder()
                 do {
                     let information = try decoder.decode(WeatherInfo.self, from: data)
+                    print("Information >>> \(information)")
                     print("MAX >>> \(formatTemp(information.temperature.max))")
                     print("MIN >>> \(formatTemp(information.temperature.min))")
                 } catch let error {

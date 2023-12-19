@@ -19,6 +19,8 @@ struct MainView: View {
     
     var nm = NetworkManager.shared
     
+    @StateObject var lm = LocationManager()
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -62,6 +64,20 @@ struct MainView: View {
                 .padding()
                 
                 Spacer()
+                
+                Button {
+                    lm.requestAllowOnceLocationPermission()
+                    print("btn tapped")
+                } label: {
+                    Text("Get Current Location")
+                        .font(.system(size: 15, weight: .bold))
+                        .tint(.white)
+                        .padding(15)
+                        .background(.mint)
+                        .clipShape(.buttonBorder)
+                }
+                
+                Spacer()
 
             }
             .navigationTitle("wotd")
@@ -72,6 +88,9 @@ struct MainView: View {
             print(dt)
             date = getDateString(timeStamp)
             print(date)
+            
+            nm.setData(location: text, dt: dt, date: date)
+            
         }
     }
 }
