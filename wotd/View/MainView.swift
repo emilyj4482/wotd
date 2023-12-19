@@ -66,7 +66,7 @@ struct MainView: View {
                 Spacer()
                 
                 Button {
-                    lm.requestAllowOnceLocationPermission()
+                    lm.requestLocation()
                     print("btn tapped")
                 } label: {
                     Text("Get Current Location")
