@@ -21,7 +21,6 @@ final class LocationManager: NSObject, ObservableObject {
     }
     
     func requestLocation() {
-        // one-time delivery of the user's current location
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
