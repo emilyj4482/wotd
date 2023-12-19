@@ -90,7 +90,7 @@ struct MainView: View {
             print(date)
             
             nm.setData(location: text, dt: dt, date: date)
-            
+            // lm.requestLocation()
         }
     }
 }

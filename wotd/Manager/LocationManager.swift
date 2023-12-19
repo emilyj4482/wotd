@@ -17,12 +17,13 @@ final class LocationManager: NSObject, ObservableObject {
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
+        // locationManager.startUpdatingLocation()
     }
     
     func requestLocation() {
         // one-time delivery of the user's current location
         locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
 }
 
