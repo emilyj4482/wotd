@@ -70,6 +70,8 @@ final class NetworkManager {
                 let decoder = JSONDecoder()
                 do {
                     let information = try decoder.decode(LocationInfo.self, from: data)
+                    print("[Kakao Info] >>> \(information)")
+                    
                     setCoordinates(x: information.location[0].x, y: information.location[0].y)
                     openWeatherDataTask()
                     openWeatherDataTask2()
@@ -92,6 +94,9 @@ final class NetworkManager {
                 let decoder = JSONDecoder()
                 do {
                     let information = try decoder.decode(WeatherDescription.self, from: data)
+                    
+                    print("[OpenWeather 1 Info] >>> \(information)")
+                    
                     print(information.weather[0].description[0])
                     print(information.weather[0].temp)
                     print(formatTemp(information.weather[0].temp))
@@ -114,7 +119,7 @@ final class NetworkManager {
                 let decoder = JSONDecoder()
                 do {
                     let information = try decoder.decode(WeatherInfo.self, from: data)
-                    print("Information >>> \(information)")
+                    print("[OpenWeather 2 Info] >>> \(information)")
                     print("MAX >>> \(formatTemp(information.temperature.max))")
                     print("MIN >>> \(formatTemp(information.temperature.min))")
                 } catch let error {

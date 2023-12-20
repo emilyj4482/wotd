@@ -47,7 +47,7 @@ extension LocationManager: CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
         case .authorizedWhenInUse:
             print("AUTH: When in use")
-            locationManager.startUpdatingLocation()
+            // locationManager.startUpdatingLocation()
         @unknown default:
             break
         }
