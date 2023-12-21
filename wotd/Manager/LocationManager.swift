@@ -47,7 +47,7 @@ extension LocationManager: CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
         case .authorizedWhenInUse:
             print("AUTH: When in use")
-            // locationManager.startUpdatingLocation()
+            locationManager.startUpdatingLocation()
         @unknown default:
             break
         }
@@ -61,7 +61,7 @@ extension LocationManager: CLLocationManagerDelegate {
             let y = String(location.coordinate.latitude)
             
             self.networkManager.setCoordinates(x: x, y: y)
-            self.networkManager.openWeatherDataTask2()
+            self.networkManager.addressDataTask()
             manager.stopUpdatingLocation()
         }
     }

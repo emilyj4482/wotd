@@ -16,7 +16,16 @@ final class NetworkManager {
     
     let session = URLSession(configuration: URLSessionConfiguration.default)
     
-    private var kakaoRequest = Request(
+    private var addressReqeust = Request(
+        urlComponent: "https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?",
+        params: [
+            "x": "",
+            "y": ""
+        ],
+        header: ["Authorization": "KakaoAK e8763e7acea6ae6cab9f86791c576fb8"]
+    )
+    
+    private var coordinateRequest = Request(
         urlComponent: "https://dapi.kakao.com/v2/local/search/address.json?",
         params: ["query": ""],
         header: ["Authorization": "KakaoAK e8763e7acea6ae6cab9f86791c576fb8"]
@@ -45,21 +54,23 @@ final class NetworkManager {
     )
     
     func setData(location: String, dt: String, date: String) {
-        kakaoRequest.params.updateValue(location, forKey: "query")
+        coordinateRequest.params.updateValue(location, forKey: "query")
         openWeatherDtRequest.params.updateValue(dt, forKey: "dt")
         openWeatherDateRequest.params.updateValue(date, forKey: "date")
-        // kakaoDataTask()
+        coordinateDataTask()
     }
     
     func setCoordinates(x: String, y: String) {
+        addressReqeust.params.updateValue(x, forKey: "x")
+        addressReqeust.params.updateValue(y, forKey: "y")
         openWeatherDtRequest.params.updateValue(y, forKey: "lat")
         openWeatherDtRequest.params.updateValue(x, forKey: "lon")
         openWeatherDateRequest.params.updateValue(y, forKey: "lat")
         openWeatherDateRequest.params.updateValue(x, forKey: "lon")
     }
     
-    private func kakaoDataTask() {
-        session.dataTask(with: kakaoRequest.request) { [unowned self] data, response, error in
+    func addressDataTask() {
+        session.dataTask(with: addressReqeust.request) { data, response, error in
             guard
                 let statusCode = (response as? HTTPURLResponse)?.statusCode,
                 let data = data
@@ -70,9 +81,29 @@ final class NetworkManager {
                 let decoder = JSONDecoder()
                 do {
                     let information = try decoder.decode(LocationInfo.self, from: data)
-                    print("[Kakao Info] >>> \(information)")
+                    print("[Address Info] >>> \(information.location[0].depth2)")
+                } catch let error {
+                    print("ERROR >>> \(error)")
+                }
+            }
+        }.resume()
+    }
+    
+    private func coordinateDataTask() {
+        session.dataTask(with: coordinateRequest.request) { [unowned self] data, response, error in
+            guard
+                let statusCode = (response as? HTTPURLResponse)?.statusCode,
+                let data = data
+            else { return }
+            
+            let successRange = 200..<300
+            if successRange.contains(statusCode) {
+                let decoder = JSONDecoder()
+                do {
+                    let information = try decoder.decode(CoordinateInfo.self, from: data)
+                    print("[Coordinate Info] >>> \(information)")
                     
-                    setCoordinates(x: information.location[0].x, y: information.location[0].y)
+                    setCoordinates(x: information.coordinate[0].x, y: information.coordinate[0].y)
                     openWeatherDataTask()
                     openWeatherDataTask2()
                 } catch let error {

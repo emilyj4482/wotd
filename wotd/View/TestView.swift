@@ -89,7 +89,7 @@ struct TestView: View {
             date = getDateString(timeStamp)
             print(date)
             
-            nm.setData(location: text, dt: dt, date: date)
+            // nm.setData(location: text, dt: dt, date: date)
             // lm.requestLocation()
         }
     }
