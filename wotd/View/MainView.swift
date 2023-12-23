@@ -9,7 +9,13 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        Text("Hello, World!")
+        Image(systemName: Snow.light.systemName)
+            .resizable()
+            .scaledToFit()
+            .frame(width: 100, height: 100)
+            .symbolRenderingMode(.multicolor)
+            .padding(50)
+            .background(.black)
     }
 }
 
