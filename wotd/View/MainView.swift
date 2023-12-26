@@ -8,14 +8,123 @@
 import SwiftUI
 
 struct MainView: View {
+    
+    @State var currentLocation: String = "수원시 장안구"
+    @State var currentTemp: String = "7.2"
+    @State var weatherIcon: String = Rain.drizzle.systemName
+    
+    @State var maxTemp: Int = 10
+    @State var minTemp: Int = 3
+    
     var body: some View {
-        Image(systemName: Snow.light.systemName)
-            .resizable()
-            .scaledToFit()
-            .frame(width: 100, height: 100)
-            .symbolRenderingMode(.multicolor)
-            .padding(50)
-            .background(.black)
+        VStack {
+            HStack {
+                Image(systemName: "location.circle.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 30, alignment: .leading)
+                
+                Text("\(currentLocation)")
+                    .font(.title)
+                    .bold()
+                
+                Spacer()
+            }
+            
+            ZStack {
+                Rectangle()
+                    .foregroundStyle(.opacity(0.85))
+                    .frame(height: 200)
+                    .clipShape(.rect(cornerRadius: 15))
+                    
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Yesterday")
+                            .font(.title)
+                            .bold()
+                        
+                        Text("\(currentTemp)°")
+                            .font(.system(size: 60))
+                        
+                        Text("max \(maxTemp)° min \(minTemp)°")
+                            .font(.callout)
+                    }
+                    Spacer()
+                    
+                    Image(systemName: weatherIcon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .symbolRenderingMode(.multicolor)
+                        .padding(.trailing, 30)
+                }
+                .padding(.horizontal, 30)
+                .foregroundStyle(.white)
+            }
+            
+            ZStack {
+                Rectangle()
+                    .foregroundStyle(.opacity(0.9))
+                    .frame(height: 200)
+                    .clipShape(.rect(cornerRadius: 15))
+                    
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Today")
+                            .font(.title)
+                            .bold()
+                        
+                        Text("\(currentTemp)°")
+                            .font(.system(size: 60))
+                        
+                        Text("max \(maxTemp)° min \(minTemp)°")
+                            .font(.callout)
+                    }
+                    Spacer()
+                    
+                    Image(systemName: weatherIcon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .symbolRenderingMode(.multicolor)
+                        .padding(.trailing, 30)
+                }
+                .padding(.horizontal, 30)
+                .foregroundStyle(.white)
+            }
+            
+            ZStack {
+                Rectangle()
+                    .foregroundStyle(.opacity(0.85))
+                    .frame(height: 200)
+                    .clipShape(.rect(cornerRadius: 15))
+                    
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Tomorrow")
+                            .font(.title)
+                            .bold()
+                        
+                        Text("\(currentTemp)°")
+                            .font(.system(size: 60))
+                        
+                        Text("max \(maxTemp)° min \(minTemp)°")
+                            .font(.callout)
+                    }
+                    Spacer()
+                    
+                    Image(systemName: weatherIcon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .symbolRenderingMode(.multicolor)
+                        .padding(.trailing, 30)
+                }
+                .padding(.horizontal, 30)
+                .foregroundStyle(.white)
+            }
+        }
+        .padding(.horizontal, 10)
     }
 }
 
