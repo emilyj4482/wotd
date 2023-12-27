@@ -34,27 +34,27 @@ struct MainView: View {
             ZStack {
                 Rectangle()
                     .foregroundStyle(.opacity(0.85))
-                    .frame(height: 200)
+                    .frame(height: 180)
                     .clipShape(.rect(cornerRadius: 15))
                     
                 HStack {
                     VStack(alignment: .leading) {
                         Text("Yesterday")
-                            .font(.title)
-                            .bold()
+                            .font(.title2)
+                            .fontWeight(.semibold)
                         
                         Text("\(currentTemp)°")
-                            .font(.system(size: 60))
+                            .font(.system(size: 50))
                         
                         Text("max \(maxTemp)° min \(minTemp)°")
-                            .font(.callout)
+                            .font(.subheadline)
                     }
                     Spacer()
                     
                     Image(systemName: weatherIcon)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 100, height: 100)
+                        .frame(width: 80, height: 80)
                         .symbolRenderingMode(.multicolor)
                         .padding(.trailing, 30)
                 }
@@ -65,7 +65,7 @@ struct MainView: View {
             ZStack {
                 Rectangle()
                     .foregroundStyle(.opacity(0.9))
-                    .frame(height: 200)
+                    .frame(height: 220)
                     .clipShape(.rect(cornerRadius: 15))
                     
                 HStack {
@@ -87,7 +87,7 @@ struct MainView: View {
                         .scaledToFit()
                         .frame(width: 100, height: 100)
                         .symbolRenderingMode(.multicolor)
-                        .padding(.trailing, 30)
+                        .padding(.trailing, 20)
                 }
                 .padding(.horizontal, 30)
                 .foregroundStyle(.white)
@@ -96,27 +96,27 @@ struct MainView: View {
             ZStack {
                 Rectangle()
                     .foregroundStyle(.opacity(0.85))
-                    .frame(height: 200)
+                    .frame(height: 180)
                     .clipShape(.rect(cornerRadius: 15))
                     
                 HStack {
                     VStack(alignment: .leading) {
                         Text("Tomorrow")
-                            .font(.title)
-                            .bold()
+                            .font(.title2)
+                            .fontWeight(.semibold)
                         
                         Text("\(currentTemp)°")
-                            .font(.system(size: 60))
+                            .font(.system(size: 50))
                         
                         Text("max \(maxTemp)° min \(minTemp)°")
-                            .font(.callout)
+                            .font(.subheadline)
                     }
                     Spacer()
                     
                     Image(systemName: weatherIcon)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 100, height: 100)
+                        .frame(width: 80, height: 80)
                         .symbolRenderingMode(.multicolor)
                         .padding(.trailing, 30)
                 }
