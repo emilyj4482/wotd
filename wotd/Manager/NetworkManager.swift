@@ -69,6 +69,7 @@ final class NetworkManager {
         openWeatherDateRequest.params.updateValue(x, forKey: "lon")
     }
     
+    // lat, lon >>> 행정구역명
     func addressDataTask() {
         session.dataTask(with: addressReqeust.request) { data, response, error in
             guard
@@ -89,6 +90,7 @@ final class NetworkManager {
         }.resume()
     }
     
+    // 검색어 >>> lat, lon
     private func coordinateDataTask() {
         session.dataTask(with: coordinateRequest.request) { [unowned self] data, response, error in
             guard
@@ -113,6 +115,7 @@ final class NetworkManager {
         }.resume()
     }
     
+    // x, y, dt >>> temp, description(weather condition code)
     private func openWeatherDataTask() {
         session.dataTask(with: openWeatherDtRequest.request) { [unowned self] data, response, error in
             guard
@@ -138,6 +141,7 @@ final class NetworkManager {
         }.resume()
     }
     
+    // x, y, date >>> max & min temp
     func openWeatherDataTask2() {
         session.dataTask(with: openWeatherDateRequest.request) { [unowned self] data, response, error in
             guard

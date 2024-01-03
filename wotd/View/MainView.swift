@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MainView: View {
     
+    @StateObject var vm = WeatherViewModel.shared
+    
     @State var currentLocation: String = "수원시 장안구"
     @State var currentTemp: String = "7.2"
     @State var weatherIcon: String = Rain.drizzle.systemName
