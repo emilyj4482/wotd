@@ -69,6 +69,25 @@ final class NetworkManager {
         openWeatherDateRequest.params.updateValue(x, forKey: "lon")
     }
     
+    func dataTask<T: Decodable>(request: URLRequest, _ type: T.Type, completionHandler: @escaping (_ information: T?, _ error: Error?) -> ()) {
+        session.dataTask(with: request) { data, response, error in
+            guard
+                let statusCode = (response as? HTTPURLResponse)?.statusCode,
+                let data = data,
+                statusCode >= 200 && statusCode <= 300
+            else { return }
+            
+            let decoder = JSONDecoder()
+            do {
+                let information = try decoder.decode(type, from: data)
+                completionHandler(information, nil)
+            } catch let error {
+                print("ERROR >>> \(error)")
+                completionHandler(nil, error)
+            }
+        }.resume()
+    }
+    
     // lat, lon >>> 행정구역명
     func addressDataTask() {
         session.dataTask(with: addressReqeust.request) { data, response, error in
