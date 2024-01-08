@@ -53,11 +53,13 @@ final class NetworkManager {
         ]
     )
     
-    func setData(location: String, dt: String, date: String) {
-        coordinateRequest.params.updateValue(location, forKey: "query")
+    func setDate(dt: String, date: String) {
         openWeatherDtRequest.params.updateValue(dt, forKey: "dt")
         openWeatherDateRequest.params.updateValue(date, forKey: "date")
-        coordinateDataTask()
+    }
+    
+    func setLocation(location: String) {
+        coordinateRequest.params.updateValue(location, forKey: "query")
     }
     
     func setCoordinates(x: String, y: String) {

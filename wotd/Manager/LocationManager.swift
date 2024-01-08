@@ -10,8 +10,7 @@ import CoreLocation
 final class LocationManager: NSObject, ObservableObject {
     
     let locationManager = CLLocationManager()
-    let networkManager = NetworkManager.shared
-    
+    private let networkManager = NetworkManager.shared
     
     override init() {
         super.init()
@@ -61,7 +60,6 @@ extension LocationManager: CLLocationManagerDelegate {
             let y = String(location.coordinate.latitude)
             
             self.networkManager.setCoordinates(x: x, y: y)
-            self.networkManager.addressDataTask()
             manager.stopUpdatingLocation()
         }
     }

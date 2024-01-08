@@ -52,7 +52,7 @@ struct TestView: View {
                 
                 Button {
                     text = tf
-                    nm.setData(location: text, dt: dt, date: date)
+                    nm.setDate(dt: dt, date: date)
                 } label: {
                     Text("Get API data")
                         .font(.system(size: 15, weight: .bold))
