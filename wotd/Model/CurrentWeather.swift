@@ -12,7 +12,7 @@ struct CurrentWeather {
     var temp: Double
     var code: Int
     
-    var isMorning: Bool
+    var isDaytime: Bool
     
     var maxTemp: Int
     var minTemp: Int
@@ -27,7 +27,7 @@ struct CurrentWeather {
         case 300..<400:
             return Rain.drizzle.systemName
         case 500, 520:
-            if isMorning {
+            if isDaytime {
                 return Rain.lightDay.systemName
             } else {
                 return Rain.lightNight.systemName
@@ -49,7 +49,7 @@ struct CurrentWeather {
         case 771, 781:
             return Atmosphere.tornado.systemName
         case 731, 751, 761, 762:
-            if isMorning {
+            if isDaytime {
                 return Atmosphere.dustDay.systemName
             } else {
                 return Atmosphere.dustNight.systemName
@@ -59,7 +59,7 @@ struct CurrentWeather {
         case 803, 804:
             return Clouds.overcast.systemName
         default:
-            if isMorning {
+            if isDaytime {
                 return Clear.day.systemName
             } else {
                 return Clear.night.systemName
@@ -68,11 +68,11 @@ struct CurrentWeather {
     }
 
     
-    init(location: String = "", temp: Double = 0.0, code: Int = 800, isMorning: Bool = true, maxTemp: Int = 0, minTemp: Int = 0) {
+    init(location: String = "", temp: Double = 0.0, code: Int = 800, isDaytime: Bool = true, maxTemp: Int = 0, minTemp: Int = 0) {
         self.location = location
         self.temp = temp
         self.code = code
-        self.isMorning = isMorning
+        self.isDaytime = isDaytime
         self.maxTemp = maxTemp
         self.minTemp = minTemp
     }

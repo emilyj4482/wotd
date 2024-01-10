@@ -58,7 +58,7 @@ extension LocationManager: CLLocationManagerDelegate {
         DispatchQueue.main.async {
             let x = String(location.coordinate.longitude)
             let y = String(location.coordinate.latitude)
-            
+            print("좌표 >>> \(location)")
             self.networkManager.setCoordinates(x: x, y: y)
             manager.stopUpdatingLocation()
         }

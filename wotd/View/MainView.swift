@@ -9,7 +9,8 @@ import SwiftUI
 
 struct MainView: View {
     
-    @StateObject var vm = WeatherViewModel.shared
+    @StateObject var nm = NetworkManager.shared
+    @StateObject var lm = LocationManager()
     
     @State var currentLocation: String = "수원시 장안구"
     @State var currentTemp: String = "7.2"
@@ -76,15 +77,15 @@ struct MainView: View {
                             .font(.title)
                             .bold()
                         
-                        Text("\(currentTemp)°")
+                        Text("\(nm.formatTemp(nm.today.temp))°")
                             .font(.system(size: 60))
                         
-                        Text("max \(maxTemp)° min \(minTemp)°")
+                        Text("max \(nm.today.maxTemp)° min \(nm.today.minTemp)°")
                             .font(.callout)
                     }
                     Spacer()
                     
-                    Image(systemName: weatherIcon)
+                    Image(systemName: nm.today.icon)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100, height: 100)
@@ -127,6 +128,16 @@ struct MainView: View {
             }
         }
         .padding(.horizontal, 10)
+        .onAppear(perform: {
+            
+            DispatchQueue.main.async {
+                lm.requestLocation()
+                nm.setToday()
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                print(nm.today)
+            }
+        })
     }
 }
 
