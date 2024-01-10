@@ -9,10 +9,10 @@ import Foundation
 
 struct CurrentWeather {
     var location: String
+    var isDaytime: Bool
+    
     var temp: Double
     var code: Int
-    
-    var isDaytime: Bool
     
     var maxTemp: Int
     var minTemp: Int

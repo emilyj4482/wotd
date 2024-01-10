@@ -18,7 +18,7 @@ final class NetworkManager: ObservableObject {
     @Published var yesterday = CurrentWeather()
     @Published var tomorrow = CurrentWeather()
     
-    let session = URLSession(configuration: URLSessionConfiguration.default)
+    private let session = URLSession(configuration: URLSessionConfiguration.default)
     
     private var addressReqeust = Request(
         urlComponent: "https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?",
@@ -96,101 +96,6 @@ final class NetworkManager: ObservableObject {
             }
         }.resume()
     }
-    
-    // lat, lon >>> 행정구역명
-    func addressDataTask() {
-        session.dataTask(with: addressReqeust.request) { data, response, error in
-            guard
-                let statusCode = (response as? HTTPURLResponse)?.statusCode,
-                let data = data
-            else { return }
-            
-            let successRange = 200..<300
-            if successRange.contains(statusCode) {
-                let decoder = JSONDecoder()
-                do {
-                    let information = try decoder.decode(LocationInfo.self, from: data)
-                    print("[Address Info] >>> \(information.location[0].depth2)")
-                } catch let error {
-                    print("ERROR >>> \(error)")
-                }
-            }
-        }.resume()
-    }
-    
-    // 검색어 >>> lat, lon
-    private func coordinateDataTask() {
-        session.dataTask(with: coordinateRequest.request) { [unowned self] data, response, error in
-            guard
-                let statusCode = (response as? HTTPURLResponse)?.statusCode,
-                let data = data
-            else { return }
-            
-            let successRange = 200..<300
-            if successRange.contains(statusCode) {
-                let decoder = JSONDecoder()
-                do {
-                    let information = try decoder.decode(CoordinateInfo.self, from: data)
-                    print("[Coordinate Info] >>> \(information)")
-                    
-                    setCoordinates(x: information.coordinate[0].x, y: information.coordinate[0].y)
-                    openWeatherDataTask()
-                    openWeatherDataTask2()
-                } catch let error {
-                    print("ERROR >>> \(error)")
-                }
-            }
-        }.resume()
-    }
-    
-    // x, y, dt >>> temp, description(weather condition code)
-    private func openWeatherDataTask() {
-        session.dataTask(with: openWeatherDtRequest.request) { [unowned self] data, response, error in
-            guard
-                let statusCode = (response as? HTTPURLResponse)?.statusCode,
-                let data = data
-            else { return }
-            
-            let successRange = 200..<300
-            if successRange.contains(statusCode) {
-                let decoder = JSONDecoder()
-                do {
-                    let information = try decoder.decode(WeatherDescription.self, from: data)
-                    
-                    print("[OpenWeather 1 Info] >>> \(information)")
-                    
-                    print(information.weather[0].description[0])
-                    print(information.weather[0].temp)
-                    print(formatTemp(information.weather[0].temp))
-                } catch let error {
-                    print("ERROR >>> \(error)")
-                }
-            }
-        }.resume()
-    }
-    
-    // x, y, date >>> max & min temp
-    func openWeatherDataTask2() {
-        session.dataTask(with: openWeatherDateRequest.request) { [unowned self] data, response, error in
-            guard
-                let statusCode = (response as? HTTPURLResponse)?.statusCode,
-                let data = data
-            else { return }
-            
-            let successRange = 200..<300
-            if successRange.contains(statusCode) {
-                let decoder = JSONDecoder()
-                do {
-                    let information = try decoder.decode(WeatherInfo.self, from: data)
-                    print("[OpenWeather 2 Info] >>> \(information)")
-                    print("MAX >>> \(formatTemp(information.temperature.max))")
-                    print("MIN >>> \(formatTemp(information.temperature.min))")
-                } catch let error {
-                    print("ERROR >>> \(error)")
-                }
-            }
-        }.resume()
-    }
 }
 
 extension NetworkManager {
@@ -241,11 +146,6 @@ extension NetworkManager {
 }
 
 extension NetworkManager {
-    // 소수점 첫번째 자리까지 표시
-    func formatTemp(_ temp: Double) -> String {
-        return String(format: "%.1f", temp)
-    }
-    
     // 오늘 날짜를 timestamp로 변환
     func getDtString(_ date: Date) -> String {
         // Date type인 timestamp를 dt 형태로 변환
