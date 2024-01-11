@@ -66,7 +66,6 @@ struct CurrentWeather {
             }
         }
     }
-
     
     init(location: String = "", temp: Double = 0.0, code: Int = 800, isDaytime: Bool = true, maxTemp: Int = 0, minTemp: Int = 0) {
         self.location = location

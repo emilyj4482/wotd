@@ -50,7 +50,7 @@ final class NetworkManager: ObservableObject {
     )
     
     // x, y 좌표 및 날짜 >>> 최고, 최저 온도
-    private var todaysMaxAndMinTempRequest = Request(
+    private var maxAndMinTempRequest = Request(
         urlComponent: "https://api.openweathermap.org/data/3.0/onecall/day_summary?",
         params: [
             "lat": "",
@@ -63,7 +63,7 @@ final class NetworkManager: ObservableObject {
     
     func setDate(dt: String, date: String) {
         currentTempAndCodeRequest.params.updateValue(dt, forKey: "dt")
-        todaysMaxAndMinTempRequest.params.updateValue(date, forKey: "date")
+        maxAndMinTempRequest.params.updateValue(date, forKey: "date")
     }
     
     func setLocation(location: String) {
@@ -75,8 +75,8 @@ final class NetworkManager: ObservableObject {
         addressReqeust.params.updateValue(y, forKey: "y")
         currentTempAndCodeRequest.params.updateValue(y, forKey: "lat")
         currentTempAndCodeRequest.params.updateValue(x, forKey: "lon")
-        todaysMaxAndMinTempRequest.params.updateValue(y, forKey: "lat")
-        todaysMaxAndMinTempRequest.params.updateValue(x, forKey: "lon")
+        maxAndMinTempRequest.params.updateValue(y, forKey: "lat")
+        maxAndMinTempRequest.params.updateValue(x, forKey: "lon")
     }
 }
 
@@ -115,7 +115,7 @@ extension NetworkManager {
             }
         }
         
-        todaysMaxAndMinTempRequest.dataTask(WeatherInfo.self) { [weak self] information, error in
+        maxAndMinTempRequest.dataTask(WeatherInfo.self) { [weak self] information, error in
             DispatchQueue.main.async {
                 if let temp = information?.temperature {
                     self?.today.maxTemp = Int(temp.max)
