@@ -27,7 +27,7 @@ struct MainView: View {
                     .scaledToFit()
                     .frame(width: 30, alignment: .leading)
                 
-                Text("\(currentLocation)")
+                Text("\(nm.today.location)")
                     .font(.title)
                     .bold()
                 
@@ -129,11 +129,8 @@ struct MainView: View {
         }
         .padding(.horizontal, 10)
         .onAppear(perform: {
-            
-            DispatchQueue.main.async {
-                lm.requestLocation()
-                nm.setToday()
-            }
+            nm.setToday()
+            lm.requestLocation()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 print(nm.today)
             }

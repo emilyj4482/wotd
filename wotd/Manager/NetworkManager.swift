@@ -20,6 +20,7 @@ final class NetworkManager: ObservableObject {
     
     private let session = URLSession(configuration: URLSessionConfiguration.default)
     
+    // x, y 좌표 >>> 행정구역명
     private var addressReqeust = Request(
         urlComponent: "https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?",
         params: [
@@ -29,13 +30,15 @@ final class NetworkManager: ObservableObject {
         header: ["Authorization": "KakaoAK e8763e7acea6ae6cab9f86791c576fb8"]
     )
     
+    // 장소명 >>> x, y 좌표
     private var coordinateRequest = Request(
         urlComponent: "https://dapi.kakao.com/v2/local/search/address.json?",
         params: ["query": ""],
         header: ["Authorization": "KakaoAK e8763e7acea6ae6cab9f86791c576fb8"]
     )
     
-    private var openWeatherDtRequest = Request(
+    // x, y 좌표 및 timestamp >>> 현재 온도 및 날씨 코드
+    private var currentTempAndCodeRequest = Request(
         urlComponent: "https://api.openweathermap.org/data/3.0/onecall/timemachine?",
         params: [
             "lat": "",
@@ -46,7 +49,8 @@ final class NetworkManager: ObservableObject {
         ]
     )
     
-    private var openWeatherDateRequest = Request(
+    // x, y 좌표 및 날짜 >>> 최고, 최저 온도
+    private var todaysMaxAndMinTempRequest = Request(
         urlComponent: "https://api.openweathermap.org/data/3.0/onecall/day_summary?",
         params: [
             "lat": "",
@@ -58,8 +62,8 @@ final class NetworkManager: ObservableObject {
     )
     
     func setDate(dt: String, date: String) {
-        openWeatherDtRequest.params.updateValue(dt, forKey: "dt")
-        openWeatherDateRequest.params.updateValue(date, forKey: "date")
+        currentTempAndCodeRequest.params.updateValue(dt, forKey: "dt")
+        todaysMaxAndMinTempRequest.params.updateValue(date, forKey: "date")
     }
     
     func setLocation(location: String) {
@@ -69,36 +73,15 @@ final class NetworkManager: ObservableObject {
     func setCoordinates(x: String, y: String) {
         addressReqeust.params.updateValue(x, forKey: "x")
         addressReqeust.params.updateValue(y, forKey: "y")
-        openWeatherDtRequest.params.updateValue(y, forKey: "lat")
-        openWeatherDtRequest.params.updateValue(x, forKey: "lon")
-        openWeatherDateRequest.params.updateValue(y, forKey: "lat")
-        openWeatherDateRequest.params.updateValue(x, forKey: "lon")
-        
-        print(x)
-        print(y)
-    }
-    
-    func dataTask<T: Decodable>(request: URLRequest, _ type: T.Type, completionHandler: @escaping (_ information: T?, _ error: Error?) -> ()) {
-        session.dataTask(with: request) { data, response, error in
-            guard
-                let statusCode = (response as? HTTPURLResponse)?.statusCode,
-                let data = data,
-                statusCode >= 200 && statusCode <= 300
-            else { return }
-            
-            let decoder = JSONDecoder()
-            do {
-                let information = try decoder.decode(type, from: data)
-                completionHandler(information, nil)
-            } catch let error {
-                print("ERROR >>> \(error)")
-                completionHandler(nil, error)
-            }
-        }.resume()
+        currentTempAndCodeRequest.params.updateValue(y, forKey: "lat")
+        currentTempAndCodeRequest.params.updateValue(x, forKey: "lon")
+        todaysMaxAndMinTempRequest.params.updateValue(y, forKey: "lat")
+        todaysMaxAndMinTempRequest.params.updateValue(x, forKey: "lon")
     }
 }
 
 extension NetworkManager {
+    // 현재 날짜와 시간을 url 파라미터 형식에 적합하게 전환하고 낮밤여부 정보를 published 변수에 저장
     func setToday() {
         let today: Date = .now
         
@@ -106,42 +89,40 @@ extension NetworkManager {
         let date = getDateString(today)
         
         setDate(dt: dt, date: date)
-        print(dt)
-        print(date)
-        
+
         self.today.isDaytime = getTime(today)
-        
-        print("BEFORE DATATASK")
-        dataTask(request: addressReqeust.request, LocationInfo.self) { [weak self] information, error in
+    }
+    
+    // location manager에서 수집된 x, y 좌표가 request 파라미터에 저장된 뒤 행정구역명을 수집하기 위한 kakao api data 통신을 요청하고 받은 정보를 published 변수에 저장한다.
+    func requestLocation() {
+        addressReqeust.dataTask(LocationInfo.self) { [weak self] information, error in
             DispatchQueue.main.async {
-                guard let location = information?.location[0].depth2 else { return }
-                print(location)
-                self?.today.location = location
+                if let location = information?.location[0].depth2 {
+                    self?.today.location = location
+                }
             }
-            print(error?.localizedDescription)
+        }
+    }
+    
+    // 날짜와 시간 정보가 request 파라미터에 저장된 뒤 날씨 정보를 수집하기 위한 openwheather api data 통신을 요청하고 받은 정보를 published 변수에 저장한다.
+    func requestWeatherInformation() {
+        currentTempAndCodeRequest.dataTask(WeatherDescription.self) { [weak self] information, error in
+            DispatchQueue.main.async {
+                if let weather = information?.weather[0] {
+                    self?.today.temp = weather.temp
+                    self?.today.code = weather.description[0].code
+                }
+            }
         }
         
-        print("AFTER DATATASK1")
-        dataTask(request: openWeatherDtRequest.request, WeatherDescription.self) { [weak self] information, error in
+        todaysMaxAndMinTempRequest.dataTask(WeatherInfo.self) { [weak self] information, error in
             DispatchQueue.main.async {
-                guard let weather = information?.weather[0] else { return }
-                print(weather)
-                self?.today.temp = weather.temp
-                self?.today.code = weather.description[0].code
+                if let temp = information?.temperature {
+                    self?.today.maxTemp = Int(temp.max)
+                    self?.today.minTemp = Int(temp.min)
+                }
             }
-            print(error?.localizedDescription)
         }
-        print("AFTER DATATASK2")
-        dataTask(request: openWeatherDateRequest.request, WeatherInfo.self) { [weak self] information, error in
-            DispatchQueue.main.async {
-                guard let temp = information?.temperature else { return }
-                print(temp)
-                self?.today.maxTemp = Int(round(temp.max))
-                self?.today.minTemp = Int(round(temp.min))
-            }
-            print(error?.localizedDescription)
-        }
-        print("AFTER DATATASK3")
     }
 }
 
@@ -169,7 +150,7 @@ extension NetworkManager {
     func getTime(_ date: Date) -> Bool {
         let hour = Calendar.current.component(.hour, from: date)
         
-        if hour <= 6 && hour >= 18 {
+        if hour >= 6 && hour <= 17 {
             return true
         } else {
             return false

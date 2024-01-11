@@ -54,14 +54,12 @@ extension LocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
-
-        DispatchQueue.main.async {
-            let x = String(location.coordinate.longitude)
-            let y = String(location.coordinate.latitude)
-            print("좌표 >>> \(location)")
-            self.networkManager.setCoordinates(x: x, y: y)
-            manager.stopUpdatingLocation()
-        }
+        let x = String(location.coordinate.longitude)
+        let y = String(location.coordinate.latitude)
+        self.networkManager.setCoordinates(x: x, y: y)
+        manager.stopUpdatingLocation()
+        self.networkManager.requestLocation()
+        self.networkManager.requestWeatherInformation()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
