@@ -129,7 +129,7 @@ struct MainView: View {
         }
         .padding(.horizontal, 10)
         .onAppear(perform: {
-            nm.setToday()
+            nm.setDateInfo()
             lm.requestLocation()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 print(nm.today)
