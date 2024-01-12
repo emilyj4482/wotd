@@ -10,20 +10,23 @@ import CoreLocation
 final class LocationManager: NSObject, ObservableObject {
     
     let locationManager = CLLocationManager()
-    let networkManager = NetworkManager.shared
-    
+    private let networkManager = NetworkManager.shared
     
     override init() {
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        // locationManager.startUpdatingLocation()
     }
     
     func requestLocation() {
-        // one-time delivery of the user's current location
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+        switch locationManager.authorizationStatus {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+        default:
+            break
+        }
     }
 }
 
@@ -33,35 +36,30 @@ extension LocationManager: CLLocationManagerDelegate {
         switch manager.authorizationStatus {
             
         case .notDetermined:
-            print("DEBUG: Not Determined")
+            print("AUTH: Not Determined")
         case .restricted:
-            print("DEBUG: Restricted")
+            print("AUTH: Restricted")
         case .denied:
-            print("DEBUG: Denied")
+            print("AUTH: Denied")
         case .authorizedAlways:
-            print("DEBUG: Auth Always")
+            print("AUTH: Always")
+            locationManager.startUpdatingLocation()
         case .authorizedWhenInUse:
-            print("DEBUG: Auth When in use")
+            print("AUTH: When in use")
+            locationManager.startUpdatingLocation()
         @unknown default:
             break
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let latestLocation = locations.first else {
-            // show an error
-            return
-        }
-
-        DispatchQueue.main.async {
-            let x = String(latestLocation.coordinate.longitude)
-            let y = String(latestLocation.coordinate.latitude)
-            
-            self.networkManager.setCoordinates(x: x, y: y)
-            self.networkManager.openWeatherDataTask2()
-            manager.stopUpdatingLocation()
-        }
-         
+        guard let location = locations.first else { return }
+        let x = String(location.coordinate.longitude)
+        let y = String(location.coordinate.latitude)
+        self.networkManager.setCoordinates(x: x, y: y)
+        manager.stopUpdatingLocation()
+        self.networkManager.requestLocation()
+        self.networkManager.requestWeatherInformation()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

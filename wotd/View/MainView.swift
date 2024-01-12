@@ -2,115 +2,146 @@
 //  MainView.swift
 //  wotd
 //
-//  Created by EMILY on 01/12/2023.
+//  Created by EMILY on 20/12/2023.
 //
 
 import SwiftUI
 
 struct MainView: View {
     
-    @State var timeStamp: Date = .now
-
-    @State var dt: String = ""
-    @State var date: String = ""
-    
-    @State var tf: String = ""
-    @State var text: String = "city name to be shown here"
-    
-    var nm = NetworkManager.shared
-    
+    @StateObject var nm = NetworkManager.shared
     @StateObject var lm = LocationManager()
     
+    @State var currentLocation: String = "수원시 장안구"
+    @State var currentTemp: String = "7.2"
+    @State var weatherIcon: String = Rain.drizzle.systemName
+    
+    @State var maxTemp: Int = 10
+    @State var minTemp: Int = 3
+    
     var body: some View {
-        NavigationStack {
-            VStack {
+        VStack {
+            HStack {
+                Image(systemName: "location.circle.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 30, alignment: .leading)
                 
-                DatePicker("Date", selection: $timeStamp, displayedComponents: .date)
-                    .datePickerStyle(.compact)
-                    .padding()
-                
-                Button {
-                    print(getDtString(timeStamp))
-                } label: {
-                    Text("Print dt")
-                        .font(.system(size: 15, weight: .bold))
-                        .tint(.white)
-                        .padding(15)
-                        .background(.mint)
-                        .clipShape(.buttonBorder)
-                }
-                
-                Text("\(Int(floor(timeStamp.timeIntervalSince1970)))")
-                    .padding()
-                
-                
-                TextField("type a city name", text: $tf)
-                    .padding()
-                
-                Text(text)
-                    .padding()
-                
-                Button {
-                    text = tf
-                    nm.setData(location: text, dt: dt, date: date)
-                } label: {
-                    Text("Get API data")
-                        .font(.system(size: 15, weight: .bold))
-                        .tint(.white)
-                        .padding(15)
-                        .background(.mint)
-                        .clipShape(.buttonBorder)
-                }
-                .padding()
+                Text("\(nm.today.location)")
+                    .font(.title)
+                    .bold()
                 
                 Spacer()
-                
-                Button {
-                    lm.requestLocation()
-                    print("btn tapped")
-                } label: {
-                    Text("Get Current Location")
-                        .font(.system(size: 15, weight: .bold))
-                        .tint(.white)
-                        .padding(15)
-                        .background(.mint)
-                        .clipShape(.buttonBorder)
-                }
-                
-                Spacer()
-
             }
-            .navigationTitle("wotd")
-        }
-        .onAppear {
-            // 현재 시간을 dt 값에 세팅
-            dt = getDtString(timeStamp)
-            print(dt)
-            date = getDateString(timeStamp)
-            print(date)
             
-            nm.setData(location: text, dt: dt, date: date)
-            // lm.requestLocation()
+            ZStack {
+                Rectangle()
+                    .foregroundStyle(.opacity(0.85))
+                    .frame(height: 180)
+                    .clipShape(.rect(cornerRadius: 15))
+                    
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Yesterday")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        
+                        Text("\(currentTemp)°")
+                            .font(.system(size: 50))
+                        
+                        Text("max \(maxTemp)° min \(minTemp)°")
+                            .font(.subheadline)
+                    }
+                    Spacer()
+                    
+                    Image(systemName: weatherIcon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 80, height: 80)
+                        .symbolRenderingMode(.multicolor)
+                        .padding(.trailing, 30)
+                }
+                .padding(.horizontal, 30)
+                .foregroundStyle(.white)
+            }
+            
+            ZStack {
+                Rectangle()
+                    .foregroundStyle(.opacity(0.9))
+                    .frame(height: 220)
+                    .clipShape(.rect(cornerRadius: 15))
+                    
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Today")
+                            .font(.title)
+                            .bold()
+                        
+                        Text("\(formatTemp(nm.today.temp))°")
+                            .font(.system(size: 60))
+                        
+                        Text("max \(nm.today.maxTemp)° min \(nm.today.minTemp)°")
+                            .font(.callout)
+                    }
+                    Spacer()
+                    
+                    Image(systemName: nm.today.icon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .symbolRenderingMode(.multicolor)
+                        .padding(.trailing, 20)
+                }
+                .padding(.horizontal, 30)
+                .foregroundStyle(.white)
+            }
+            
+            ZStack {
+                Rectangle()
+                    .foregroundStyle(.opacity(0.85))
+                    .frame(height: 180)
+                    .clipShape(.rect(cornerRadius: 15))
+                    
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Tomorrow")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        
+                        Text("\(currentTemp)°")
+                            .font(.system(size: 50))
+                        
+                        Text("max \(maxTemp)° min \(minTemp)°")
+                            .font(.subheadline)
+                    }
+                    Spacer()
+                    
+                    Image(systemName: weatherIcon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 80, height: 80)
+                        .symbolRenderingMode(.multicolor)
+                        .padding(.trailing, 30)
+                }
+                .padding(.horizontal, 30)
+                .foregroundStyle(.white)
+            }
         }
+        .padding(.horizontal, 10)
+        .onAppear(perform: {
+            nm.setToday()
+            lm.requestLocation()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                print(nm.today)
+            }
+        })
     }
 }
 
 extension MainView {
-    func getDtString(_ timeStamp: Date) -> String {
-        // Date type인 timestamp를 dt 형태로 변환
-        let dt = timeStamp.timeIntervalSince1970
-        // 소수점 버리고 Int로 변환
-        let dtInteger = Int(floor(dt))
-        
-        return String(dtInteger)
-    }
-    
-    func getDateString(_ timeStamp: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        let date = dateFormatter.string(from: timeStamp)
-        return date
+    // 소수점 첫번째 자리까지 표시
+    func formatTemp(_ temp: Double) -> String {
+        return String(format: "%.1f", temp)
     }
 }
 
