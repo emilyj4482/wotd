@@ -27,7 +27,7 @@ struct MainView: View {
                     .scaledToFit()
                     .frame(width: 30, alignment: .leading)
                 
-                Text("\(nm.today.location)")
+                Text("\(nm.location)")
                     .font(.title)
                     .bold()
                 
@@ -46,15 +46,15 @@ struct MainView: View {
                             .font(.title2)
                             .fontWeight(.semibold)
                         
-                        Text("\(currentTemp)°")
+                        Text("\(nm.yesterday.formattedTemp)°")
                             .font(.system(size: 50))
                         
-                        Text("max \(maxTemp)° min \(minTemp)°")
+                        Text("max \(nm.yesterday.maxTemp)° min \(nm.yesterday.minTemp)°")
                             .font(.subheadline)
                     }
                     Spacer()
                     
-                    Image(systemName: weatherIcon)
+                    Image(systemName: nm.yesterday.icon)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 80, height: 80)
@@ -108,15 +108,15 @@ struct MainView: View {
                             .font(.title2)
                             .fontWeight(.semibold)
                         
-                        Text("\(currentTemp)°")
+                        Text("\(nm.tomorrow.formattedTemp)°")
                             .font(.system(size: 50))
                         
-                        Text("max \(maxTemp)° min \(minTemp)°")
+                        Text("max \(nm.tomorrow.maxTemp)° min \(nm.tomorrow.minTemp)°")
                             .font(.subheadline)
                     }
                     Spacer()
                     
-                    Image(systemName: weatherIcon)
+                    Image(systemName: nm.tomorrow.icon)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 80, height: 80)
@@ -132,7 +132,7 @@ struct MainView: View {
             nm.setDateInfo()
             lm.requestLocation()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                print(nm.today)
+                print(nm.today.maxTemp)
             }
         })
     }

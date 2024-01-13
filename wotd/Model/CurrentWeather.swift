@@ -7,11 +7,13 @@
 
 import Foundation
 
-struct CurrentWeather {
-    var location: String
+class CurrentWeather {
     var isDaytime: Bool
     
     var temp: Double
+    var formattedTemp: String {
+        return String(format: "%.1f", temp)
+    }
     var code: Int
     
     var maxTemp: Int
@@ -89,8 +91,7 @@ struct CurrentWeather {
         ]
     )
     
-    init(location: String = "", temp: Double = 0.0, code: Int = 800, isDaytime: Bool = true, maxTemp: Int = 0, minTemp: Int = 0) {
-        self.location = location
+    init(temp: Double = 0.0, code: Int = 800, isDaytime: Bool = true, maxTemp: Int = 0, minTemp: Int = 0) {
         self.temp = temp
         self.code = code
         self.isDaytime = isDaytime
@@ -98,12 +99,12 @@ struct CurrentWeather {
         self.minTemp = minTemp
     }
     
-    mutating func setDate(dt: String, date: String) {
+    func setDate(dt: String, date: String) {
         currentTempAndCodeRequest.params.updateValue(dt, forKey: "dt")
         maxAndMinTempRequest.params.updateValue(date, forKey: "date")
     }
     
-    mutating func setCoordinates(x: String, y: String) {
+    func setCoordinates(x: String, y: String) {
         currentTempAndCodeRequest.params.updateValue(y, forKey: "lat")
         currentTempAndCodeRequest.params.updateValue(x, forKey: "lon")
         maxAndMinTempRequest.params.updateValue(y, forKey: "lat")
