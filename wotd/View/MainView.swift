@@ -77,7 +77,7 @@ struct MainView: View {
                             .font(.title)
                             .bold()
                         
-                        Text("\(formatTemp(nm.today.temp))°")
+                        Text("\(nm.today.formattedTemp)°")
                             .font(.system(size: 60))
                         
                         Text("max \(nm.today.maxTemp)° min \(nm.today.minTemp)°")
@@ -135,13 +135,6 @@ struct MainView: View {
                 print(nm.today.maxTemp)
             }
         })
-    }
-}
-
-extension MainView {
-    // 소수점 첫번째 자리까지 표시
-    func formatTemp(_ temp: Double) -> String {
-        return String(format: "%.1f", temp)
     }
 }
 
