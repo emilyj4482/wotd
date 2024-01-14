@@ -131,9 +131,6 @@ struct MainView: View {
         .onAppear(perform: {
             nm.setDateInfo()
             lm.requestLocation()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                print(nm.today.maxTemp)
-            }
         })
     }
 }

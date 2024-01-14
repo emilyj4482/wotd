@@ -101,24 +101,24 @@ extension NetworkManager {
     }
     
     func weatherInfoDataTask(_ day: CurrentWeather) {
-        day.currentTempAndCodeRequest.dataTask(WeatherDescription.self) { information, error in
+        day.currentTempAndCodeRequest.dataTask(WeatherDescription.self) { [weak self] information, error in
             DispatchQueue.main.async {
                 if let weather = information?.weather[0] {
-                    print(weather)
                     day.temp = weather.temp
                     day.code = weather.description[0].code
+                    self?.objectWillChange.send()
                 } else if let error = error {
                     print(error.localizedDescription)
                 }
             }
         }
         
-        day.maxAndMinTempRequest.dataTask(WeatherInfo.self) { information, error in
+        day.maxAndMinTempRequest.dataTask(WeatherInfo.self) { [weak self] information, error in
             DispatchQueue.main.async {
                 if let temp = information?.temperature {
-                    print(temp)
                     day.maxTemp = Int(round(temp.max))
                     day.minTemp = Int(round(temp.min))
+                    self?.objectWillChange.send()
                 } else if let error = error {
                     print(error.localizedDescription)
                 }
@@ -128,8 +128,9 @@ extension NetworkManager {
     
     func requestWeatherInfo() {
         weatherInfoDataTask(today)
-        // weatherInfoDataTask(yesterday)
-        // weatherInfoDataTask(tomorrow)
+        weatherInfoDataTask(yesterday)
+        weatherInfoDataTask(tomorrow)
+        
     }
     
     // location manager에서 수집된 x, y 좌표가 request 파라미터에 저장된 뒤 행정구역명을 수집하기 위한 kakao api data 통신을 요청하고 받은 정보를 published 변수에 저장한다.
