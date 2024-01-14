@@ -27,7 +27,7 @@ struct MainView: View {
                     .scaledToFit()
                     .frame(width: 30, alignment: .leading)
                 
-                Text("\(nm.today.location)")
+                Text("\(nm.location)")
                     .font(.title)
                     .bold()
                 
@@ -46,15 +46,15 @@ struct MainView: View {
                             .font(.title2)
                             .fontWeight(.semibold)
                         
-                        Text("\(currentTemp)°")
+                        Text("\(nm.yesterday.formattedTemp)°")
                             .font(.system(size: 50))
                         
-                        Text("max \(maxTemp)° min \(minTemp)°")
+                        Text("max \(nm.yesterday.maxTemp)° min \(nm.yesterday.minTemp)°")
                             .font(.subheadline)
                     }
                     Spacer()
                     
-                    Image(systemName: weatherIcon)
+                    Image(systemName: nm.yesterday.icon)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 80, height: 80)
@@ -77,7 +77,7 @@ struct MainView: View {
                             .font(.title)
                             .bold()
                         
-                        Text("\(formatTemp(nm.today.temp))°")
+                        Text("\(nm.today.formattedTemp)°")
                             .font(.system(size: 60))
                         
                         Text("max \(nm.today.maxTemp)° min \(nm.today.minTemp)°")
@@ -108,15 +108,15 @@ struct MainView: View {
                             .font(.title2)
                             .fontWeight(.semibold)
                         
-                        Text("\(currentTemp)°")
+                        Text("\(nm.tomorrow.formattedTemp)°")
                             .font(.system(size: 50))
                         
-                        Text("max \(maxTemp)° min \(minTemp)°")
+                        Text("max \(nm.tomorrow.maxTemp)° min \(nm.tomorrow.minTemp)°")
                             .font(.subheadline)
                     }
                     Spacer()
                     
-                    Image(systemName: weatherIcon)
+                    Image(systemName: nm.tomorrow.icon)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 80, height: 80)
@@ -129,19 +129,9 @@ struct MainView: View {
         }
         .padding(.horizontal, 10)
         .onAppear(perform: {
-            nm.setToday()
+            nm.setDateInfo()
             lm.requestLocation()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                print(nm.today)
-            }
         })
-    }
-}
-
-extension MainView {
-    // 소수점 첫번째 자리까지 표시
-    func formatTemp(_ temp: Double) -> String {
-        return String(format: "%.1f", temp)
     }
 }
 

@@ -14,11 +14,11 @@ final class NetworkManager: ObservableObject {
     
     static let shared = NetworkManager()
     
+    @Published var location: String = ""
+    
     @Published var today = CurrentWeather()
     @Published var yesterday = CurrentWeather()
     @Published var tomorrow = CurrentWeather()
-    
-    private let session = URLSession(configuration: URLSessionConfiguration.default)
     
     // x, y 좌표 >>> 행정구역명
     private var addressReqeust = Request(
@@ -61,11 +61,6 @@ final class NetworkManager: ObservableObject {
         ]
     )
     
-    func setDate(dt: String, date: String) {
-        currentTempAndCodeRequest.params.updateValue(dt, forKey: "dt")
-        maxAndMinTempRequest.params.updateValue(date, forKey: "date")
-    }
-    
     func setLocation(location: String) {
         coordinateRequest.params.updateValue(location, forKey: "query")
     }
@@ -73,24 +68,69 @@ final class NetworkManager: ObservableObject {
     func setCoordinates(x: String, y: String) {
         addressReqeust.params.updateValue(x, forKey: "x")
         addressReqeust.params.updateValue(y, forKey: "y")
-        currentTempAndCodeRequest.params.updateValue(y, forKey: "lat")
-        currentTempAndCodeRequest.params.updateValue(x, forKey: "lon")
-        maxAndMinTempRequest.params.updateValue(y, forKey: "lat")
-        maxAndMinTempRequest.params.updateValue(x, forKey: "lon")
+        today.setCoordinates(x: x, y: y)
+        yesterday.setCoordinates(x: x, y: y)
+        tomorrow.setCoordinates(x: x, y: y)
     }
 }
 
 extension NetworkManager {
-    // 현재 날짜와 시간을 url 파라미터 형식에 적합하게 전환하고 낮밤여부 정보를 published 변수에 저장
-    func setToday() {
-        let today: Date = .now
+    // 현재 날짜와 시간 인스턴스 생성 > 현재 시간 기준 day time 여부를 published 변수에 전달, 현재 날짜 기준 오늘, 어제, 내일 날짜를 url 파라미터에 적합한 형태로 가공하여 전달.
+    func setDateInfo() {
+        let now: Date = .now
         
-        let dt = getDtString(today)
-        let date = getDateString(today)
+        [today, yesterday, tomorrow].forEach { day in
+            day.isDaytime = getTime(now)
+        }
         
-        setDate(dt: dt, date: date)
-
-        self.today.isDaytime = getTime(today)
+        // 순서대로 오늘, 어제, 내일
+        let threedays = [now, now - 86400, now + 86400]
+        var dateParams: [(dt: String, date: String)] = []
+        
+        threedays.forEach { day in
+            dateParams.append((dt: getDtString(day), date: getDateString(day)))
+        }
+        
+        today.setDate(dt: dateParams[0].dt, date: dateParams[0].date)
+        yesterday.setDate(dt: dateParams[1].dt, date: dateParams[1].date)
+        tomorrow.setDate(dt: dateParams[2].dt, date: dateParams[2].date)
+        
+        // print(today.currentTempAndCodeRequest)
+        // print(yesterday.maxAndMinTempRequest)
+        // print(tomorrow.currentTempAndCodeRequest)
+    }
+    
+    func weatherInfoDataTask(_ day: CurrentWeather) {
+        day.currentTempAndCodeRequest.dataTask(WeatherDescription.self) { [weak self] information, error in
+            DispatchQueue.main.async {
+                if let weather = information?.weather[0] {
+                    day.temp = weather.temp
+                    day.code = weather.description[0].code
+                    self?.objectWillChange.send()
+                } else if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        
+        day.maxAndMinTempRequest.dataTask(WeatherInfo.self) { [weak self] information, error in
+            DispatchQueue.main.async {
+                if let temp = information?.temperature {
+                    day.maxTemp = Int(round(temp.max))
+                    day.minTemp = Int(round(temp.min))
+                    self?.objectWillChange.send()
+                } else if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func requestWeatherInfo() {
+        weatherInfoDataTask(today)
+        weatherInfoDataTask(yesterday)
+        weatherInfoDataTask(tomorrow)
+        
     }
     
     // location manager에서 수집된 x, y 좌표가 request 파라미터에 저장된 뒤 행정구역명을 수집하기 위한 kakao api data 통신을 요청하고 받은 정보를 published 변수에 저장한다.
@@ -98,13 +138,13 @@ extension NetworkManager {
         addressReqeust.dataTask(LocationInfo.self) { [weak self] information, error in
             DispatchQueue.main.async {
                 if let location = information?.location[0].depth2 {
-                    self?.today.location = location
+                    self?.location = location
                 }
             }
         }
     }
     
-    // 날짜와 시간 정보가 request 파라미터에 저장된 뒤 날씨 정보를 수집하기 위한 openwheather api data 통신을 요청하고 받은 정보를 published 변수에 저장한다.
+    /* 날짜와 시간 정보가 request 파라미터에 저장된 뒤 날씨 정보를 수집하기 위한 openwheather api data 통신을 요청하고 받은 정보를 published 변수에 저장한다.
     func requestWeatherInformation() {
         currentTempAndCodeRequest.dataTask(WeatherDescription.self) { [weak self] information, error in
             DispatchQueue.main.async {
@@ -124,6 +164,7 @@ extension NetworkManager {
             }
         }
     }
+    */
 }
 
 extension NetworkManager {

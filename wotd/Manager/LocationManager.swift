@@ -59,7 +59,7 @@ extension LocationManager: CLLocationManagerDelegate {
         self.networkManager.setCoordinates(x: x, y: y)
         manager.stopUpdatingLocation()
         self.networkManager.requestLocation()
-        self.networkManager.requestWeatherInformation()
+        self.networkManager.requestWeatherInfo()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

@@ -7,11 +7,13 @@
 
 import Foundation
 
-struct CurrentWeather {
-    var location: String
+class CurrentWeather {
     var isDaytime: Bool
     
     var temp: Double
+    var formattedTemp: String {
+        return String(format: "%.1f", temp)
+    }
     var code: Int
     
     var maxTemp: Int
@@ -67,12 +69,45 @@ struct CurrentWeather {
         }
     }
     
-    init(location: String = "", temp: Double = 0.0, code: Int = 800, isDaytime: Bool = true, maxTemp: Int = 0, minTemp: Int = 0) {
-        self.location = location
+    var currentTempAndCodeRequest = Request(
+        urlComponent: "https://api.openweathermap.org/data/3.0/onecall/timemachine?",
+        params: [
+            "lat": "",
+            "lon": "",
+            "dt": "",
+            "appid": "f27181cb10370ef77a1d09ab93c3fa2f",
+            "units": "metric"
+        ]
+    )
+    
+    var maxAndMinTempRequest = Request(
+        urlComponent: "https://api.openweathermap.org/data/3.0/onecall/day_summary?",
+        params: [
+            "lat": "",
+            "lon": "",
+            "date": "",
+            "appid": "f27181cb10370ef77a1d09ab93c3fa2f",
+            "units": "metric"
+        ]
+    )
+    
+    init(temp: Double = 0.0, code: Int = 800, isDaytime: Bool = true, maxTemp: Int = 0, minTemp: Int = 0) {
         self.temp = temp
         self.code = code
         self.isDaytime = isDaytime
         self.maxTemp = maxTemp
         self.minTemp = minTemp
+    }
+    
+    func setDate(dt: String, date: String) {
+        currentTempAndCodeRequest.params.updateValue(dt, forKey: "dt")
+        maxAndMinTempRequest.params.updateValue(date, forKey: "date")
+    }
+    
+    func setCoordinates(x: String, y: String) {
+        currentTempAndCodeRequest.params.updateValue(y, forKey: "lat")
+        currentTempAndCodeRequest.params.updateValue(x, forKey: "lon")
+        maxAndMinTempRequest.params.updateValue(y, forKey: "lat")
+        maxAndMinTempRequest.params.updateValue(x, forKey: "lon")
     }
 }
