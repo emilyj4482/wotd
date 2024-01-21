@@ -12,13 +12,6 @@ struct MainView: View {
     @StateObject var nm = NetworkManager.shared
     @StateObject var lm = LocationManager()
     
-    @State var currentLocation: String = "수원시 장안구"
-    @State var currentTemp: String = "7.2"
-    @State var weatherIcon: String = Rain.drizzle.systemName
-    
-    @State var maxTemp: Int = 10
-    @State var minTemp: Int = 3
-    
     var body: some View {
         VStack {
             HStack {
