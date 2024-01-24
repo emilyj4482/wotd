@@ -39,10 +39,10 @@ struct MainView: View {
                             .font(.title2)
                             .fontWeight(.semibold)
                         
-                        Text("\(nm.yesterday.formattedTemp)°")
+                        Text(nm.yesterday.formattedTemp)
                             .font(.system(size: 50))
                         
-                        Text("max \(nm.yesterday.maxTemp)° min \(nm.yesterday.minTemp)°")
+                        Text("max \(nm.yesterday.formattedMaxTemp) min \(nm.yesterday.formattedMinTemp)")
                             .font(.subheadline)
                     }
                     Spacer()
@@ -70,10 +70,10 @@ struct MainView: View {
                             .font(.title)
                             .bold()
                         
-                        Text("\(nm.today.formattedTemp)°")
+                        Text(nm.today.formattedTemp)
                             .font(.system(size: 60))
                         
-                        Text("max \(nm.today.maxTemp)° min \(nm.today.minTemp)°")
+                        Text("max \(nm.today.formattedMaxTemp) min \(nm.today.formattedMinTemp)")
                             .font(.callout)
                     }
                     Spacer()
@@ -101,10 +101,10 @@ struct MainView: View {
                             .font(.title2)
                             .fontWeight(.semibold)
                         
-                        Text("\(nm.tomorrow.formattedTemp)°")
+                        Text(nm.tomorrow.formattedTemp)
                             .font(.system(size: 50))
                         
-                        Text("max \(nm.tomorrow.maxTemp)° min \(nm.tomorrow.minTemp)°")
+                        Text("max \(nm.tomorrow.formattedMaxTemp) min \(nm.tomorrow.formattedMinTemp)")
                             .font(.subheadline)
                     }
                     Spacer()

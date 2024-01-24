@@ -1,5 +1,5 @@
 //
-//  Weather.swift
+//  CurrentWeather.swift
 //  wotd
 //
 //  Created by EMILY on 04/01/2024.
@@ -12,13 +12,32 @@ class CurrentWeather {
     
     var temp: Double
     var formattedTemp: String {
-        return String(format: "%.1f", temp)
+        if temp == 1000.0 {
+            return "-"
+        } else {
+            return "\(String(format: "%.1f", temp))°"
+        }
     }
-    var code: Int
     
     var maxTemp: Int
-    var minTemp: Int
+    var formattedMaxTemp: String {
+        if maxTemp == 1000 {
+            return "-"
+        } else {
+            return "\(maxTemp)°"
+        }
+    }
     
+    var minTemp: Int
+    var formattedMinTemp: String {
+        if minTemp == 1000 {
+            return "-"
+        } else {
+            return "\(minTemp)°"
+        }
+    }
+    
+    var code: Int
     var icon: String {
         // https://openweathermap.org/weather-conditions 참고 weather condition code에 따라 띄울 icon 반환
         switch code {
@@ -69,6 +88,7 @@ class CurrentWeather {
         }
     }
     
+    // x, y 좌표 및 timestamp >>> 그 시각 온도 및 날씨 코드
     var currentTempAndCodeRequest = Request(
         urlComponent: "https://api.openweathermap.org/data/3.0/onecall/timemachine?",
         params: [
@@ -80,6 +100,7 @@ class CurrentWeather {
         ]
     )
     
+    // x, y 좌표 및 날짜 >>> 최고, 최저 온도
     var maxAndMinTempRequest = Request(
         urlComponent: "https://api.openweathermap.org/data/3.0/onecall/day_summary?",
         params: [
@@ -91,7 +112,8 @@ class CurrentWeather {
         ]
     )
     
-    init(temp: Double = 0.0, code: Int = 800, isDaytime: Bool = true, maxTemp: Int = 0, minTemp: Int = 0) {
+    // data를 전송 받지 못했을 경우 formatted String을 통해 view에 -로 출력하기 위해 기본값을 1000도로 설정
+    init(temp: Double = 1000.0, code: Int = 800, isDaytime: Bool = true, maxTemp: Int = 1000, minTemp: Int = 1000) {
         self.temp = temp
         self.code = code
         self.isDaytime = isDaytime
