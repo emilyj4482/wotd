@@ -85,7 +85,7 @@ extension NetworkManager {
     }
     
     // openweather api 통신 요청 >>> 각 request로부터 필요한 날씨 관련 정보를 받아 published 인스턴스에 저장한다.
-    func weatherInfoDataTask(_ day: CurrentWeather) {
+    private func weatherInfoDataTask(_ day: CurrentWeather) {
         day.currentTempAndCodeRequest.dataTask(WeatherDescription.self) { [weak self] information, error in
             DispatchQueue.main.async {
                 if let weather = information?.weather[0] {
@@ -115,11 +115,10 @@ extension NetworkManager {
         weatherInfoDataTask(today)
         weatherInfoDataTask(yesterday)
         weatherInfoDataTask(tomorrow)
-        
     }
 }
 
-extension NetworkManager {
+private extension NetworkManager {
     // 오늘 날짜 + 현재 시각을 timestamp로 변환
     func getDtString(_ date: Date) -> String {
         // Date type인 timestamp를 dt 형태로 변환
