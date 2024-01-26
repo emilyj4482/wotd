@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A1069B8A2B62CBCF00D4E11C /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1069B892B62CBCF00D4E11C /* ErrorManager.swift */; };
+		A1069B8A2B62CBCF00D4E11C /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1069B892B62CBCF00D4E11C /* ErrorMessage.swift */; };
 		A114C8DE2B34331B004B0DEE /* LocationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114C8DD2B34331B004B0DEE /* LocationInfo.swift */; };
 		A11E00332B37365E006EE103 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11E00322B37365E006EE103 /* Icon.swift */; };
 		A131106F2B1DBC7500F8437E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A131106E2B1DBC7500F8437E /* NetworkManager.swift */; };
@@ -24,7 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A1069B892B62CBCF00D4E11C /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
+		A1069B892B62CBCF00D4E11C /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		A114C8DD2B34331B004B0DEE /* LocationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfo.swift; sourceTree = "<group>"; };
 		A11E00322B37365E006EE103 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		A131106E2B1DBC7500F8437E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -111,7 +111,6 @@
 			children = (
 				A131106E2B1DBC7500F8437E /* NetworkManager.swift */,
 				A1C078A42B30A163008885F9 /* LocationManager.swift */,
-				A1069B892B62CBCF00D4E11C /* ErrorManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -120,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				A18F204E2B2704CD0017F3FF /* Request.swift */,
+				A1069B892B62CBCF00D4E11C /* ErrorMessage.swift */,
 				A114C8DD2B34331B004B0DEE /* LocationInfo.swift */,
 				A150F3352B19C5D90007C285 /* CoordinateInfo.swift */,
 				A1ABF7232B29E70800AE6428 /* WeatherInfo.swift */,
@@ -205,7 +205,7 @@
 				A150F3362B19C5D90007C285 /* CoordinateInfo.swift in Sources */,
 				A1C078A52B30A163008885F9 /* LocationManager.swift in Sources */,
 				A18F204F2B2704CD0017F3FF /* Request.swift in Sources */,
-				A1069B8A2B62CBCF00D4E11C /* ErrorManager.swift in Sources */,
+				A1069B8A2B62CBCF00D4E11C /* ErrorMessage.swift in Sources */,
 				A165B5A72B45B5EF00E47BD9 /* CurrentWeather.swift in Sources */,
 				A150F3242B19B4650007C285 /* wotdApp.swift in Sources */,
 				A114C8DE2B34331B004B0DEE /* LocationInfo.swift in Sources */,
