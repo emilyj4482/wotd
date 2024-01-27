@@ -24,6 +24,8 @@ final class LocationManager: NSObject, ObservableObject {
             locationManager.requestWhenInUseAuthorization()
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.startUpdatingLocation()
+        case .denied:
+            print("[TODO] 설정에 들어가서 위치정보 수집 허용하라고 권유하기")
         default:
             break
         }
@@ -34,18 +36,17 @@ extension LocationManager: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         // monitors permission status
         switch manager.authorizationStatus {
-            
         case .notDetermined:
-            print("AUTH: Not Determined")
+            print("[AUTH] Not Determined")
         case .restricted:
-            print("AUTH: Restricted")
+            print("[AUTH] Restricted")
         case .denied:
-            print("AUTH: Denied")
+            print("[AUTH] Denied")
         case .authorizedAlways:
-            print("AUTH: Always")
+            print("[AUTH] Always")
             locationManager.startUpdatingLocation()
         case .authorizedWhenInUse:
-            print("AUTH: When in use")
+            print("[AUTH] When in use")
             locationManager.startUpdatingLocation()
         @unknown default:
             break

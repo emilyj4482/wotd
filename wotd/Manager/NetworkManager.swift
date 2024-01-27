@@ -7,18 +7,15 @@
 
 import Foundation
 
-// https://api.openweathermap.org/data/3.0/onecall/timemachine?lat=37.3039&lon=127.0102&dt=1701193357&appid=f27181cb10370ef77a1d09ab93c3fa2f
-// https://dapi.kakao.com/v2/local/search/address.json?query=수원
-
 final class NetworkManager: ObservableObject {
     
     static let shared = NetworkManager()
     
-    @Published var location: String = ""
+    @Published var location: String = "-"
     
-    @Published var today = CurrentWeather()
-    @Published var yesterday = CurrentWeather()
-    @Published var tomorrow = CurrentWeather()
+    @Published var today = CurrentWeather(day: "Today")
+    @Published var yesterday = CurrentWeather(day: "Yesterday")
+    @Published var tomorrow = CurrentWeather(day: "Tomorrow")
     
     // x, y 좌표 >>> 행정구역명
     private var addressReqeust = Request(
