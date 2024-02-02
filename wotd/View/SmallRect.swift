@@ -9,7 +9,9 @@ import SwiftUI
 
 struct SmallRect: View {
     
-    @State var day: CurrentWeather
+    @ObservedObject private var nm = NetworkManager.shared
+    
+    let isYesterday: Bool
     
     var body: some View {
         ZStack {
@@ -20,19 +22,19 @@ struct SmallRect: View {
                 
             HStack {
                 VStack(alignment: .leading) {
-                    Text(day.day)
+                    Text(isYesterday ? nm.yesterday.day : nm.tomorrow.day)
                         .font(.title2)
                         .fontWeight(.semibold)
                     
-                    Text(day.formattedTemp)
+                    Text(isYesterday ? nm.yesterday.formattedTemp : nm.tomorrow.formattedTemp)
                         .font(.system(size: 50))
                     
-                    Text("max \(day.formattedMaxTemp) min \(day.formattedMinTemp)")
+                    Text("max \(isYesterday ? nm.yesterday.formattedMaxTemp : nm.tomorrow.formattedMaxTemp) min \(isYesterday ? nm.yesterday.formattedMinTemp : nm.tomorrow.formattedMinTemp)")
                         .font(.subheadline)
                 }
                 Spacer()
                 
-                Image(systemName: day.icon)
+                Image(systemName: isYesterday ? nm.yesterday.icon : nm.tomorrow.icon)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 80, height: 80)
@@ -44,7 +46,8 @@ struct SmallRect: View {
         }
     }
 }
-
+/*
 #Preview {
     SmallRect(day: CurrentWeather(day: "Yesterday"))
 }
+*/

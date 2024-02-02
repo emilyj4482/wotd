@@ -27,11 +27,11 @@ struct MainView: View {
                 Spacer()
             }
             
-            SmallRect(day: nm.yesterday)
+            SmallRect(isYesterday: true)
             
-            BigRect(day: nm.today)
+            BigRect()
             
-            SmallRect(day: nm.tomorrow)
+            SmallRect(isYesterday: false)
         }
         .padding(.horizontal, 15)
         .onAppear(perform: {

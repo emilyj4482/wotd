@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BigRect: View {
     
-    @State var day: CurrentWeather
+    @ObservedObject private var nm = NetworkManager.shared
     
     var body: some View {
         ZStack {
@@ -20,19 +20,19 @@ struct BigRect: View {
                 
             HStack {
                 VStack(alignment: .leading) {
-                    Text(NetworkManager.shared.today.day)
+                    Text(nm.today.day)
                         .font(.title)
                         .bold()
                     
-                    Text(NetworkManager.shared.today.formattedTemp)
+                    Text(nm.today.formattedTemp)
                         .font(.system(size: 60))
                     
-                    Text("max \(NetworkManager.shared.today.formattedMaxTemp) min \(NetworkManager.shared.today.formattedMinTemp)")
+                    Text("max \(nm.today.formattedMaxTemp) min \(nm.today.formattedMinTemp)")
                         .font(.callout)
                 }
                 Spacer()
                 
-                Image(systemName: NetworkManager.shared.today.icon)
+                Image(systemName: nm.today.icon)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 100, height: 100)
@@ -45,6 +45,8 @@ struct BigRect: View {
     }
 }
 
+/*
 #Preview {
     BigRect(day: CurrentWeather(day: "Today"))
 }
+*/
