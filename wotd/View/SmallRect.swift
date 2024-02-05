@@ -16,9 +16,10 @@ struct SmallRect: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .foregroundStyle(.opacity(0.85))
+                .fill(.linearGradient(colors: [.yellow.opacity(0.8), .green.opacity(0.8), .blue.opacity(0.8)], startPoint: .topLeading, endPoint: .bottomTrailing))
                 .frame(height: 180)
                 .clipShape(.rect(cornerRadius: 15))
+                .shadow(color: .black.opacity(0.2), radius: 50, x: -10, y: -10)
                 
             HStack {
                 VStack(alignment: .leading) {
@@ -46,8 +47,7 @@ struct SmallRect: View {
         }
     }
 }
-/*
+
 #Preview {
-    SmallRect(day: CurrentWeather(day: "Yesterday"))
+    MainView()
 }
-*/

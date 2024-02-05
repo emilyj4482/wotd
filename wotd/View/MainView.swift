@@ -33,7 +33,7 @@ struct MainView: View {
             
             SmallRect(isYesterday: false)
         }
-        .padding(.horizontal, 15)
+        .padding(.horizontal, 17)
         .onAppear(perform: {
             nm.setDateInfo()
             lm.requestLocation()

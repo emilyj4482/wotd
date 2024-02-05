@@ -14,9 +14,10 @@ struct BigRect: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .foregroundStyle(.opacity(0.9))
+                .fill(.linearGradient(colors: [.yellow, .green, .blue], startPoint: .topLeading, endPoint: .bottomTrailing))
                 .frame(height: 220)
                 .clipShape(.rect(cornerRadius: 15))
+                .shadow(color: .black.opacity(0.4), radius: 20, x: 10, y: 10)
                 
             HStack {
                 VStack(alignment: .leading) {
@@ -45,8 +46,6 @@ struct BigRect: View {
     }
 }
 
-/*
 #Preview {
-    BigRect(day: CurrentWeather(day: "Today"))
+    MainView()
 }
-*/
