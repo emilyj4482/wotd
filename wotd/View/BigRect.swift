@@ -14,7 +14,8 @@ struct BigRect: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(.weatherGradient)
+                .fill(.brClearGradient)
+                // .fill(WeatherGradient().weatherGradient)
                 // .fill(.linearGradient(colors: [.orange, .yellow, .green, .blue], startPoint: .topLeading, endPoint: .bottomTrailing))
                 .frame(height: 220)
                 .clipShape(.rect(cornerRadius: 15))
