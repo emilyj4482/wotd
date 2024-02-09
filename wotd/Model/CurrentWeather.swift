@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class CurrentWeather {
     var day: String
@@ -86,6 +87,13 @@ class CurrentWeather {
             } else {
                 return Clear.night.systemName
             }
+        }
+    }
+    
+    var colors: [Color] {
+        switch code {
+        default:
+            return [.orange, .yellow, .green, .blue]
         }
     }
     
