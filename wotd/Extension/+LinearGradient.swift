@@ -28,9 +28,7 @@ extension ShapeStyle where Self == LinearGradient {
     }
     
     static func smallRectGradient(_ colors: [Color]) -> LinearGradient {
-        let newColors = colors.map { color in
-            color.opacity(0.8)
-        }
+        let newColors = colors.map { $0.opacity(0.8) }
         return LinearGradient(colors: newColors, startPoint: .bottomLeading, endPoint: .topTrailing)
     }
 }
