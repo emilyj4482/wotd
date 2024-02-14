@@ -35,13 +35,20 @@ struct SmallRect: View {
                 }
                 Spacer()
                 
-                Image(systemName: isYesterday ? nm.yesterday.icon : nm.tomorrow.icon)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 80, height: 80)
-                    .symbolRenderingMode(.multicolor)
-                    .shadow(radius: 5)
-                    .padding(.trailing, 30)
+                VStack {
+                    Image(systemName: isYesterday ? nm.yesterday.icon : nm.tomorrow.icon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 75, height: 75)
+                        .symbolRenderingMode(.multicolor)
+                    
+                    Text("Clouds")
+                        .font(.caption)
+                        .fontWeight(.medium)
+                        .padding(.top, 5)
+                }
+                .shadow(radius: 5)
+                .padding(.trailing, 30)
             }
             .padding(.horizontal, 30)
             .foregroundStyle(.white)

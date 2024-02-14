@@ -33,14 +33,21 @@ struct BigRect: View {
                 }
                 Spacer()
                 
-                Image(systemName: nm.today.icon)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100, height: 100)
-                    .symbolRenderingMode(.multicolor)
-                    .shadow(radius: 5)
-                    .padding(.trailing, 20)
+                VStack {
+                    Image(systemName: nm.today.icon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .symbolRenderingMode(.multicolor)
+                    // TODO: model에 항목 추가
+                    Text("Clear sky")
+                        .font(.callout)
+                        .fontWeight(.medium)
+                }
+                
+                .padding(.trailing, 20)
             }
+            .shadow(radius: 5)
             .padding(.horizontal, 30)
             .foregroundStyle(.white)
         }
