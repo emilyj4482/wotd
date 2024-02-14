@@ -92,8 +92,35 @@ class CurrentWeather {
     
     var colors: [Color] {
         switch code {
+        case 200..<600:
+            return [
+                Color(uiColor: #colorLiteral(red: 0.4620226622, green: 0.8382837176, blue: 1, alpha: 1)),
+                Color(uiColor: #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)),
+                Color(uiColor: #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1))
+            ]
+        case 701..<800, 801..<900:
+            return [
+                Color(uiColor: #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)),
+                Color(uiColor: #colorLiteral(red: 0.6642242074, green: 0.6642400622, blue: 0.6642315388, alpha: 1)),
+                Color(uiColor: #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1))
+            ]
+            
+        // TODO: Snow
+            
         default:
-            return [.orange, .yellow, .green, .blue]
+            if isDaytime {
+                return [
+                    Color(uiColor: #colorLiteral(red: 0.4513868093, green: 0.9930960536, blue: 1, alpha: 1)),
+                    Color(uiColor: #colorLiteral(red: 0.4620226622, green: 0.8382837176, blue: 1, alpha: 1)),
+                    Color(uiColor: #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1))
+                ]
+            } else {
+                return [
+                    Color(uiColor: #colorLiteral(red: 0.476841867, green: 0.5048075914, blue: 1, alpha: 1)),
+                    Color(uiColor: #colorLiteral(red: 0.5818830132, green: 0.2156915367, blue: 1, alpha: 1)),
+                    Color(uiColor: #colorLiteral(red: 0.3236978054, green: 0.1063579395, blue: 0.574860394, alpha: 1))
+                ]
+            }
         }
     }
     
