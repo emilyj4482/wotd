@@ -104,8 +104,11 @@ class CurrentWeather {
                 Color(uiColor: #colorLiteral(red: 0.6642242074, green: 0.6642400622, blue: 0.6642315388, alpha: 1)),
                 Color(uiColor: #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1))
             ]
-            
-        // TODO: Snow
+        case 600..<700:
+            return [
+                Color(uiColor: #colorLiteral(red: 0.4513868093, green: 0.9930960536, blue: 1, alpha: 1)),
+                Color(uiColor: #colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1))
+            ]
             
         default:
             if isDaytime {

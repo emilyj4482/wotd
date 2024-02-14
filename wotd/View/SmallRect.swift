@@ -17,8 +17,6 @@ struct SmallRect: View {
         ZStack {
             Rectangle()
                 .fill(.smallRectGradient(isYesterday ? nm.yesterday.colors : nm.tomorrow.colors))
-                // .fill(.srClearGradient)
-                // .fill(.linearGradient(colors: [.orange.opacity(0.8), .yellow.opacity(0.8), .green.opacity(0.8), .blue.opacity(0.8)], startPoint: .bottomLeading, endPoint: .topTrailing))
                 .frame(height: 180)
                 .clipShape(.rect(cornerRadius: 15))
                 .shadow(color: .black.opacity(0.2), radius: 50, x: -10, y: -10)
@@ -42,6 +40,7 @@ struct SmallRect: View {
                     .scaledToFit()
                     .frame(width: 80, height: 80)
                     .symbolRenderingMode(.multicolor)
+                    .shadow(radius: 5)
                     .padding(.trailing, 30)
             }
             .padding(.horizontal, 30)

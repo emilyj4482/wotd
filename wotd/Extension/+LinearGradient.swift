@@ -7,13 +7,6 @@
 
 import SwiftUI
 
-/*
-struct WeatherGradient {
-    var weatherGradient: some ShapeStyle {
-        LinearGradient(colors: [.orange, .yellow, .green, .blue], startPoint: .topLeading, endPoint: .bottomTrailing)
-    }
-}
-*/
 extension ShapeStyle where Self == LinearGradient {
     static var brClearGradient: LinearGradient {
         LinearGradient(colors: [.orange, .yellow, .green, .blue], startPoint: .topLeading, endPoint: .bottomTrailing)

@@ -13,7 +13,7 @@ final class NetworkManager: ObservableObject {
     
     @Published var location: String = "-"
     
-    @Published var today = CurrentWeather(day: "Today")
+    @Published var today = CurrentWeather(day: "Now")
     @Published var yesterday = CurrentWeather(day: "Yesterday")
     @Published var tomorrow = CurrentWeather(day: "Tomorrow")
     

@@ -15,9 +15,6 @@ struct BigRect: View {
         ZStack {
             Rectangle()
                 .fill(.bigRectGradient(nm.today.colors))
-                // .fill(.brClearGradient)
-                // .fill(WeatherGradient().weatherGradient)
-                // .fill(.linearGradient(colors: [.orange, .yellow, .green, .blue], startPoint: .topLeading, endPoint: .bottomTrailing))
                 .frame(height: 220)
                 .clipShape(.rect(cornerRadius: 15))
                 .shadow(color: .black.opacity(0.4), radius: 20, x: 10, y: 10)
@@ -41,6 +38,7 @@ struct BigRect: View {
                     .scaledToFit()
                     .frame(width: 100, height: 100)
                     .symbolRenderingMode(.multicolor)
+                    .shadow(radius: 5)
                     .padding(.trailing, 20)
             }
             .padding(.horizontal, 30)
