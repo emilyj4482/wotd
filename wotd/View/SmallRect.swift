@@ -42,7 +42,7 @@ struct SmallRect: View {
                         .frame(width: 75, height: 75)
                         .symbolRenderingMode(.multicolor)
                     
-                    Text("Clouds")
+                    Text(isYesterday ? nm.yesterday.description : nm.tomorrow.description)
                         .font(.caption)
                         .fontWeight(.medium)
                         .padding(.top, 5)

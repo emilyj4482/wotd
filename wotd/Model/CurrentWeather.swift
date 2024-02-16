@@ -16,6 +16,9 @@ class CurrentWeather {
     var formattedTemp: String {
         if temp == 1000.0 {
             return "-"
+        } else if temp > -1 && temp <= 0 {
+            // -0.0°로 표시되는 것 방지
+            return "0.0°"
         } else {
             return "\(String(format: "%.1f", temp))°"
         }
@@ -87,6 +90,63 @@ class CurrentWeather {
             } else {
                 return Clear.night.systemName
             }
+        }
+    }
+    
+    var description: String {
+        switch code {
+        case 200, 201, 202, 230, 231, 232:
+            return "Thunderstrom with rain"
+        case 210...221:
+            return "Thunderstorm"
+        case 300..<400:
+            return "Drizzle"
+        case 500:
+            return "Light rain"
+        case 501:
+            return "Rain"
+        case 502...504:
+            return "Heavy rain"
+        case 511:
+            return "Freezing rain"
+        case 520...531:
+            return "Shower rain"
+        case 600:
+            return "Light snow"
+        case 601:
+            return "Snow"
+        case 602:
+            return "Heavy snow"
+        case 611...613:
+            return "Sleet"
+        case 615, 616:
+            return "Rain and snow"
+        case 620...622:
+            return "Shower snow"
+        case 701:
+            return "Mist"
+        case 711:
+            return "Smoke"
+        case 721:
+            return "Haze"
+        case 731, 761:
+            return "Dust"
+        case 741:
+            return "Fog"
+        case 751:
+            return "Sand"
+        case 762:
+            return "Volcanic ash"
+        case 771:
+            return "Squalls"
+        case 781:
+            return "Tornado"
+        case 801, 802:
+            return "Clouds"
+        case 803, 804:
+            return "Overcast clouds"
+        default:
+            return "Clear"
         }
     }
     

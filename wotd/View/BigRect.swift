@@ -31,6 +31,7 @@ struct BigRect: View {
                     Text("max \(nm.today.formattedMaxTemp) min \(nm.today.formattedMinTemp)")
                         .font(.callout)
                 }
+                
                 Spacer()
                 
                 VStack {
@@ -39,10 +40,10 @@ struct BigRect: View {
                         .scaledToFit()
                         .frame(width: 100, height: 100)
                         .symbolRenderingMode(.multicolor)
-                    // TODO: model에 항목 추가
-                    Text("Clear sky")
+                    Text(nm.today.description)
                         .font(.callout)
                         .fontWeight(.medium)
+                        .multilineTextAlignment(.leading)
                 }
                 
                 .padding(.trailing, 20)

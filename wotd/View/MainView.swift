@@ -37,12 +37,6 @@ struct MainView: View {
         .onAppear(perform: {
             nm.setDateInfo()
             lm.requestLocation()
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                print(nm.today.isDaytime)
-                print(nm.yesterday.temp)
-                print(nm.tomorrow.formattedMinTemp)
-            }
         })
     }
 }
