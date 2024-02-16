@@ -8,14 +8,6 @@
 import SwiftUI
 
 extension ShapeStyle where Self == LinearGradient {
-    static var brClearGradient: LinearGradient {
-        LinearGradient(colors: [.orange, .yellow, .green, .blue], startPoint: .topLeading, endPoint: .bottomTrailing)
-    }
-    
-    static var srClearGradient: LinearGradient {
-        LinearGradient(colors: [.orange.opacity(0.8), .yellow.opacity(0.8), .green.opacity(0.8), .blue.opacity(0.8)], startPoint: .bottomLeading, endPoint: .topTrailing)
-    }
-    
     static func bigRectGradient(_ colors: [Color]) -> LinearGradient {
         return LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing)
     }
