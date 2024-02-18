@@ -16,7 +16,7 @@ class CurrentWeather {
     var formattedTemp: String {
         if temp == 1000.0 {
             return "-"
-        } else if temp > -1 && temp <= 0 {
+        } else if temp > -0.05 && temp <= 0 {
             // -0.0°로 표시되는 것 방지
             return "0.0°"
         } else {
