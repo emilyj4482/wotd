@@ -42,17 +42,26 @@ struct Request {
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard
                 let statusCode = (response as? HTTPURLResponse)?.statusCode,
-                let data = data,
-                statusCode >= 200 && statusCode <= 300
+                let data = data
             else { return }
             
             let decoder = JSONDecoder()
-            do {
-                let information = try decoder.decode(type, from: data)
-                completionHandler(information, nil)
-            } catch let error {
-                print("ERROR >>> \(error)")
-                completionHandler(nil, error)
+            var errorMessage = ""
+            
+            if statusCode >= 200 && statusCode <= 300 {
+                do {
+                    let information = try decoder.decode(type, from: data)
+                    completionHandler(information, nil)
+                } catch let error {
+                    print("[ERROR] \(error.localizedDescription)")
+                    completionHandler(nil, error)
+                }
+            } else {
+                // error response 형태에 따라 decode try 후 nil 아닌 것 할당
+                let message = try? decoder.decode(ErrorMessage.self, from: data)
+                let msg = try? decoder.decode(ErrorMessage2.self, from: data)
+                errorMessage = message?.message ?? msg?.msg ?? "Unknown"
+                print("[ERROR] \(errorMessage)")
             }
         }.resume()
     }

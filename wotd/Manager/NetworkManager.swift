@@ -7,18 +7,15 @@
 
 import Foundation
 
-// https://api.openweathermap.org/data/3.0/onecall/timemachine?lat=37.3039&lon=127.0102&dt=1701193357&appid=f27181cb10370ef77a1d09ab93c3fa2f
-// https://dapi.kakao.com/v2/local/search/address.json?query=수원
-
 final class NetworkManager: ObservableObject {
     
     static let shared = NetworkManager()
     
-    @Published var location: String = ""
+    @Published var location: String = "-"
     
-    @Published var today = CurrentWeather()
-    @Published var yesterday = CurrentWeather()
-    @Published var tomorrow = CurrentWeather()
+    @Published var today = CurrentWeather(day: "Now")
+    @Published var yesterday = CurrentWeather(day: "Yesterday")
+    @Published var tomorrow = CurrentWeather(day: "Tomorrow")
     
     // x, y 좌표 >>> 행정구역명
     private var addressReqeust = Request(
@@ -30,41 +27,18 @@ final class NetworkManager: ObservableObject {
         header: ["Authorization": "KakaoAK e8763e7acea6ae6cab9f86791c576fb8"]
     )
     
-    // 장소명 >>> x, y 좌표
+    /* 장소명 >>> x, y 좌표
     private var coordinateRequest = Request(
         urlComponent: "https://dapi.kakao.com/v2/local/search/address.json?",
         params: ["query": ""],
         header: ["Authorization": "KakaoAK e8763e7acea6ae6cab9f86791c576fb8"]
     )
     
-    // x, y 좌표 및 timestamp >>> 현재 온도 및 날씨 코드
-    private var currentTempAndCodeRequest = Request(
-        urlComponent: "https://api.openweathermap.org/data/3.0/onecall/timemachine?",
-        params: [
-            "lat": "",
-            "lon": "",
-            "dt": "",
-            "appid": "f27181cb10370ef77a1d09ab93c3fa2f",
-            "units": "metric"
-        ]
-    )
-    
-    // x, y 좌표 및 날짜 >>> 최고, 최저 온도
-    private var maxAndMinTempRequest = Request(
-        urlComponent: "https://api.openweathermap.org/data/3.0/onecall/day_summary?",
-        params: [
-            "lat": "",
-            "lon": "",
-            "date": "",
-            "appid": "f27181cb10370ef77a1d09ab93c3fa2f",
-            "units": "metric"
-        ]
-    )
-    
     func setLocation(location: String) {
         coordinateRequest.params.updateValue(location, forKey: "query")
-    }
+    } */
     
+    // location manager에서 이 함수를 호출하여 수집한 위치정보의 x, y 좌표값을 request url의 파라미터로 전달한다.
     func setCoordinates(x: String, y: String) {
         addressReqeust.params.updateValue(x, forKey: "x")
         addressReqeust.params.updateValue(y, forKey: "y")
@@ -75,7 +49,7 @@ final class NetworkManager: ObservableObject {
 }
 
 extension NetworkManager {
-    // 현재 날짜와 시간 인스턴스 생성 > 현재 시간 기준 day time 여부를 published 변수에 전달, 현재 날짜 기준 오늘, 어제, 내일 날짜를 url 파라미터에 적합한 형태로 가공하여 전달.
+    // 현재 날짜와 시간 인스턴스 생성 > 현재 시간 기준 day/night 여부를 today, yesterday, tomorrow의 프로퍼티에 전달하고 현재 날짜 기준 오늘, 어제, 내일 날짜를 url 파라미터에 적합한 형태로 가공하여 전달.
     func setDateInfo() {
         let now: Date = .now
         
@@ -94,13 +68,21 @@ extension NetworkManager {
         today.setDate(dt: dateParams[0].dt, date: dateParams[0].date)
         yesterday.setDate(dt: dateParams[1].dt, date: dateParams[1].date)
         tomorrow.setDate(dt: dateParams[2].dt, date: dateParams[2].date)
-        
-        // print(today.currentTempAndCodeRequest)
-        // print(yesterday.maxAndMinTempRequest)
-        // print(tomorrow.currentTempAndCodeRequest)
     }
     
-    func weatherInfoDataTask(_ day: CurrentWeather) {
+    // kakao api 통신 요청 >>> 행정구역명을 받아 view에 출력할 수 있도록 published 변수에 저장한다.
+    func requestLocation() {
+        addressReqeust.dataTask(LocationInfo.self) { [weak self] information, error in
+            DispatchQueue.main.async {
+                if let location = information?.location[0].depth2 {
+                    self?.location = location
+                }
+            }
+        }
+    }
+    
+    // openweather api 통신 요청 >>> 각 request로부터 필요한 날씨 관련 정보를 받아 published 인스턴스에 저장한다.
+    private func weatherInfoDataTask(_ day: CurrentWeather) {
         day.currentTempAndCodeRequest.dataTask(WeatherDescription.self) { [weak self] information, error in
             DispatchQueue.main.async {
                 if let weather = information?.weather[0] {
@@ -130,45 +112,11 @@ extension NetworkManager {
         weatherInfoDataTask(today)
         weatherInfoDataTask(yesterday)
         weatherInfoDataTask(tomorrow)
-        
     }
-    
-    // location manager에서 수집된 x, y 좌표가 request 파라미터에 저장된 뒤 행정구역명을 수집하기 위한 kakao api data 통신을 요청하고 받은 정보를 published 변수에 저장한다.
-    func requestLocation() {
-        addressReqeust.dataTask(LocationInfo.self) { [weak self] information, error in
-            DispatchQueue.main.async {
-                if let location = information?.location[0].depth2 {
-                    self?.location = location
-                }
-            }
-        }
-    }
-    
-    /* 날짜와 시간 정보가 request 파라미터에 저장된 뒤 날씨 정보를 수집하기 위한 openwheather api data 통신을 요청하고 받은 정보를 published 변수에 저장한다.
-    func requestWeatherInformation() {
-        currentTempAndCodeRequest.dataTask(WeatherDescription.self) { [weak self] information, error in
-            DispatchQueue.main.async {
-                if let weather = information?.weather[0] {
-                    self?.today.temp = weather.temp
-                    self?.today.code = weather.description[0].code
-                }
-            }
-        }
-        
-        maxAndMinTempRequest.dataTask(WeatherInfo.self) { [weak self] information, error in
-            DispatchQueue.main.async {
-                if let temp = information?.temperature {
-                    self?.today.maxTemp = Int(temp.max)
-                    self?.today.minTemp = Int(temp.min)
-                }
-            }
-        }
-    }
-    */
 }
 
-extension NetworkManager {
-    // 오늘 날짜를 timestamp로 변환
+private extension NetworkManager {
+    // 오늘 날짜 + 현재 시각을 timestamp로 변환
     func getDtString(_ date: Date) -> String {
         // Date type인 timestamp를 dt 형태로 변환
         let dt = date.timeIntervalSince1970
@@ -187,7 +135,7 @@ extension NetworkManager {
         return dateString
     }
     
-    // 현재 시간이 day인지 night인지
+    // 현재 시간이 day인지 night인지 구분하여 day면 true night이면 false 반환
     func getTime(_ date: Date) -> Bool {
         let hour = Calendar.current.component(.hour, from: date)
         
