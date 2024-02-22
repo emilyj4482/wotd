@@ -42,6 +42,7 @@ extension LocationManager: CLLocationManagerDelegate {
             print("[AUTH] Restricted")
         case .denied:
             print("[AUTH] Denied")
+            // TODO: MainView isPresneted에 true 전송
         case .authorizedAlways:
             print("[AUTH] Always")
             locationManager.startUpdatingLocation()

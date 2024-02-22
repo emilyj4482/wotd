@@ -12,6 +12,8 @@ struct MainView: View {
     @StateObject var nm = NetworkManager.shared
     @StateObject var lm = LocationManager()
     
+    @State private var isPresented: Bool = false
+    
     var body: some View {
         VStack {
             HStack {
@@ -37,7 +39,15 @@ struct MainView: View {
         .onAppear(perform: {
             nm.setDateInfo()
             lm.requestLocation()
+            if lm.locationManager.authorizationStatus == .denied {
+                isPresented = true
+            }
         })
+        .alert("Authorization Denied", isPresented: $isPresented) {
+            
+        } message: {
+            Text("Access to location infomation is not allowed. Please go to Settings and allow the authorization.")
+        }
     }
 }
 
