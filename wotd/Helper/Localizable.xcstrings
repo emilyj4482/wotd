@@ -1,0 +1,42 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Access to location infomation is not allowed. Please go to Settings and allow the authorization." : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정 > 권한에 들어가서 위치정보에 대한 접근을 허용해주세요."
+          }
+        }
+      }
+    },
+    "Authorization Denied" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위치정보 사용 권한 없음"
+          }
+        }
+      }
+    },
+    "max %@ min %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "max %1$@ min %2$@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최대 %1$@ 최소 %2$@"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

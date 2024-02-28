@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A1069B8A2B62CBCF00D4E11C /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1069B892B62CBCF00D4E11C /* ErrorMessage.swift */; };
+		A1135D132B8F5F1F001E351C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A1135D122B8F5F1F001E351C /* Localizable.xcstrings */; };
 		A114C8DE2B34331B004B0DEE /* LocationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114C8DD2B34331B004B0DEE /* LocationInfo.swift */; };
 		A11E00332B37365E006EE103 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11E00322B37365E006EE103 /* Icon.swift */; };
 		A1287D9D2B75427200D5B119 /* +LinearGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1287D9C2B75427100D5B119 /* +LinearGradient.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		A1069B892B62CBCF00D4E11C /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
+		A1135D122B8F5F1F001E351C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		A114C8DD2B34331B004B0DEE /* LocationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfo.swift; sourceTree = "<group>"; };
 		A11E00322B37365E006EE103 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		A1287D9C2B75427100D5B119 /* +LinearGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+LinearGradient.swift"; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				A11E00322B37365E006EE103 /* Icon.swift */,
+				A1135D122B8F5F1F001E351C /* Localizable.xcstrings */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = A150F3172B19B4650007C285;
 			productRefGroup = A150F3212B19B4650007C285 /* Products */;
@@ -206,6 +210,7 @@
 			files = (
 				A150F32B2B19B4670007C285 /* Preview Assets.xcassets in Resources */,
 				A150F3282B19B4670007C285 /* Assets.xcassets in Resources */,
+				A1135D132B8F5F1F001E351C /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
