@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class CurrentWeather {
-    var day: String
+    var day: LocalizedStringResource
     var isDaytime: Bool
     
     var temp: Double
@@ -212,7 +212,7 @@ class CurrentWeather {
     )
     
     // data를 전송 받지 못했을 경우 formatted String을 통해 view에 -로 출력하기 위해 기본값을 1000도로 설정
-    init(day: String, temp: Double = 1000.0, code: Int = 800, isDaytime: Bool = true, maxTemp: Int = 1000, minTemp: Int = 1000) {
+    init(day: LocalizedStringResource, temp: Double = 1000.0, code: Int = 800, isDaytime: Bool = true, maxTemp: Int = 1000, minTemp: Int = 1000) {
         self.day = day
         self.temp = temp
         self.code = code
