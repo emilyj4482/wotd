@@ -21,6 +21,116 @@
         }
       }
     },
+    "Clear" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "맑음"
+          }
+        }
+      }
+    },
+    "Clouds" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "흐림"
+          }
+        }
+      }
+    },
+    "Drizzle" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이슬비"
+          }
+        }
+      }
+    },
+    "Dust" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "먼지 낌"
+          }
+        }
+      }
+    },
+    "Fog" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "안개"
+          }
+        }
+      }
+    },
+    "Freezing rain" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "진눈깨비"
+          }
+        }
+      }
+    },
+    "Haze" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "실안개"
+          }
+        }
+      }
+    },
+    "Heavy rain" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "폭우"
+          }
+        }
+      }
+    },
+    "Heavy snow" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "폭설"
+          }
+        }
+      }
+    },
+    "Light rain" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보슬비"
+          }
+        }
+      }
+    },
+    "Light snow" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "눈 조금"
+          }
+        }
+      }
+    },
     "max %@ min %@" : {
       "localizations" : {
         "en" : {
@@ -37,6 +147,16 @@
         }
       }
     },
+    "Mist" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "안개"
+          }
+        }
+      }
+    },
     "Now" : {
       "localizations" : {
         "ko" : {
@@ -47,12 +167,152 @@
         }
       }
     },
+    "Overcast clouds" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구름 많음"
+          }
+        }
+      }
+    },
+    "Rain" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "비"
+          }
+        }
+      }
+    },
+    "Rain and snow" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "비와 눈"
+          }
+        }
+      }
+    },
+    "Sand" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모래"
+          }
+        }
+      }
+    },
+    "Shower rain" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "소나기"
+          }
+        }
+      }
+    },
+    "Shower snow" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "소낙눈"
+          }
+        }
+      }
+    },
+    "Sleet" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "진눈깨비"
+          }
+        }
+      }
+    },
+    "Smoke" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "연기"
+          }
+        }
+      }
+    },
+    "Snow" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "눈"
+          }
+        }
+      }
+    },
+    "Squalls" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "돌풍"
+          }
+        }
+      }
+    },
+    "Thunderstorm" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "뇌우"
+          }
+        }
+      }
+    },
+    "Thunderstrom with rain" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "비를 동반한 뇌우"
+          }
+        }
+      }
+    },
     "Tomorrow" : {
       "localizations" : {
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "내일"
+          }
+        }
+      }
+    },
+    "Tornado" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "회오리바람"
+          }
+        }
+      }
+    },
+    "Volcanic ash" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "화산재"
           }
         }
       }

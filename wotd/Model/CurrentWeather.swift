@@ -93,7 +93,7 @@ class CurrentWeather {
         }
     }
     
-    var description: String {
+    var description: LocalizedStringResource {
         switch code {
         case 200, 201, 202, 230, 231, 232:
             return "Thunderstrom with rain"
