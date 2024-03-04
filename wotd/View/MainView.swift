@@ -42,6 +42,9 @@ struct MainView: View {
             if lm.locationManager.authorizationStatus == .denied {
                 isPresented = true
             }
+            lm.getCityname { placemark in
+                print(placemark?.locality)
+            }
         })
         .alert("Authorization Denied", isPresented: $isPresented) {
             
