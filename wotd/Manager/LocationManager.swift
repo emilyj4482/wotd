@@ -9,8 +9,12 @@ import CoreLocation
 
 final class LocationManager: NSObject, ObservableObject {
     
-    let locationManager = CLLocationManager()
+    static let shared = LocationManager()
     private let networkManager = NetworkManager.shared
+    
+    @Published var location: String = "-"
+    
+    let locationManager = CLLocationManager()
     
     override init() {
         super.init()
@@ -30,27 +34,12 @@ final class LocationManager: NSObject, ObservableObject {
             break
         }
     }
-    
-    func getCityname(completionHandler: @escaping (CLPlacemark?) -> Void) {
-        // Use the last reported location.
-        if let lastLocation = self.locationManager.location {
-            let geocoder = CLGeocoder()
-            
-            // Look up the location and pass it to the completion handler
-            geocoder.reverseGeocodeLocation(lastLocation, completionHandler: { (placemarks, error) in
-                if error == nil {
-                    let firstLocation = placemarks?[0]
-                    completionHandler(firstLocation)
-                }
-                else {
-                    // An error occurred during geocoding.
-                    completionHandler(nil)
-                }
-            })
-        }
-        else {
-            // No location was available.
-            completionHandler(nil)
+
+    func getCityname(_ location: CLLocation) {
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
+            guard error == nil, let cityName = placemarks?[0].locality else { return }
+            self?.location = cityName
         }
     }
 }
@@ -65,7 +54,6 @@ extension LocationManager: CLLocationManagerDelegate {
             print("[AUTH] Restricted")
         case .denied:
             print("[AUTH] Denied")
-            // TODO: MainView isPresneted에 true 전송
         case .authorizedAlways:
             print("[AUTH] Always")
             locationManager.startUpdatingLocation()
@@ -79,11 +67,12 @@ extension LocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
+        getCityname(location)
         let x = String(location.coordinate.longitude)
         let y = String(location.coordinate.latitude)
         self.networkManager.setCoordinates(x: x, y: y)
         manager.stopUpdatingLocation()
-        self.networkManager.requestLocation()
+        // self.networkManager.requestLocation()
         self.networkManager.requestWeatherInfo()
     }
     

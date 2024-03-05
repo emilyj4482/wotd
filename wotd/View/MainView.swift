@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView: View {
     
     @StateObject var nm = NetworkManager.shared
-    @StateObject var lm = LocationManager()
+    @StateObject var lm = LocationManager.shared
     
     @State private var isPresented: Bool = false
     
@@ -22,7 +22,7 @@ struct MainView: View {
                     .scaledToFit()
                     .frame(width: 30, alignment: .leading)
                 
-                Text(nm.location)
+                Text(lm.location)
                     .font(.title)
                     .bold()
                 
@@ -41,9 +41,6 @@ struct MainView: View {
             lm.requestLocation()
             if lm.locationManager.authorizationStatus == .denied {
                 isPresented = true
-            }
-            lm.getCityname { placemark in
-                print(placemark?.locality)
             }
         })
         .alert("Authorization Denied", isPresented: $isPresented) {
