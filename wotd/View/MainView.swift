@@ -10,7 +10,9 @@ import SwiftUI
 struct MainView: View {
     
     @StateObject var nm = NetworkManager.shared
-    @StateObject var lm = LocationManager()
+    @StateObject var lm = LocationManager.shared
+    
+    @State private var isPresented: Bool = false
     
     var body: some View {
         VStack {
@@ -20,7 +22,7 @@ struct MainView: View {
                     .scaledToFit()
                     .frame(width: 30, alignment: .leading)
                 
-                Text(nm.location)
+                Text(lm.location)
                     .font(.title)
                     .bold()
                 
@@ -37,7 +39,15 @@ struct MainView: View {
         .onAppear(perform: {
             nm.setDateInfo()
             lm.requestLocation()
+            if lm.locationManager.authorizationStatus == .denied {
+                isPresented = true
+            }
         })
+        .alert("Authorization Denied", isPresented: $isPresented) {
+            
+        } message: {
+            Text("Access to location infomation is not allowed. Please go to Settings and allow the authorization.")
+        }
     }
 }
 
