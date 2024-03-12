@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  NowView.swift
 //  wotd
 //
 //  Created by EMILY on 20/12/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct NowView: View {
     
     @StateObject var nm = NetworkManager.shared
     @StateObject var lm = LocationManager.shared
@@ -51,5 +51,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    NowView()
 }

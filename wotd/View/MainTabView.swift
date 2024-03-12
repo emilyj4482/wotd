@@ -10,13 +10,13 @@ import SwiftUI
 struct MainTabView: View {
     var body: some View {
         TabView {
-            MainView()
+            NowView()
                 .tabItem {
                     Image(systemName: "clock.arrow.circlepath")
                     Text("Now")
                 }
             
-            Text("Hello, World!")
+            ThenView()
                 .tabItem {
                     Image(systemName: "calendar.badge.plus")
                     Text("Then")

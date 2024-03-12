@@ -20,7 +20,8 @@
 		A15BB7C32B65725900064791 /* BigRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15BB7C22B65725900064791 /* BigRect.swift */; };
 		A165B5A72B45B5EF00E47BD9 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A165B5A62B45B5EF00E47BD9 /* CurrentWeather.swift */; };
 		A17AD8362BA04E53002489CE /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AD8352BA04E53002489CE /* MainTabView.swift */; };
-		A180832E2B3332F200CDFA86 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180832D2B3332F200CDFA86 /* MainView.swift */; };
+		A17AD8392BA05503002489CE /* ThenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AD8382BA05503002489CE /* ThenView.swift */; };
+		A180832E2B3332F200CDFA86 /* NowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180832D2B3332F200CDFA86 /* NowView.swift */; };
 		A18F204F2B2704CD0017F3FF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F204E2B2704CD0017F3FF /* Request.swift */; };
 		A1ABF7242B29E70800AE6428 /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ABF7232B29E70800AE6428 /* WeatherInfo.swift */; };
 		A1C078A52B30A163008885F9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C078A42B30A163008885F9 /* LocationManager.swift */; };
@@ -41,7 +42,8 @@
 		A15BB7C22B65725900064791 /* BigRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigRect.swift; sourceTree = "<group>"; };
 		A165B5A62B45B5EF00E47BD9 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		A17AD8352BA04E53002489CE /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
-		A180832D2B3332F200CDFA86 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A17AD8382BA05503002489CE /* ThenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThenView.swift; sourceTree = "<group>"; };
+		A180832D2B3332F200CDFA86 /* NowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowView.swift; sourceTree = "<group>"; };
 		A18F204E2B2704CD0017F3FF /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		A1ABF7232B29E70800AE6428 /* WeatherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
 		A1C078A42B30A163008885F9 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -110,9 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				A17AD8352BA04E53002489CE /* MainTabView.swift */,
-				A180832D2B3332F200CDFA86 /* MainView.swift */,
-				A15BB7C02B65724E00064791 /* SmallRect.swift */,
-				A15BB7C22B65725900064791 /* BigRect.swift */,
+				A17AD8372BA054D5002489CE /* NowView */,
+				A17AD8382BA05503002489CE /* ThenView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -136,6 +137,16 @@
 				A165B5A62B45B5EF00E47BD9 /* CurrentWeather.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A17AD8372BA054D5002489CE /* NowView */ = {
+			isa = PBXGroup;
+			children = (
+				A180832D2B3332F200CDFA86 /* NowView.swift */,
+				A15BB7C02B65724E00064791 /* SmallRect.swift */,
+				A15BB7C22B65725900064791 /* BigRect.swift */,
+			);
+			path = NowView;
 			sourceTree = "<group>";
 		};
 		A19F50AE2B7678C5008BADF0 /* Extension */ = {
@@ -220,8 +231,9 @@
 			files = (
 				A15BB7C12B65724E00064791 /* SmallRect.swift in Sources */,
 				A1ABF7242B29E70800AE6428 /* WeatherInfo.swift in Sources */,
-				A180832E2B3332F200CDFA86 /* MainView.swift in Sources */,
+				A180832E2B3332F200CDFA86 /* NowView.swift in Sources */,
 				A131106F2B1DBC7500F8437E /* NetworkManager.swift in Sources */,
+				A17AD8392BA05503002489CE /* ThenView.swift in Sources */,
 				A1C078A52B30A163008885F9 /* LocationManager.swift in Sources */,
 				A18F204F2B2704CD0017F3FF /* Request.swift in Sources */,
 				A1069B8A2B62CBCF00D4E11C /* ErrorMessage.swift in Sources */,

@@ -56,5 +56,5 @@ struct BigRect: View {
 }
 
 #Preview {
-    MainView()
+    NowView()
 }
