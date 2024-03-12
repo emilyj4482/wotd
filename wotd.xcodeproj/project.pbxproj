@@ -113,7 +113,7 @@
 			children = (
 				A17AD8352BA04E53002489CE /* MainTabView.swift */,
 				A17AD8372BA054D5002489CE /* NowView */,
-				A17AD8382BA05503002489CE /* ThenView.swift */,
+				A17AD83A2BA0A097002489CE /* ThenView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -147,6 +147,14 @@
 				A15BB7C22B65725900064791 /* BigRect.swift */,
 			);
 			path = NowView;
+			sourceTree = "<group>";
+		};
+		A17AD83A2BA0A097002489CE /* ThenView */ = {
+			isa = PBXGroup;
+			children = (
+				A17AD8382BA05503002489CE /* ThenView.swift */,
+			);
+			path = ThenView;
 			sourceTree = "<group>";
 		};
 		A19F50AE2B7678C5008BADF0 /* Extension */ = {
