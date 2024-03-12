@@ -15,32 +15,8 @@ final class NetworkManager: ObservableObject {
     @Published var yesterday = CurrentWeather(day: "Yesterday")
     @Published var tomorrow = CurrentWeather(day: "Tomorrow")
     
-    /* x, y 좌표 >>> 행정구역명
-    private var addressReqeust = Request(
-        urlComponent: "https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?",
-        params: [
-            "x": "",
-            "y": ""
-        ],
-        header: ["Authorization": "KakaoAK e8763e7acea6ae6cab9f86791c576fb8"]
-    )
-    */
-    
-    /* 장소명 >>> x, y 좌표
-    private var coordinateRequest = Request(
-        urlComponent: "https://dapi.kakao.com/v2/local/search/address.json?",
-        params: ["query": ""],
-        header: ["Authorization": "KakaoAK e8763e7acea6ae6cab9f86791c576fb8"]
-    )
-    
-    func setLocation(location: String) {
-        coordinateRequest.params.updateValue(location, forKey: "query")
-    } */
-    
     // location manager에서 이 함수를 호출하여 수집한 위치정보의 x, y 좌표값을 request url의 파라미터로 전달한다.
     func setCoordinates(x: String, y: String) {
-        // addressReqeust.params.updateValue(x, forKey: "x")
-        // addressReqeust.params.updateValue(y, forKey: "y")
         today.setCoordinates(x: x, y: y)
         yesterday.setCoordinates(x: x, y: y)
         tomorrow.setCoordinates(x: x, y: y)
@@ -69,18 +45,6 @@ extension NetworkManager {
         tomorrow.setDate(dt: dateParams[2].dt, date: dateParams[2].date)
     }
     
-    /* kakao api 통신 요청 >>> 행정구역명을 받아 view에 출력할 수 있도록 published 변수에 저장한다.
-    func requestLocation() {
-        addressReqeust.dataTask(LocationInfo.self) { [weak self] information, error in
-            DispatchQueue.main.async {
-                if let location = information?.location[0].depth2 {
-                    self?.location = location
-                }
-            }
-        }
-    }
-    */
-    
     // openweather api 통신 요청 >>> 각 request로부터 필요한 날씨 관련 정보를 받아 published 인스턴스에 저장한다.
     private func weatherInfoDataTask(_ day: CurrentWeather) {
         day.currentTempAndCodeRequest.dataTask(WeatherDescription.self) { [weak self] information, error in
@@ -108,6 +72,7 @@ extension NetworkManager {
         }
     }
     
+    // location manager에서 모든 파라미터가 설정되었을 때 이 함수를 호출하여 weather api 통신을 한다.
     func requestWeatherInfo() {
         weatherInfoDataTask(today)
         weatherInfoDataTask(yesterday)

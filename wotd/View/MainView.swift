@@ -38,7 +38,6 @@ struct MainView: View {
         .padding(.horizontal, 17)
         .onAppear(perform: {
             nm.setDateInfo()
-            lm.requestLocation()
             if lm.locationManager.authorizationStatus == .denied {
                 isPresented = true
             }

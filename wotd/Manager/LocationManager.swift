@@ -21,19 +21,6 @@ final class LocationManager: NSObject, ObservableObject {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
-    
-    func requestLocation() {
-        switch locationManager.authorizationStatus {
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        case .authorizedAlways, .authorizedWhenInUse:
-            locationManager.startUpdatingLocation()
-        case .denied:
-            print("[TODO] 설정에 들어가서 위치정보 수집 허용하라고 권유하기")
-        default:
-            break
-        }
-    }
 
     func getCityname(_ location: CLLocation) {
         let geocoder = CLGeocoder()
@@ -46,33 +33,35 @@ final class LocationManager: NSObject, ObservableObject {
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        // monitors permission status
         switch manager.authorizationStatus {
         case .notDetermined:
             print("[AUTH] Not Determined")
+            locationManager.requestWhenInUseAuthorization()
         case .restricted:
             print("[AUTH] Restricted")
         case .denied:
             print("[AUTH] Denied")
         case .authorizedAlways:
             print("[AUTH] Always")
-            locationManager.startUpdatingLocation()
+            // locationManager.startUpdatingLocation()
+            locationManager.stopUpdatingLocation()
         case .authorizedWhenInUse:
             print("[AUTH] When in use")
-            locationManager.startUpdatingLocation()
+            // locationManager.startUpdatingLocation()
+            locationManager.stopUpdatingLocation()
         @unknown default:
             break
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("[Location Info updated]")
         guard let location = locations.first else { return }
         getCityname(location)
         let x = String(location.coordinate.longitude)
         let y = String(location.coordinate.latitude)
         self.networkManager.setCoordinates(x: x, y: y)
         manager.stopUpdatingLocation()
-        // self.networkManager.requestLocation()
         self.networkManager.requestWeatherInfo()
     }
     
