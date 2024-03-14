@@ -22,7 +22,7 @@ struct MainTabView: View {
                     Text("Then")
                 }
         }
-        .tint(Color(.label))
+        .tint(.black2)
     }
 }
 

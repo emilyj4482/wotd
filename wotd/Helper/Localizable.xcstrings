@@ -121,6 +121,9 @@
         }
       }
     },
+    "Hello, World!" : {
+
+    },
     "Light rain" : {
       "localizations" : {
         "ko" : {

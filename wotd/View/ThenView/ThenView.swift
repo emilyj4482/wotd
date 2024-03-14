@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ThenView: View {
+    
+    @State private var isPresented: Bool = false
+    
     var body: some View {
         ZStack {
             VStack {
@@ -25,9 +28,31 @@ struct ThenView: View {
                 Spacer()
             }
             .padding()
+            
+            
+            VStack {
+                Spacer()
+                
+                Button {
+                    isPresented.toggle()
+                } label: {
+                    Image(systemName: "plus.circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 50)
+                        .tint(.black2)
+                }
+                .shadow(color: .black2.opacity(0.2), radius: 5, x: 3, y: 3)
+                .padding(.bottom, 30)
+            }
         }
         .frame(maxWidth: .infinity)
         .background(.black.opacity(0.05))
+        
+        .sheet(isPresented: $isPresented, content: {
+            AddSheet()
+                .presentationDetents([.height(300)])
+        })
     }
 }
 
