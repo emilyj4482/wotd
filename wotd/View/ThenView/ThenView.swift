@@ -40,9 +40,9 @@ struct ThenView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(height: 50)
-                        .tint(.black2)
+                        .tint(.gray2)
                 }
-                .shadow(color: .black2.opacity(0.2), radius: 5, x: 3, y: 3)
+                .shadow(color: .gray2.opacity(0.5), radius: 1, x: 1.5, y: 1.5)
                 .padding(.bottom, 30)
             }
         }

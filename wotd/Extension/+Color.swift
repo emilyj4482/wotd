@@ -9,4 +9,5 @@ import SwiftUI
 
 extension Color {
     static var black2 = Color(.label)
+    static var gray2 = Color(.gray).opacity(0.7)
 }
