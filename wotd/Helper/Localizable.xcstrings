@@ -11,12 +11,42 @@
         }
       }
     },
+    "Add" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "추가"
+          }
+        }
+      }
+    },
+    "Add a weather of the specific day and city you want to compare to today's one." : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오늘 날씨와 비교하고 싶은 특정한 날짜와 도시의 날씨를 추가해보세요."
+          }
+        }
+      }
+    },
     "Authorization Denied" : {
       "localizations" : {
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "위치정보 사용 권한 없음"
+          }
+        }
+      }
+    },
+    "City" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "도시"
           }
         }
       }
@@ -41,6 +71,16 @@
         }
       }
     },
+    "Date" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "날짜"
+          }
+        }
+      }
+    },
     "Drizzle" : {
       "localizations" : {
         "ko" : {
@@ -57,6 +97,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "먼지 낌"
+          }
+        }
+      }
+    },
+    "Enter a city name." : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "도시 이름을 입력하세요."
           }
         }
       }
@@ -263,6 +313,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "돌풍"
+          }
+        }
+      }
+    },
+    "Then" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "그 날"
           }
         }
       }

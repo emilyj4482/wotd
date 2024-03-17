@@ -57,5 +57,5 @@ struct SmallRect: View {
 }
 
 #Preview {
-    MainView()
+    NowView()
 }
