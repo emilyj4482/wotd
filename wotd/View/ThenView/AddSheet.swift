@@ -19,9 +19,13 @@ struct AddSheet: View {
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 15) {
-                DatePicker("Date", selection: $date, displayedComponents: .date)
+                HStack(spacing: 50) {
+                    Text("Date")
+                    
+                    DatePicker(selection: $date, displayedComponents: .date) {}
                     .datePickerStyle(.compact)
-                    .frame(width: 200)
+                    .frame(width: 104)
+                }
                 
                 HStack(spacing: 50) {
                     Text("City")
@@ -31,11 +35,14 @@ struct AddSheet: View {
                 
                 List(sm.cities) { city in
                     Text(city.fullName)
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color(.gray).opacity(0.1))
                 }
                 .onChange(of: city) { oldValue, newValue in
                     sm.searchCities(searchText: newValue)
                 }
-                
+                .listStyle(.plain)
+                .padding(.leading, 64)
             }
             Spacer()
             
@@ -53,7 +60,6 @@ struct AddSheet: View {
         .padding()
         .padding(.vertical)
         .frame(height: 300)
-        .background(.gray.opacity(0.1))
     }
 }
 
