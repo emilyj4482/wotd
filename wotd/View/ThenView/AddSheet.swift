@@ -11,6 +11,8 @@ struct AddSheet: View {
     
     @Environment(\.dismiss) var dismiss
     
+    @StateObject private var sm = SearchManager.shared
+    
     @State var city: String = ""
     @State var date: Date = .now
     
@@ -26,6 +28,14 @@ struct AddSheet: View {
                     
                     TextField("Enter a city name.", text: $city)
                 }
+                
+                List(sm.cities) { city in
+                    Text(city.fullName)
+                }
+                .onChange(of: city) { oldValue, newValue in
+                    sm.searchCities(searchText: newValue)
+                }
+                
             }
             Spacer()
             
