@@ -31,6 +31,19 @@ struct AddSheet: View {
                     Text("City")
                     
                     TextField("Enter a city name.", text: $city)
+
+                    if !city.isEmpty {
+                        Button {
+                            city = ""
+                            sm.cities = []
+                        } label: {
+                            Image(systemName: "x.circle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 16, height: 16)
+                        }
+                        .tint(.gray.opacity(0.4))
+                    }
                 }
                 
                 List(sm.cities) { city in
