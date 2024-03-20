@@ -23,15 +23,15 @@ struct AddSheet: View {
                     Text("Date")
                     
                     DatePicker(selection: $date, displayedComponents: .date) {}
-                    .datePickerStyle(.compact)
-                    .frame(width: 104)
+                        .datePickerStyle(.compact)
+                        .frame(width: 104)
                 }
                 
                 HStack(spacing: 50) {
                     Text("City")
                     
                     TextField("Enter a city name.", text: $city)
-
+                    
                     if !city.isEmpty {
                         Button {
                             city = ""
@@ -59,16 +59,18 @@ struct AddSheet: View {
             }
             Spacer()
             
-            Button("Add") {
+            Button {
                 print("[City] \(city)")
                 print("[Date] \(date)")
                 
                 dismiss()
+            } label: {
+                Text("Add")
+                    .frame(width: 100, height: 50)
+                    .background(.mint)
+                    .tint(.white)
+                    .clipShape(.rect(cornerRadius: 40))
             }
-            .frame(width: 100, height: 50)
-            .background(.mint)
-            .tint(.white)
-            .clipShape(.rect(cornerRadius: 40))
         }
         .padding()
         .padding(.vertical)
