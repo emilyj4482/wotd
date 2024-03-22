@@ -16,6 +16,8 @@ struct AddSheet: View {
     @State var city: String = ""
     @State var date: Date = .now
     
+    @State private var tapped: Bool = false
+    
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 15) {
@@ -36,20 +38,31 @@ struct AddSheet: View {
                         Button {
                             city = ""
                             sm.cities = []
+                            tapped = false
                         } label: {
                             Image(systemName: "x.circle.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 16, height: 16)
                         }
                         .tint(.gray.opacity(0.4))
+                        .padding(.trailing, 16)
                     }
                 }
                 
                 List(sm.cities) { city in
-                    Text(city.fullName)
-                        .listRowSeparator(.hidden)
-                        .listRowBackground(Color(.gray).opacity(0.1))
+                    HStack {
+                        Text(city.fullName)
+                        
+                        Spacer()
+                        if tapped {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundStyle(.green)
+                        }
+                    }
+                    // background를 넣어야 tap gesture 인식이 list row 전체에 적용됨
+                    .background(.white)
+                    .onTapGesture {
+                        tapped.toggle()
+                    }
+                    .listRowSeparator(.visible, edges: .all)
                 }
                 .onChange(of: city) { oldValue, newValue in
                     sm.searchCities(searchText: newValue)
@@ -75,6 +88,9 @@ struct AddSheet: View {
         .padding()
         .padding(.vertical)
         .frame(height: 300)
+        .onDisappear {
+            sm.cities = []
+        }
     }
 }
 
