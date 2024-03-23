@@ -80,10 +80,11 @@ struct AddSheet: View {
             } label: {
                 Text("Add")
                     .frame(width: 100, height: 50)
-                    .background(.mint)
+                    .background(tapped ? .mint : .gray.opacity(0.3))
                     .tint(.white)
                     .clipShape(.rect(cornerRadius: 40))
             }
+            .disabled(tapped ? false : true)
         }
         .padding()
         .padding(.vertical)
