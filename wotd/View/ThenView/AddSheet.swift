@@ -74,7 +74,7 @@ struct AddSheet: View {
             
             Button {
                 print("[City] \(city)")
-                print("[Date] \(date)")
+                print("[Date] \(date.string())")
                 
                 dismiss()
             } label: {
