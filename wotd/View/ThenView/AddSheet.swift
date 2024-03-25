@@ -18,6 +18,9 @@ struct AddSheet: View {
     
     @State private var tapped: Bool = false
     
+    // temporary
+    @State var weather: ThenWeather
+    
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 15) {
@@ -61,6 +64,11 @@ struct AddSheet: View {
                     .background(.white)
                     .onTapGesture {
                         tapped.toggle()
+                        if tapped {
+                            weather.city = city.name
+                        } else {
+                            weather.city = ""
+                        }
                     }
                     .listRowSeparator(.visible, edges: .all)
                 }
@@ -73,8 +81,9 @@ struct AddSheet: View {
             Spacer()
             
             Button {
-                print("[City] \(city)")
-                print("[Date] \(date.string())")
+                print("[City] \(weather.city)")
+                weather.date = date.string()
+                print("[Date] \(weather.date)")
                 
                 dismiss()
             } label: {
@@ -96,5 +105,5 @@ struct AddSheet: View {
 }
 
 #Preview {
-    AddSheet(date: .now)
+    AddSheet(date: .now, weather: ThenWeather(date: "", city: "", x: "", y: "", min: 0, max: 0, morning: 0, afternoon: 0, evening: 0, night: 0))
 }

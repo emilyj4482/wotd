@@ -50,7 +50,7 @@ struct ThenView: View {
         .background(.black.opacity(0.05))
         
         .sheet(isPresented: $isPresented, content: {
-            AddSheet()
+            AddSheet(weather: ThenWeather(date: "", city: "", x: "", y: "", min: 0, max: 0, morning: 0, afternoon: 0, evening: 0, night: 0))
                 .presentationDetents([.height(300)])
         })
     }
