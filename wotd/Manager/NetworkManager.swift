@@ -62,8 +62,8 @@ extension NetworkManager {
         day.maxAndMinTempRequest.dataTask(WeatherInfo.self) { [weak self] information, error in
             DispatchQueue.main.async {
                 if let temp = information?.temperature {
-                    day.maxTemp = Int(round(temp.max))
-                    day.minTemp = Int(round(temp.min))
+                    day.maxTemp = temp.max.int()
+                    day.minTemp = temp.min.int()
                     self?.objectWillChange.send()
                 } else if let error = error {
                     print(error.localizedDescription)

@@ -16,6 +16,8 @@ struct AddSheet: View {
     @State var city: String = ""
     @State var date: Date = .now
     
+    @State private var selectedCity: String = ""
+    
     @State private var tapped: Bool = false
     
     // temporary
@@ -66,6 +68,7 @@ struct AddSheet: View {
                         tapped.toggle()
                         if tapped {
                             weather.city = city.name
+                            selectedCity = city.fullName
                         } else {
                             weather.city = ""
                         }
@@ -81,9 +84,7 @@ struct AddSheet: View {
             Spacer()
             
             Button {
-                print("[City] \(weather.city)")
-                weather.date = date.string()
-                print("[Date] \(weather.date)")
+                sm.searchWeather(weather, date: date, city: selectedCity)
                 
                 dismiss()
             } label: {
