@@ -54,16 +54,7 @@ final class SearchManager: ObservableObject {
     /* weather search */
     private let vm = ThenViewModel.shared
     
-    private var request = Request(
-            urlComponent: "https://api.openweathermap.org/data/3.0/onecall/day_summary?",
-            params: [
-                "lat": "",
-                "lon": "",
-                "date": "",
-                "appid": "f27181cb10370ef77a1d09ab93c3fa2f",
-                "units": "metric"
-            ]
-        )
+    private var request = Request.day
     
     func searchWeather(date: Date, city: City?) {
         let date = date.string()

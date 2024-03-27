@@ -65,4 +65,26 @@ struct Request {
             }
         }.resume()
     }
+    
+    static var moment = Request(
+        urlComponent: "https://api.openweathermap.org/data/3.0/onecall/timemachine?",
+        params: [
+            "lat": "",
+            "lon": "",
+            "dt": "",
+            "appid": "f27181cb10370ef77a1d09ab93c3fa2f",
+            "units": "metric"
+        ]
+    )
+    
+    static var day = Request(
+        urlComponent: "https://api.openweathermap.org/data/3.0/onecall/day_summary?",
+        params: [
+            "lat": "",
+            "lon": "",
+            "date": "",
+            "appid": "f27181cb10370ef77a1d09ab93c3fa2f",
+            "units": "metric"
+        ]
+    )
 }
