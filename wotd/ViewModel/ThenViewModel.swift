@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+final class ThenViewModel: ObservableObject {
+    
+    static let shared = ThenViewModel()
+    
+    @Published var weathers: [ThenWeather] = []
+    
+}

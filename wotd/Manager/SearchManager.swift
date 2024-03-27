@@ -11,6 +11,7 @@ final class SearchManager: ObservableObject {
     
     static let shared = SearchManager()
     
+    /* city search */
     @Published var cities: [City] = []
     
     func searchCities(searchText: String) {
@@ -50,17 +51,60 @@ final class SearchManager: ObservableObject {
         }
     }
     
-    func searchWeather(_ then: ThenWeather, date: Date, city: String) {
-        // 날짜 parameter set
-        then.setDate(date: date)
-        getCoordinate(city: city) { coordinate, error in
+    /* weather search */
+    private let vm = ThenViewModel.shared
+    
+    private var request = Request(
+            urlComponent: "https://api.openweathermap.org/data/3.0/onecall/day_summary?",
+            params: [
+                "lat": "",
+                "lon": "",
+                "date": "",
+                "appid": "f27181cb10370ef77a1d09ab93c3fa2f",
+                "units": "metric"
+            ]
+        )
+    
+    func searchWeather(date: Date, city: City?) {
+        let date = date.string()
+        // date parameter set
+        request.params.updateValue(date, forKey: "date")
+        
+        guard let city = city else {
+            print("[ERROR] no city selected")
+            return
+        }
+        
+        getCoordinate(city: city.fullName) { [weak self] coordinate, error in
             if error == nil {
+                let x = "\(coordinate.longitude)"
+                let y = "\(coordinate.latitude)"
+                
                 // 좌표 parameter set
-                then.setCoordinate(coordinate: coordinate)
+                self?.request.params.updateValue(x, forKey: "lon")
+                self?.request.params.updateValue(y, forKey: "lat")
+                
                 // api 통신 request
-                then.requestData()
+                self?.requestData(date: date, city: city.name, { weather in
+                    print("request success")
+                    // single source of truth에 추가
+                    self?.vm.weathers.append(weather)
+                })
             } else if let error = error {
                 print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func requestData(date: String, city: String, _ completionHandler: @escaping (ThenWeather) -> Void) {
+        request.dataTask(WeatherInfo.self) { information, error in
+            DispatchQueue.main.async {
+                if let temp = information?.temperature {
+                    let weather = ThenWeather(date: date, city: city, min: temp.min.int(), max: temp.max.int(), morning: temp.morning.int(), afternoon: temp.afternoon.int(), evening: temp.evening.int(), night: temp.night.int())
+                    completionHandler(weather)
+                } else if let error = error {
+                    print(error.localizedDescription)
+                }
             }
         }
     }

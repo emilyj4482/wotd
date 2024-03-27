@@ -13,15 +13,11 @@ struct AddSheet: View {
     
     @StateObject private var sm = SearchManager.shared
     
-    @State var city: String = ""
     @State var date: Date = .now
-    
-    @State private var selectedCity: String = ""
+    @State var city: String = ""
     
     @State private var tapped: Bool = false
-    
-    // temporary
-    @State var weather: ThenWeather
+    @State private var selectedCity: City?
     
     var body: some View {
         VStack {
@@ -67,10 +63,9 @@ struct AddSheet: View {
                     .onTapGesture {
                         tapped.toggle()
                         if tapped {
-                            weather.city = city.name
-                            selectedCity = city.fullName
+                            selectedCity = city
                         } else {
-                            weather.city = ""
+                            selectedCity = nil
                         }
                     }
                     .listRowSeparator(.visible, edges: .all)
@@ -84,8 +79,7 @@ struct AddSheet: View {
             Spacer()
             
             Button {
-                sm.searchWeather(weather, date: date, city: selectedCity)
-                
+                sm.searchWeather(date: date, city: selectedCity)
                 dismiss()
             } label: {
                 Text("Add")
@@ -106,5 +100,5 @@ struct AddSheet: View {
 }
 
 #Preview {
-    AddSheet(date: .now, weather: ThenWeather(date: "", city: "", x: "", y: "", min: 0, max: 0, morning: 0, afternoon: 0, evening: 0, night: 0))
+    AddSheet(date: .now)
 }
