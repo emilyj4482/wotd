@@ -29,7 +29,7 @@ extension NetworkManager {
         let now: Date = .now
         
         [today, yesterday, tomorrow].forEach { day in
-            day.isDaytime = getTime(now)
+            day.isDaytime = now.isDayTime()
         }
         
         // 순서대로 오늘, 어제, 내일
@@ -37,7 +37,7 @@ extension NetworkManager {
         var dateParams: [(dt: String, date: String)] = []
         
         threedays.forEach { day in
-            dateParams.append((dt: getDtString(day), date: getDateString(day)))
+            dateParams.append((dt: day.dtString(), date: day.string()))
         }
         
         today.setDate(dt: dateParams[0].dt, date: dateParams[0].date)
@@ -62,8 +62,8 @@ extension NetworkManager {
         day.maxAndMinTempRequest.dataTask(WeatherInfo.self) { [weak self] information, error in
             DispatchQueue.main.async {
                 if let temp = information?.temperature {
-                    day.maxTemp = Int(round(temp.max))
-                    day.minTemp = Int(round(temp.min))
+                    day.maxTemp = temp.max.int()
+                    day.minTemp = temp.min.int()
                     self?.objectWillChange.send()
                 } else if let error = error {
                     print(error.localizedDescription)
@@ -77,37 +77,5 @@ extension NetworkManager {
         weatherInfoDataTask(today)
         weatherInfoDataTask(yesterday)
         weatherInfoDataTask(tomorrow)
-    }
-}
-
-private extension NetworkManager {
-    // 오늘 날짜 + 현재 시각을 timestamp로 변환
-    func getDtString(_ date: Date) -> String {
-        // Date type인 timestamp를 dt 형태로 변환
-        let dt = date.timeIntervalSince1970
-        // 소수점 버리고 Int로 변환
-        let dtInteger = Int(floor(dt))
-        
-        return String(dtInteger)
-    }
-    
-    // 오늘 날짜를 yyyy-mm-dd 형태로 변환
-    func getDateString(_ date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        let dateString = dateFormatter.string(from: date)
-        return dateString
-    }
-    
-    // 현재 시간이 day인지 night인지 구분하여 day면 true night이면 false 반환
-    func getTime(_ date: Date) -> Bool {
-        let hour = Calendar.current.component(.hour, from: date)
-        
-        if hour >= 6 && hour <= 17 {
-            return true
-        } else {
-            return false
-        }
     }
 }
