@@ -12,6 +12,7 @@
 		A11E00332B37365E006EE103 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11E00322B37365E006EE103 /* Icon.swift */; };
 		A1287D9D2B75427200D5B119 /* +LinearGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1287D9C2B75427100D5B119 /* +LinearGradient.swift */; };
 		A131106F2B1DBC7500F8437E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A131106E2B1DBC7500F8437E /* NetworkManager.swift */; };
+		A148AF4F2BB5EC3100FF97B9 /* DefaultVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A148AF4E2BB5EC3100FF97B9 /* DefaultVStack.swift */; };
 		A150F3242B19B4650007C285 /* wotdApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A150F3232B19B4650007C285 /* wotdApp.swift */; };
 		A150F3282B19B4670007C285 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A150F3272B19B4670007C285 /* Assets.xcassets */; };
 		A150F32B2B19B4670007C285 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A150F32A2B19B4670007C285 /* Preview Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		A11E00322B37365E006EE103 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		A1287D9C2B75427100D5B119 /* +LinearGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+LinearGradient.swift"; sourceTree = "<group>"; };
 		A131106E2B1DBC7500F8437E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		A148AF4E2BB5EC3100FF97B9 /* DefaultVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultVStack.swift; sourceTree = "<group>"; };
 		A150F3202B19B4650007C285 /* wotd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wotd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A150F3232B19B4650007C285 /* wotdApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wotdApp.swift; sourceTree = "<group>"; };
 		A150F3272B19B4670007C285 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			children = (
 				A17AD8382BA05503002489CE /* ThenView.swift */,
 				A164B0FE2BA32BBD009C972B /* AddSheet.swift */,
+				A148AF4E2BB5EC3100FF97B9 /* DefaultVStack.swift */,
 			);
 			path = ThenView;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				A165B5A72B45B5EF00E47BD9 /* CurrentWeather.swift in Sources */,
 				A150F3242B19B4650007C285 /* wotdApp.swift in Sources */,
 				A1287D9D2B75427200D5B119 /* +LinearGradient.swift in Sources */,
+				A148AF4F2BB5EC3100FF97B9 /* DefaultVStack.swift in Sources */,
 				A164B0FF2BA32BBD009C972B /* AddSheet.swift in Sources */,
 				A15E89F92BB2B662000E193E /* +Double.swift in Sources */,
 				A150F3382B19C5EB0007C285 /* WeatherDescription.swift in Sources */,

@@ -9,26 +9,14 @@ import SwiftUI
 
 struct ThenView: View {
     
+    @StateObject var vm = ThenViewModel.shared
+    
     @State private var isPresented: Bool = false
     
     var body: some View {
         ZStack {
-            VStack {
-                Spacer()
-                
-                Image(systemName: "cloud.sun.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 80)
-                    .symbolRenderingMode(.multicolor)
-                    .padding()
-                
-                Text("Add a weather of the specific day and city you want to compare to today's one.")
-                
-                Spacer()
-            }
-            .padding()
             
+            DefaultVStack()
             
             VStack {
                 Spacer()
