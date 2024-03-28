@@ -59,7 +59,7 @@ final class SearchManager: ObservableObject {
     func searchWeather(date: Date, city: City?) {
         let date = date.string()
         // date parameter set
-        request.params.updateValue(date, forKey: "date")
+        request.setDate(date: date)
         
         guard let city = city else {
             print("[ERROR] no city selected")
@@ -72,8 +72,7 @@ final class SearchManager: ObservableObject {
                 let y = "\(coordinate.latitude)"
                 
                 // 좌표 parameter set
-                self?.request.params.updateValue(x, forKey: "lon")
-                self?.request.params.updateValue(y, forKey: "lat")
+                self?.request.setCoordinate(x: x, y: y)
                 
                 // api 통신 request
                 self?.requestData(date: date, city: city.name, { weather in

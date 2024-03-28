@@ -87,4 +87,17 @@ struct Request {
             "units": "metric"
         ]
     )
+    
+    mutating func setDt(dt: String) {
+        params.updateValue(dt, forKey: "dt")
+    }
+    
+    mutating func setDate(date: String) {
+        params.updateValue(date, forKey: "date")
+    }
+    
+    mutating func setCoordinate(x: String, y: String) {
+        params.updateValue(x, forKey: "lon")
+        params.updateValue(y, forKey: "lat")
+    }
 }

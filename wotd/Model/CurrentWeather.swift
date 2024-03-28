@@ -204,14 +204,12 @@ class CurrentWeather {
     }
     
     func setDate(dt: String, date: String) {
-        currentTempAndCodeRequest.params.updateValue(dt, forKey: "dt")
-        maxAndMinTempRequest.params.updateValue(date, forKey: "date")
+        currentTempAndCodeRequest.setDt(dt: dt)
+        maxAndMinTempRequest.setDate(date: date)
     }
     
     func setCoordinates(x: String, y: String) {
-        currentTempAndCodeRequest.params.updateValue(y, forKey: "lat")
-        currentTempAndCodeRequest.params.updateValue(x, forKey: "lon")
-        maxAndMinTempRequest.params.updateValue(y, forKey: "lat")
-        maxAndMinTempRequest.params.updateValue(x, forKey: "lon")
+        currentTempAndCodeRequest.setCoordinate(x: x, y: y)
+        maxAndMinTempRequest.setCoordinate(x: x, y: y)
     }
 }
