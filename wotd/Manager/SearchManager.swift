@@ -68,8 +68,8 @@ final class SearchManager: ObservableObject {
         
         getCoordinate(city: city.fullName) { [weak self] coordinate, error in
             if error == nil {
-                let x = "\(coordinate.longitude)"
-                let y = "\(coordinate.latitude)"
+                let x = String(coordinate.longitude)
+                let y = String(coordinate.latitude)
                 
                 // 좌표 parameter set
                 self?.request.setCoordinate(x: x, y: y)

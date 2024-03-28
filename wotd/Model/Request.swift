@@ -19,7 +19,6 @@ struct Request {
     }
     
     var request: URLRequest {
-        
         var url = URLComponents(string: urlComponent)!
         url.queryItems = queries
         

@@ -55,7 +55,6 @@ extension LocationManager: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("[Location Info updated]")
         guard let location = locations.first else { return }
         getCityname(location)
         let x = String(location.coordinate.longitude)
