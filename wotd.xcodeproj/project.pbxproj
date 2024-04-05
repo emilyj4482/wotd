@@ -33,6 +33,8 @@
 		A18F204F2B2704CD0017F3FF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F204E2B2704CD0017F3FF /* Request.swift */; };
 		A1ABF7242B29E70800AE6428 /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ABF7232B29E70800AE6428 /* WeatherInfo.swift */; };
 		A1BDC44C2BB46FA90007AE79 /* ThenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BDC44B2BB46FA90007AE79 /* ThenViewModel.swift */; };
+		A1C030092BC06B9600EC4CFA /* WeatherVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C030082BC06B9600EC4CFA /* WeatherVStack.swift */; };
+		A1C0300B2BC07B1A00EC4CFA /* ComparisionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0300A2BC07B1A00EC4CFA /* ComparisionView.swift */; };
 		A1C078A52B30A163008885F9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C078A42B30A163008885F9 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,8 @@
 		A18F204E2B2704CD0017F3FF /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		A1ABF7232B29E70800AE6428 /* WeatherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
 		A1BDC44B2BB46FA90007AE79 /* ThenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThenViewModel.swift; sourceTree = "<group>"; };
+		A1C030082BC06B9600EC4CFA /* WeatherVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVStack.swift; sourceTree = "<group>"; };
+		A1C0300A2BC07B1A00EC4CFA /* ComparisionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparisionView.swift; sourceTree = "<group>"; };
 		A1C078A42B30A163008885F9 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,6 +181,8 @@
 				A17AD8382BA05503002489CE /* ThenView.swift */,
 				A164B0FE2BA32BBD009C972B /* AddSheet.swift */,
 				A148AF4E2BB5EC3100FF97B9 /* DefaultVStack.swift */,
+				A1C030082BC06B9600EC4CFA /* WeatherVStack.swift */,
+				A1C0300A2BC07B1A00EC4CFA /* ComparisionView.swift */,
 			);
 			path = ThenView;
 			sourceTree = "<group>";
@@ -290,8 +296,10 @@
 				A148AF4F2BB5EC3100FF97B9 /* DefaultVStack.swift in Sources */,
 				A164B0FF2BA32BBD009C972B /* AddSheet.swift in Sources */,
 				A15E89F92BB2B662000E193E /* +Double.swift in Sources */,
+				A1C030092BC06B9600EC4CFA /* WeatherVStack.swift in Sources */,
 				A150F3382B19C5EB0007C285 /* WeatherDescription.swift in Sources */,
 				A17AD8362BA04E53002489CE /* MainTabView.swift in Sources */,
+				A1C0300B2BC07B1A00EC4CFA /* ComparisionView.swift in Sources */,
 				A15BB7C32B65725900064791 /* BigRect.swift in Sources */,
 				A1BDC44C2BB46FA90007AE79 /* ThenViewModel.swift in Sources */,
 				A11E00332B37365E006EE103 /* Icon.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import CoreLocation
 
-struct ThenWeather {
+struct ThenWeather: Hashable {
     var date: String
     var city: String
     
