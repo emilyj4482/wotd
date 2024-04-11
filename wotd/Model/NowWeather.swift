@@ -1,5 +1,5 @@
 //
-//  CurrentWeather.swift
+//  NowWeather.swift
 //  wotd
 //
 //  Created by EMILY on 04/01/2024.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class CurrentWeather {
+class NowWeather {
     var day: LocalizedStringResource
     var isDaytime: Bool
     

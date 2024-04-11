@@ -192,7 +192,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "최대 %1$@ 최소 %2$@"
+            "value" : "최고 %1$@ 최저 %2$@"
           }
         }
       }

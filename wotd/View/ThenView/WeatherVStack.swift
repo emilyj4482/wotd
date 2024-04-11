@@ -10,7 +10,8 @@ import SwiftUI
 struct WeatherVStack: View {
     
     @State var weathers: [ThenWeather] = [
-        ThenWeather(date: "2024-01-01", city: "Brighton", min: 1, max: 10, morning: 3, afternoon: 5, evening: 10, night: 1)
+        ThenWeather(date: "2024-01-01", city: "Brighton", min: 1, max: 10, morning: 3, afternoon: 5, evening: 10, night: 1),
+        ThenWeather(date: "2012-10-04", city: "Liverpool", min: -1, max: 7, morning: 0, afternoon: 5, evening: 7, night: -1)
     ]
     
     var body: some View {
