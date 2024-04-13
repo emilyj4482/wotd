@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A1069B8A2B62CBCF00D4E11C /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1069B892B62CBCF00D4E11C /* ErrorMessage.swift */; };
+		A10C16EB2BCB09A700BE258D /* RangedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10C16EA2BCB09A700BE258D /* RangedProgressView.swift */; };
 		A1135D132B8F5F1F001E351C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A1135D122B8F5F1F001E351C /* Localizable.xcstrings */; };
 		A11E00332B37365E006EE103 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11E00322B37365E006EE103 /* Icon.swift */; };
 		A1287D9D2B75427200D5B119 /* +LinearGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1287D9C2B75427100D5B119 /* +LinearGradient.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		A1069B892B62CBCF00D4E11C /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
+		A10C16EA2BCB09A700BE258D /* RangedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangedProgressView.swift; sourceTree = "<group>"; };
 		A1135D122B8F5F1F001E351C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		A11E00322B37365E006EE103 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		A1287D9C2B75427100D5B119 /* +LinearGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+LinearGradient.swift"; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				A164B0FC2BA2F1C1009C972B /* +Color.swift */,
 				A186318C2BB16CCD001695F9 /* +Date.swift */,
 				A15E89F82BB2B662000E193E /* +Double.swift */,
+				A10C16EA2BCB09A700BE258D /* RangedProgressView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				A15BB7C12B65724E00064791 /* SmallRect.swift in Sources */,
 				A164B0FD2BA2F1C1009C972B /* +Color.swift in Sources */,
 				A1866BDE2BA84322002A3DB8 /* City.swift in Sources */,
+				A10C16EB2BCB09A700BE258D /* RangedProgressView.swift in Sources */,
 				A1ABF7242B29E70800AE6428 /* WeatherInfo.swift in Sources */,
 				A180832E2B3332F200CDFA86 /* NowView.swift in Sources */,
 				A186318F2BB17446001695F9 /* ThenWeather.swift in Sources */,
