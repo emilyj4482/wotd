@@ -1,6 +1,24 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld" : {
+
+    },
+    "%lld°" : {
+
+    },
+    "6PM" : {
+
+    },
+    "9AM" : {
+
+    },
+    "12AM" : {
+
+    },
+    "12PM" : {
+
+    },
     "Access to location infomation is not allowed. Please go to Settings and allow the authorization." : {
       "localizations" : {
         "ko" : {
@@ -376,6 +394,9 @@
           }
         }
       }
+    },
+    "Weathers to compare" : {
+
     },
     "Yesterday" : {
       "localizations" : {
