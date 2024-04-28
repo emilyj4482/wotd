@@ -13,4 +13,6 @@ final class ThenViewModel: ObservableObject {
     
     @Published var weathers: [ThenWeather] = []
     
+    @Published var isAddButtonHidden: Bool = false
+    
 }

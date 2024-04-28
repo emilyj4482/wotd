@@ -11,11 +11,19 @@ struct ComparisionView: View {
     
     @State var weather: ThenWeather
     
+    @ObservedObject var vm = ThenViewModel.shared
+    
     var body: some View {
         VStack(spacing: 15) {
             ComparisionRect(weather: $weather, isThen: true)
             
             ComparisionRect(weather: $weather, isThen: false)
+        }
+        .onAppear {
+            vm.isAddButtonHidden = true
+        }
+        .onDisappear {
+            vm.isAddButtonHidden = false
         }
     }
 }
