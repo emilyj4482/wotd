@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ComparisionRect: View {
     
-    @Binding var weather: ThenWeather
+    // @Binding var weather: ThenWeather
+    
+    var weather: ThenWeather = ThenViewModel.shared.nowDummy
     
     @State var isThen: Bool
     
@@ -23,7 +25,7 @@ struct ComparisionRect: View {
             VStack {
                 
                 if !isThen {
-                    TempProgressView(weather: $weather)
+                    TempProgressView(weather: weather)
                         .padding(.bottom)
                 }
                 
@@ -31,7 +33,7 @@ struct ComparisionRect: View {
                     VStack(alignment: .leading) {
                         Text(isThen ? weather.date : "Today")
                             .font(.title)
-                        Text(isThen ? weather.city : "Suwon")
+                        Text(isThen ? weather.city : "청주시")
                             .font(.title2).bold()
                     }
                     .frame(minWidth: 170, alignment: .leading)
@@ -59,7 +61,7 @@ struct ComparisionRect: View {
                 .padding(.horizontal)
                 
                 if isThen {
-                    TempProgressView(weather: $weather)
+                    TempProgressView(weather: weather)
                         .padding(.top)
                 }
                 
@@ -72,5 +74,6 @@ struct ComparisionRect: View {
 }
 
 #Preview {
-    ComparisionView(weather: ThenWeather(date: "2023-10-20", city: "London", min: -1, max: 13, morning: -1, afternoon: 2, evening: 11, night: 33))
+    // ComparisionView(weather: ThenWeather(date: "2023-10-20", city: "London", min: -1, max: 13, morning: -1, afternoon: 2, evening: 11, night: 33))
+    ComparisionView(weather: ThenViewModel.shared.thenDummy)
 }

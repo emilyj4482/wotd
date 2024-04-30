@@ -64,6 +64,10 @@ extension NetworkManager {
                 if let temp = information?.temperature {
                     day.maxTemp = temp.max.int()
                     day.minTemp = temp.min.int()
+                    // now weather
+                    if day.day == "Now" {
+                        ThenViewModel.shared.nowWeather = ThenWeather(date: day.maxAndMinTempRequest.params["date"]!, city: LocationManager.shared.location, min: temp.min.int(), max: temp.max.int(), morning: temp.morning.int(), afternoon: temp.afternoon.int(), evening: temp.evening.int(), night: temp.night.int())
+                    }
                     self?.objectWillChange.send()
                 } else if let error = error {
                     print(error.localizedDescription)

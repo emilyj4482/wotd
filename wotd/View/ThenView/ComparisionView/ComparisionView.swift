@@ -15,9 +15,9 @@ struct ComparisionView: View {
     
     var body: some View {
         VStack(spacing: 15) {
-            ComparisionRect(weather: $weather, isThen: true)
+            ComparisionRect(weather: weather, isThen: true)
             
-            ComparisionRect(weather: $weather, isThen: false)
+            ComparisionRect(weather: vm.nowDummy, isThen: false)
         }
         .onAppear {
             vm.isAddButtonHidden = true
