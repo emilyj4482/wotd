@@ -31,25 +31,42 @@ final class ThenViewModel: ObservableObject {
     
     // 최저 - 최고
     func getRange(then: ThenWeather, now: ThenWeather) -> (then: ClosedRange<Double>, now: ClosedRange<Double>) {
-        let gap = max(now.max, then.max) - min(now.min, then.min)
         
-        let thenRange = then.min/gap...then.max/gap
-        let nowRange = now.min/gap...now.max/gap
+        var thenMin = then.min
+        var thenMax = then.max
+        var nowMin = now.min
+        var nowMax = now.max
+        
+        
+        let max = max(thenMax, nowMax)
+        let min = min(thenMin, nowMin)
+        
+        // 이부분도 반복이므로 함수화.
+        var gap = max - min + 1
+        
+        if min < 0 {
+            gap += abs(min)
+        }
+        
+        let thenRange = getRange2(weather: then, gap: gap)
+        let nowRange = getRange2(weather: now, gap: gap)
         
         return (thenRange, nowRange)
     }
+    
+    func getRange2(weather: ThenWeather, gap: Int) -> ClosedRange<Double> {
+        var max = Double(weather.max)
+        var min = Double(weather.min)
+        
+        var rangeMax = max - min + 1
+        
+        if min < 0 {
+            rangeMax += abs(min)
+        }
+        
+        let gap = Double(gap)
+        
+        return 1/gap...rangeMax/gap/1
+    }
+    
 }
-
-
-/*
- 
- -1 - 15
- 
- -1
- 
- 16:1 = -1: 
- 
- 
- 
- 
- */
