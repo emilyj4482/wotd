@@ -29,4 +29,27 @@ final class ThenViewModel: ObservableObject {
         self.nowWeather = nowDummy
     }
     
+    // 최저 - 최고
+    func getRange(then: ThenWeather, now: ThenWeather) -> (then: ClosedRange<Double>, now: ClosedRange<Double>) {
+        let gap = max(now.max, then.max) - min(now.min, then.min)
+        
+        let thenRange = then.min/gap...then.max/gap
+        let nowRange = now.min/gap...now.max/gap
+        
+        return (thenRange, nowRange)
+    }
 }
+
+
+/*
+ 
+ -1 - 15
+ 
+ -1
+ 
+ 16:1 = -1: 
+ 
+ 
+ 
+ 
+ */

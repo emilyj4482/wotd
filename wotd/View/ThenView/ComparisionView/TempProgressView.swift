@@ -10,14 +10,15 @@ import SwiftUI
 struct TempProgressView: View {
     
     // @Binding var weather: ThenWeather
-    var weather: ThenWeather
+    let weather: ThenWeather
+    // @Binding let tempRange: ClosedRange<Double>
     
     var body: some View {
         HStack {
             Text("\(weather.min)")
             
             ProgressView()
-                .progressViewStyle(RangedProgressView(range: 0.2...0.7/1.0, foregroundColor: AnyShapeStyle(gradient), backgroundColor: backgroundColor))
+                .progressViewStyle(RangedProgressView(range: 0.0...0.5/1, foregroundColor: AnyShapeStyle(gradient), backgroundColor: backgroundColor))
                 .frame(maxWidth: 250, maxHeight: 7)
                 .padding(.horizontal)
             

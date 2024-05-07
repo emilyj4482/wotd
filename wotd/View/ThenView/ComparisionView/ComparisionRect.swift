@@ -11,7 +11,8 @@ struct ComparisionRect: View {
     
     // @Binding var weather: ThenWeather
     
-    var weather: ThenWeather = ThenViewModel.shared.nowDummy
+    let weather: ThenWeather = ThenViewModel.shared.nowDummy
+    let tempRange: ClosedRange<Double>
     
     @State var isThen: Bool
     
