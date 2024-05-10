@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ComparisionRect: View {
     
-    // @Binding var weather: ThenWeather
+    @Binding var weather: ThenWeather
     
-    let weather: ThenWeather = ThenViewModel.shared.nowDummy
-    let tempRange: ClosedRange<Double>
+    // let weather: ThenWeather = ThenViewModel.shared.nowDummy
+    @State var tempRange: ClosedRange<Double>
     
     @State var isThen: Bool
     
@@ -26,7 +26,7 @@ struct ComparisionRect: View {
             VStack {
                 
                 if !isThen {
-                    TempProgressView(weather: weather)
+                    TempProgressView(weather: weather, tempRange: $tempRange)
                         .padding(.bottom)
                 }
                 
@@ -62,7 +62,7 @@ struct ComparisionRect: View {
                 .padding(.horizontal)
                 
                 if isThen {
-                    TempProgressView(weather: weather)
+                    TempProgressView(weather: weather, tempRange: $tempRange)
                         .padding(.top)
                 }
                 

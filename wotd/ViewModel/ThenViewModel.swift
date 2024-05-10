@@ -21,9 +21,9 @@ final class ThenViewModel: ObservableObject {
         }
     }
     
-    let nowDummy = ThenWeather(date: "2024-05-01", city: "청주시", min: 11, max: 18, morning: 13, afternoon: 13, evening: 17, night: 13)
+    var nowDummy = ThenWeather(date: "2024-05-01", city: "청주시", min: 11, max: 18, morning: 13, afternoon: 13, evening: 17, night: 13)
     
-    let thenDummy = ThenWeather(date: "2020-02-01", city: "수원시", min: -1, max: 5, morning: 0, afternoon: 3, evening: 2, night: 1)
+    var thenDummy = ThenWeather(date: "2020-02-01", city: "수원시", min: -1, max: 5, morning: 0, afternoon: 3, evening: 2, night: 1)
     
     init(nowWeather: ThenWeather = ThenWeather(date: "", city: "", min: 0, max: 0, morning: 0, afternoon: 0, evening: 0, night: 0)) {
         self.nowWeather = nowDummy
@@ -32,41 +32,54 @@ final class ThenViewModel: ObservableObject {
     // 최저 - 최고
     func getRange(then: ThenWeather, now: ThenWeather) -> (then: ClosedRange<Double>, now: ClosedRange<Double>) {
         
-        var thenMin = then.min
-        var thenMax = then.max
-        var nowMin = now.min
-        var nowMax = now.max
+        let thenMin = then.min
+        let thenMax = then.max
+        let nowMin = now.min
+        let nowMax = now.max
         
         
         let max = max(thenMax, nowMax)
         let min = min(thenMin, nowMin)
-        
-        // 이부분도 반복이므로 함수화.
-        var gap = max - min + 1
-        
-        if min < 0 {
-            gap += abs(min)
-        }
+
+        let gap = getGap(max: max, min: min)
         
         let thenRange = getRange2(weather: then, gap: gap)
         let nowRange = getRange2(weather: now, gap: gap)
         
+        print(thenRange)
+        print(nowRange)
+        
         return (thenRange, nowRange)
     }
     
-    func getRange2(weather: ThenWeather, gap: Int) -> ClosedRange<Double> {
-        var max = Double(weather.max)
-        var min = Double(weather.min)
+    func getRange2(weather: ThenWeather, gap: Double) -> ClosedRange<Double> {
+        var max = weather.max
+        var min = weather.min
         
-        var rangeMax = max - min + 1
+        print("max : \(max), min: \(min)")
         
-        if min < 0 {
-            rangeMax += abs(min)
-        }
+        var rangeMax = getGap(max: max, min: min)
         
         let gap = Double(gap)
         
-        return 1/gap...rangeMax/gap/1
+        let lowerBound = 1/gap
+        let upperBound = rangeMax/gap
+        
+        return lowerBound...upperBound/1
+    }
+    
+    // 일교차 범위 정제
+    func getGap(max: Int, min: Int) -> Double {
+        var gap = max - min
+        
+        if min < 0 {
+            gap += abs(min)
+        } else if min == 0 {
+            gap += 1
+        } else {
+            gap = max - min + 1
+        }
+        return Double(gap)
     }
     
 }
