@@ -21,15 +21,14 @@ final class ThenViewModel: ObservableObject {
         }
     }
     
-    var nowDummy = ThenWeather(date: "2024-05-01", city: "청주시", min: 11, max: 18, morning: 13, afternoon: 13, evening: 17, night: 13)
-    
-    var thenDummy = ThenWeather(date: "2020-02-01", city: "수원시", min: -1, max: 5, morning: 0, afternoon: 3, evening: 2, night: 1)
+    var nowDummy = ThenWeather(date: "2024-05-01", city: "청주시", min: 6, max: 15, morning: 13, afternoon: 13, evening: 17, night: 13)
+    var thenDummy = ThenWeather(date: "2020-02-01", city: "수원시", min: 3, max: 10, morning: 0, afternoon: 3, evening: 2, night: 1)
     
     init(nowWeather: ThenWeather = ThenWeather(date: "", city: "", min: 0, max: 0, morning: 0, afternoon: 0, evening: 0, night: 0)) {
         self.nowWeather = nowDummy
     }
     
-    // 최저 - 최고
+    // 범위를 반환
     func getRange(then: ThenWeather, now: ThenWeather) -> (then: ClosedRange<Double>, now: ClosedRange<Double>) {
         
         let thenMin = then.min
@@ -37,49 +36,43 @@ final class ThenViewModel: ObservableObject {
         let nowMin = now.min
         let nowMax = now.max
         
-        
         let max = max(thenMax, nowMax)
         let min = min(thenMin, nowMin)
 
-        let gap = getGap(max: max, min: min)
+        // 범위가 1...max가 되도록 조정
+        let thenMinDouble = rerangeTemp(min: min, max: max, temp: thenMin)
+        let thenMaxDouble = rerangeTemp(min: min, max: max, temp: thenMax)
+        let nowMinDouble = rerangeTemp(min: min, max: max, temp: nowMin)
+        let nowMaxDouble = rerangeTemp(min: min, max: max, temp: nowMax)
         
-        let thenRange = getRange2(weather: then, gap: gap)
-        let nowRange = getRange2(weather: now, gap: gap)
+        let rangeMax = rerangeTemp(min: min, max: max, temp: max)
         
-        print(thenRange)
-        print(nowRange)
+        // 조정된 온도값을 이용해 범위를 구하여 반환
+        let thenRange = makeRange(min: thenMinDouble, max: thenMaxDouble, rangeMax: rangeMax)
+        let nowRange = makeRange(min: nowMinDouble, max: nowMaxDouble, rangeMax: rangeMax)
         
         return (thenRange, nowRange)
     }
     
-    func getRange2(weather: ThenWeather, gap: Double) -> ClosedRange<Double> {
-        var max = weather.max
-        var min = weather.min
-        
-        print("max : \(max), min: \(min)")
-        
-        var rangeMax = getGap(max: max, min: min)
-        
-        let gap = Double(gap)
-        
-        let lowerBound = 1/gap
-        let upperBound = rangeMax/gap
+    // 범위를 구함
+    func makeRange(min: Double, max: Double, rangeMax: Double) -> ClosedRange<Double> {
+        let lowerBound = min/rangeMax
+        let upperBound = max/rangeMax
         
         return lowerBound...upperBound/1
     }
     
-    // 일교차 범위 정제
-    func getGap(max: Int, min: Int) -> Double {
-        var gap = max - min
+    // 온도 범위 정제
+    func rerangeTemp(min: Int, max: Int, temp: Int) -> Double {
+        var temp = temp
         
         if min < 0 {
-            gap += abs(min)
+            temp = temp + abs(min) + 1
         } else if min == 0 {
-            gap += 1
+            temp += 1
         } else {
-            gap = max - min + 1
+            temp = temp - abs(min) + 1
         }
-        return Double(gap)
+        return Double(temp)
     }
-    
 }
