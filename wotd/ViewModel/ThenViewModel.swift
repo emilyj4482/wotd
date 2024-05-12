@@ -12,15 +12,18 @@ final class ThenViewModel: ObservableObject {
     static let shared = ThenViewModel()
     
     @Published var weathers: [ThenWeather] = []
-    
-    @Published var isAddButtonHidden: Bool = false
-    
     @Published var nowWeather: ThenWeather {
         didSet {
             print(nowWeather)
         }
     }
     
+    @Published var isAddButtonHidden: Bool = false
+    
+    // UserDefaults 저장 key 값
+    let dataKey: String = "dataKey"
+    
+    // temporary
     var nowDummy = ThenWeather(date: "2024-05-01", city: "청주시", min: 6, max: 15, morning: 13, afternoon: 13, evening: 17, night: 13)
     var thenDummy = ThenWeather(date: "2020-02-01", city: "수원시", min: 3, max: 10, morning: 0, afternoon: 3, evening: 2, night: 1)
     
@@ -28,6 +31,12 @@ final class ThenViewModel: ObservableObject {
         self.nowWeather = nowDummy
     }
     
+    //
+    
+}
+
+// temperature range 계산 함수
+extension ThenViewModel {
     // 범위를 반환
     func getRange(then: ThenWeather, now: ThenWeather) -> (then: ClosedRange<Double>, now: ClosedRange<Double>) {
         
@@ -74,5 +83,22 @@ final class ThenViewModel: ObservableObject {
             temp = temp - abs(min) + 1
         }
         return Double(temp)
+    }
+}
+
+// User Defaults를 이용하여 then weather array를 local에 저장, 불러오기
+extension ThenViewModel {
+    func saveData() {
+        if let encodedData = try? JSONEncoder().encode(weathers) {
+            UserDefaults.standard.set(encodedData, forKey: dataKey)
+        }
+    }
+    
+    func getData() {
+        guard
+            let data = UserDefaults.standard.data(forKey: dataKey),
+            let savedData = try? JSONDecoder().decode([ThenWeather].self, from: data)
+        else { return }
+        self.weathers = savedData
     }
 }
