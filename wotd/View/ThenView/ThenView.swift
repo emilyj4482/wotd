@@ -16,8 +16,11 @@ struct ThenView: View {
     var body: some View {
         ZStack {
             
-            // DefaultVStack()
-            WeatherVStack()
+            if vm.weathers.isEmpty {
+                DefaultVStack()
+            } else {
+                WeatherVStack()
+            }
             
             VStack {
                 Spacer()

@@ -11,7 +11,12 @@ final class ThenViewModel: ObservableObject {
     
     static let shared = ThenViewModel()
     
-    @Published var weathers: [ThenWeather] = []
+    @Published var weathers: [ThenWeather] = [] {
+        didSet {
+            print(weathers)
+            saveData()
+        }
+    }
     @Published var nowWeather: ThenWeather {
         didSet {
             print(nowWeather)
@@ -23,12 +28,9 @@ final class ThenViewModel: ObservableObject {
     // UserDefaults 저장 key 값
     let dataKey: String = "dataKey"
     
-    // temporary
-    var nowDummy = ThenWeather(date: "2024-05-01", city: "청주시", min: 6, max: 15, morning: 13, afternoon: 13, evening: 17, night: 13)
-    var thenDummy = ThenWeather(date: "2020-02-01", city: "수원시", min: 3, max: 10, morning: 0, afternoon: 3, evening: 2, night: 1)
-    
     init(nowWeather: ThenWeather = ThenWeather(date: "", city: "", min: 0, max: 0, morning: 0, afternoon: 0, evening: 0, night: 0)) {
-        self.nowWeather = nowDummy
+        self.nowWeather = nowWeather
+        getData()
     }
     
     //

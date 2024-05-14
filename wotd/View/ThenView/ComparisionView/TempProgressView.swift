@@ -9,8 +9,7 @@ import SwiftUI
 
 struct TempProgressView: View {
     
-    // @Binding var weather: ThenWeather
-    let weather: ThenWeather
+    @Binding var weather: ThenWeather
     @Binding var tempRange: ClosedRange<Double>
     
     var body: some View {
@@ -44,5 +43,5 @@ struct TempProgressView: View {
 }
 
 #Preview {
-    ComparisionView(weather: ThenViewModel.shared.thenDummy)
+    ComparisionView(weather: ThenWeather(date: "2020-02-01", city: "수원시", min: 3, max: 10, morning: 0, afternoon: 3, evening: 2, night: 1))
 }
