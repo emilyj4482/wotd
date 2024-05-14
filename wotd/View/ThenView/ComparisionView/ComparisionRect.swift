@@ -33,8 +33,14 @@ struct ComparisionRect: View {
                 
                 HStack {
                     VStack(alignment: .leading) {
-                        Text(isThen ? weather.date : "Today")
-                            .font(.title)
+                        if isThen {
+                            Text(weather.date)
+                                .font(.title)
+                        } else {
+                            Text("Today")
+                                .font(.title)
+                        }
+                            
                         Text(isThen ? weather.city : vm.nowWeather.city)
                             .font(.title2).bold()
                     }

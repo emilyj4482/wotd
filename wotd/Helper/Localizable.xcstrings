@@ -365,6 +365,17 @@
         }
       }
     },
+    "Today" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오늘"
+          }
+        }
+      }
+    },
     "Tomorrow" : {
       "localizations" : {
         "ko" : {
@@ -396,7 +407,14 @@
       }
     },
     "Weathers to compare" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오늘과 비교할 날씨"
+          }
+        }
+      }
     },
     "Yesterday" : {
       "localizations" : {
