@@ -59,6 +59,16 @@
         }
       }
     },
+    "Cancel" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "취소"
+          }
+        }
+      }
+    },
     "City" : {
       "localizations" : {
         "ko" : {
@@ -95,6 +105,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "날짜"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제"
+          }
+        }
+      }
+    },
+    "Delete this weather?" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 날씨를 삭제하시겠습니까?"
           }
         }
       }

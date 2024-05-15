@@ -78,7 +78,7 @@ final class SearchManager: ObservableObject {
                 self?.requestData(date: date, city: city.name, { weather in
                     print("request success")
                     // single source of truth에 추가
-                    self?.vm.weathers.append(weather)
+                    self?.vm.addWeather(weather)
                 })
             } else if let error = error {
                 print(error.localizedDescription)

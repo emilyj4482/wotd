@@ -11,6 +11,9 @@ struct WeatherVStack: View {
     
     @StateObject var vm = ThenViewModel.shared
     
+    @State private var weatherToDelete: ThenWeather? = nil
+    @State private var showActionSheet: Bool = false
+    
     var body: some View {
         NavigationStack {
             List {
@@ -23,7 +26,26 @@ struct WeatherVStack: View {
                                 .font(.title)
                         }
                     }
+                    .swipeActions(allowsFullSwipe: false) {
+                        Button {
+                            weatherToDelete = weather
+                            print(weather)
+                            showActionSheet = true
+                        } label: {
+                            Image(systemName: "trash")
+                                .tint(.red)
+                        }
+                    }
                 }
+            }
+            .confirmationDialog("Delete this weather?", isPresented: $showActionSheet, titleVisibility: .visible) {
+                Button("Delete", role: .destructive) {
+                    if let weather = weatherToDelete {
+                        vm.deleteWeather(weather)
+                    }
+                    weatherToDelete = nil
+                }
+                Button("Cancel", role: .cancel) {}
             }
             .listStyle(.plain)
             .navigationTitle("Weathers to compare")

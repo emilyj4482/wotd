@@ -13,7 +13,6 @@ final class ThenViewModel: ObservableObject {
     
     @Published var weathers: [ThenWeather] = [] {
         didSet {
-            print(weathers)
             saveData()
         }
     }
@@ -33,8 +32,15 @@ final class ThenViewModel: ObservableObject {
         getData()
     }
     
-    //
+    // add
+    func addWeather(_ weather: ThenWeather) {
+        weathers.append(weather)
+    }
     
+    // delete
+    func deleteWeather(_ weather: ThenWeather) {
+        weathers.removeAll { $0 == weather }
+    }
 }
 
 // temperature range 계산 함수
