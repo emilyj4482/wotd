@@ -16,7 +16,5 @@ struct City: Identifiable {
     init(mapItem: MKMapItem) {
         self.name = mapItem.name ?? ""
         self.fullName = mapItem.placemark.title ?? ""
-        
-        print(self.name)
     }
 }

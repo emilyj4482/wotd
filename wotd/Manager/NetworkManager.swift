@@ -11,9 +11,9 @@ final class NetworkManager: ObservableObject {
     
     static let shared = NetworkManager()
     
-    @Published var today = CurrentWeather(day: "Now")
-    @Published var yesterday = CurrentWeather(day: "Yesterday")
-    @Published var tomorrow = CurrentWeather(day: "Tomorrow")
+    @Published var today = NowWeather(day: "Now")
+    @Published var yesterday = NowWeather(day: "Yesterday")
+    @Published var tomorrow = NowWeather(day: "Tomorrow")
     
     // location manager에서 이 함수를 호출하여 수집한 위치정보의 x, y 좌표값을 request url의 파라미터로 전달한다.
     func setCoordinates(x: String, y: String) {
@@ -46,7 +46,7 @@ extension NetworkManager {
     }
     
     // openweather api 통신 요청 >>> 각 request로부터 필요한 날씨 관련 정보를 받아 published 인스턴스에 저장한다.
-    private func weatherInfoDataTask(_ day: CurrentWeather) {
+    private func weatherInfoDataTask(_ day: NowWeather) {
         day.currentTempAndCodeRequest.dataTask(WeatherDescription.self) { [weak self] information, error in
             DispatchQueue.main.async {
                 if let weather = information?.weather[0] {
@@ -64,6 +64,10 @@ extension NetworkManager {
                 if let temp = information?.temperature {
                     day.maxTemp = temp.max.int()
                     day.minTemp = temp.min.int()
+                    // now weather
+                    if day.day == "Now" {
+                        ThenViewModel.shared.nowWeather = ThenWeather(date: day.maxAndMinTempRequest.params["date"]!, city: LocationManager.shared.location, min: temp.min.int(), max: temp.max.int(), morning: temp.morning.int(), afternoon: temp.afternoon.int(), evening: temp.evening.int(), night: temp.night.int())
+                    }
                     self?.objectWillChange.send()
                 } else if let error = error {
                     print(error.localizedDescription)

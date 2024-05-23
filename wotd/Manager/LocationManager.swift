@@ -43,19 +43,18 @@ extension LocationManager: CLLocationManagerDelegate {
             print("[AUTH] Denied")
         case .authorizedAlways:
             print("[AUTH] Always")
-            // locationManager.startUpdatingLocation()
-            locationManager.stopUpdatingLocation()
+            locationManager.startUpdatingLocation()
+            // locationManager.stopUpdatingLocation()
         case .authorizedWhenInUse:
             print("[AUTH] When in use")
-            // locationManager.startUpdatingLocation()
-            locationManager.stopUpdatingLocation()
+            locationManager.startUpdatingLocation()
+            // locationManager.stopUpdatingLocation()
         @unknown default:
             break
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("[Location Info updated]")
         guard let location = locations.first else { return }
         getCityname(location)
         let x = String(location.coordinate.longitude)

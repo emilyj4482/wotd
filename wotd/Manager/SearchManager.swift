@@ -54,21 +54,12 @@ final class SearchManager: ObservableObject {
     /* weather search */
     private let vm = ThenViewModel.shared
     
-    private var request = Request(
-            urlComponent: "https://api.openweathermap.org/data/3.0/onecall/day_summary?",
-            params: [
-                "lat": "",
-                "lon": "",
-                "date": "",
-                "appid": "f27181cb10370ef77a1d09ab93c3fa2f",
-                "units": "metric"
-            ]
-        )
+    private var request = Request.day
     
     func searchWeather(date: Date, city: City?) {
         let date = date.string()
         // date parameter set
-        request.params.updateValue(date, forKey: "date")
+        request.setDate(date: date)
         
         guard let city = city else {
             print("[ERROR] no city selected")
@@ -77,18 +68,17 @@ final class SearchManager: ObservableObject {
         
         getCoordinate(city: city.fullName) { [weak self] coordinate, error in
             if error == nil {
-                let x = "\(coordinate.longitude)"
-                let y = "\(coordinate.latitude)"
+                let x = String(coordinate.longitude)
+                let y = String(coordinate.latitude)
                 
                 // 좌표 parameter set
-                self?.request.params.updateValue(x, forKey: "lon")
-                self?.request.params.updateValue(y, forKey: "lat")
+                self?.request.setCoordinate(x: x, y: y)
                 
                 // api 통신 request
                 self?.requestData(date: date, city: city.name, { weather in
                     print("request success")
                     // single source of truth에 추가
-                    self?.vm.weathers.append(weather)
+                    self?.vm.addWeather(weather)
                 })
             } else if let error = error {
                 print(error.localizedDescription)

@@ -9,26 +9,18 @@ import SwiftUI
 
 struct ThenView: View {
     
+    @StateObject var vm = ThenViewModel.shared
+    
     @State private var isPresented: Bool = false
     
     var body: some View {
         ZStack {
-            VStack {
-                Spacer()
-                
-                Image(systemName: "cloud.sun.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 80)
-                    .symbolRenderingMode(.multicolor)
-                    .padding()
-                
-                Text("Add a weather of the specific day and city you want to compare to today's one.")
-                
-                Spacer()
-            }
-            .padding()
             
+            if vm.weathers.isEmpty {
+                DefaultVStack()
+            } else {
+                WeatherVStack()
+            }
             
             VStack {
                 Spacer()
@@ -36,11 +28,13 @@ struct ThenView: View {
                 Button {
                     isPresented.toggle()
                 } label: {
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 50)
-                        .tint(.gray2)
+                    if !vm.isAddButtonHidden {
+                        Image(systemName: "plus.circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 50)
+                            .tint(.gray2)
+                    }
                 }
                 .shadow(color: .gray2.opacity(0.5), radius: 1, x: 1.5, y: 1.5)
                 .padding(.bottom, 30)
