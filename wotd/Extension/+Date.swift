@@ -8,7 +8,6 @@
 import Foundation
 
 extension Date {
-    
     // 날짜 + 현재 시각을 timestamp로 변환
     func dtString() -> String {
         // Date type을 TimeInterval 형태로 변환
