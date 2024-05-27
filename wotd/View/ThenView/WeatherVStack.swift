@@ -12,7 +12,8 @@ struct WeatherVStack: View {
     @StateObject var vm = ThenViewModel.shared
     
     @State private var weatherToDelete: ThenWeather? = nil
-    @State private var showActionSheet: Bool = false
+    @State private var isActionSheetPresented: Bool = false
+    @State private var isAlertPresented: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -30,7 +31,7 @@ struct WeatherVStack: View {
                         Button {
                             weatherToDelete = weather
                             print(weather)
-                            showActionSheet = true
+                            isActionSheetPresented = true
                         } label: {
                             Image(systemName: "trash")
                                 .tint(.red)
@@ -38,7 +39,7 @@ struct WeatherVStack: View {
                     }
                 }
             }
-            .confirmationDialog("Delete this weather?", isPresented: $showActionSheet, titleVisibility: .visible) {
+            .confirmationDialog("Delete this weather?", isPresented: $isActionSheetPresented, titleVisibility: .visible) {
                 Button("Delete", role: .destructive) {
                     if let weather = weatherToDelete {
                         vm.deleteWeather(weather)
@@ -51,6 +52,16 @@ struct WeatherVStack: View {
             .navigationTitle("Weathers to compare")
             .navigationDestination(for: ThenWeather.self) { weather in
                 ComparisionView(weather: weather)
+            }
+            .onAppear(perform: {
+                if LocationManager.shared.locationManager.authorizationStatus == .denied {
+                    isAlertPresented = true
+                }
+            })
+            .alert("Authorization Denied", isPresented: $isAlertPresented) {
+                
+            } message: {
+                Text("We cannot compare weathers as access to location infomation is not allowed. Please go to Settings and allow the authorization.")
             }
         }
     }
