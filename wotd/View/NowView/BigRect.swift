@@ -25,10 +25,10 @@ struct BigRect: View {
                         .font(.title)
                         .bold()
                     
-                    Text(nm.today.formattedTemp)
+                    Text(nm.today.temp.toString)
                         .font(.system(size: 60))
                     
-                    Text("max \(nm.today.formattedMaxTemp) min \(nm.today.formattedMinTemp)")
+                    Text("max \(nm.today.maxTemp.toString) min \(nm.today.minTemp.toString)")
                         .font(.callout)
                 }
                 

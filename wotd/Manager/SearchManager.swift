@@ -90,7 +90,7 @@ final class SearchManager: ObservableObject {
         request.dataTask(WeatherInfo.self) { information, error in
             DispatchQueue.main.async {
                 if let temp = information?.temperature {
-                    let weather = ThenWeather(date: date, city: city, min: temp.min.int(), max: temp.max.int(), morning: temp.morning.int(), afternoon: temp.afternoon.int(), evening: temp.evening.int(), night: temp.night.int())
+                    let weather = ThenWeather(date: date, city: city, min: temp.min.toInt, max: temp.max.toInt, morning: temp.morning.toInt, afternoon: temp.afternoon.toInt, evening: temp.evening.toInt, night: temp.night.toInt)
                     completionHandler(weather)
                 } else if let error = error {
                     print(error.localizedDescription)

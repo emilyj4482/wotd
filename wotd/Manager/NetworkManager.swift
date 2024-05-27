@@ -62,11 +62,11 @@ extension NetworkManager {
         day.maxAndMinTempRequest.dataTask(WeatherInfo.self) { [weak self] information, error in
             DispatchQueue.main.async {
                 if let temp = information?.temperature {
-                    day.maxTemp = temp.max.int()
-                    day.minTemp = temp.min.int()
+                    day.maxTemp = temp.max.toInt
+                    day.minTemp = temp.min.toInt
                     // now weather
                     if day.day == "Now" {
-                        ThenViewModel.shared.nowWeather = ThenWeather(date: day.maxAndMinTempRequest.params["date"]!, city: LocationManager.shared.location, min: temp.min.int(), max: temp.max.int(), morning: temp.morning.int(), afternoon: temp.afternoon.int(), evening: temp.evening.int(), night: temp.night.int())
+                        ThenViewModel.shared.nowWeather = ThenWeather(date: day.maxAndMinTempRequest.params["date"]!, city: LocationManager.shared.location, min: temp.min.toInt, max: temp.max.toInt, morning: temp.morning.toInt, afternoon: temp.afternoon.toInt, evening: temp.evening.toInt, night: temp.night.toInt)
                     }
                     self?.objectWillChange.send()
                 } else if let error = error {

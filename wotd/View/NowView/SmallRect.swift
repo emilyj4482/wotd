@@ -27,10 +27,10 @@ struct SmallRect: View {
                         .font(.title2)
                         .fontWeight(.semibold)
                     
-                    Text(isYesterday ? nm.yesterday.formattedTemp : nm.tomorrow.formattedTemp)
+                    Text(isYesterday ? nm.yesterday.temp.toString : nm.tomorrow.temp.toString)
                         .font(.system(size: 50))
                     
-                    Text("max \(isYesterday ? nm.yesterday.formattedMaxTemp : nm.tomorrow.formattedMaxTemp) min \(isYesterday ? nm.yesterday.formattedMinTemp : nm.tomorrow.formattedMinTemp)")
+                    Text("max \(isYesterday ? nm.yesterday.maxTemp.toString : nm.tomorrow.maxTemp.toString) min \(isYesterday ? nm.yesterday.minTemp.toString : nm.tomorrow.minTemp.toString)")
                         .font(.subheadline)
                 }
                 Spacer()
