@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BigRect: View {
     
-    @ObservedObject private var vm = NowViewModel.shared
+    @ObservedObject var vm = NowViewModel.shared
     
     var body: some View {
         ZStack {

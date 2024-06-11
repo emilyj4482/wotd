@@ -10,11 +10,10 @@ import MapKit
 final class SearchManager {
     
     /* city search */
+    private var cities: [City] = []
     
     // keyword가 해당되는 행정구역명 검색
     func request(resultType: MKLocalSearch.ResultType = .pointOfInterest, searchText: String) -> [City] {
-        
-        var cities = [City]()
         
         let request = MKLocalSearch.Request()
         
@@ -24,14 +23,13 @@ final class SearchManager {
         
         let search = MKLocalSearch(request: request)
         
-        search.start { response, error in
+        search.start { [weak self] response, error in
             guard let response = response else {
                 print("[ERROR] \(error?.localizedDescription ?? "Unknown error occured")")
                 return
             }
-            cities = response.mapItems.map(City.init)
+            self?.cities = response.mapItems.map(City.init)
         }
-        
         return cities
     }
 

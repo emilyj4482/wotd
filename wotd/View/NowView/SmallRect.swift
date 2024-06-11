@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SmallRect: View {
     
-    @ObservedObject private var vm = NowViewModel.shared
+    @ObservedObject var vm = NowViewModel.shared
     
     let isYesterday: Bool
     

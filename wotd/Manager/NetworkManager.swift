@@ -13,19 +13,19 @@ final class NetworkManager {
     
     // openweather api 통신 요청 >>> 각 request로부터 필요한 날씨 관련 정보를 받아 published 인스턴스에 저장한다.
     private func weatherInfoDataTask(_ day: NowWeather) {
-        day.currentTempAndCodeRequest.dataTask(WeatherDescription.self) { information, error in
+        day.currentTempAndCodeRequest.dataTask(WeatherDescription.self) { [weak self] information, error in
             DispatchQueue.main.async {
                 if let weather = information?.weather[0] {
                     day.temp = weather.temp
                     day.code = weather.description[0].code
-                    // self?.objectWillChange.send()
+                    self?.nvm.objectWillChange.send()
                 } else if let error = error {
                     print(error.localizedDescription)
                 }
             }
         }
         
-        day.maxAndMinTempRequest.dataTask(WeatherInfo.self) { information, error in
+        day.maxAndMinTempRequest.dataTask(WeatherInfo.self) { [weak self] information, error in
             DispatchQueue.main.async {
                 if let temp = information?.temperature {
                     day.maxTemp = temp.max.toInt
@@ -34,7 +34,8 @@ final class NetworkManager {
                     if day.day == "Now" {
                         ThenViewModel.shared.nowWeather = ThenWeather(date: day.maxAndMinTempRequest.params["date"]!, city: NowViewModel.shared.location, min: temp.min.toInt, max: temp.max.toInt, morning: temp.morning.toInt, afternoon: temp.afternoon.toInt, evening: temp.evening.toInt, night: temp.night.toInt)
                     }
-                    // self?.objectWillChange.send()
+                    print(day.maxTemp)
+                    self?.nvm.objectWillChange.send()
                 } else if let error = error {
                     print(error.localizedDescription)
                 }
