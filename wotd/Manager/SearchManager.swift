@@ -7,7 +7,7 @@
 
 import MapKit
 
-final class SearchManager: ObservableObject {
+final class SearchManager {
     
     static let shared = SearchManager()
     
@@ -57,7 +57,7 @@ final class SearchManager: ObservableObject {
     private var request = Request.day
     
     func searchWeather(date: Date, city: City?) {
-        let date = date.string()
+        let date = date.dateString
         // date parameter set
         request.setDate(date: date)
         

@@ -9,7 +9,7 @@ import Foundation
 
 extension Date {
     // 날짜 + 현재 시각을 timestamp로 변환
-    func dtString() -> String {
+    var dtString: String {
         // Date type을 TimeInterval 형태로 변환
         let dt = self.timeIntervalSince1970
         // 소수점 버리고 정수로 변환
@@ -19,7 +19,7 @@ extension Date {
     }
     
     // 날짜를 yyyy-mm-dd 형태의 문자열로 변환
-    func string() -> String {
+    var dateString: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
@@ -27,7 +27,7 @@ extension Date {
     }
     
     // 현재 시간이 day인지 night인지 구분하여 day면 true, night이면 false 반환
-    func isDayTime() -> Bool {
+    var isDayTime: Bool {
         let hour = Calendar.current.component(.hour, from: self)
         
         if hour >= 6 && hour <= 17 {

@@ -40,6 +40,7 @@
 		A1C030092BC06B9600EC4CFA /* WeatherVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C030082BC06B9600EC4CFA /* WeatherVStack.swift */; };
 		A1C0300B2BC07B1A00EC4CFA /* ComparisionRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0300A2BC07B1A00EC4CFA /* ComparisionRect.swift */; };
 		A1C078A52B30A163008885F9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C078A42B30A163008885F9 /* LocationManager.swift */; };
+		A1E268342C0F95D900E17AEB /* NowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E268332C0F95D900E17AEB /* NowViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		A1C030082BC06B9600EC4CFA /* WeatherVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVStack.swift; sourceTree = "<group>"; };
 		A1C0300A2BC07B1A00EC4CFA /* ComparisionRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparisionRect.swift; sourceTree = "<group>"; };
 		A1C078A42B30A163008885F9 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		A1E268332C0F95D900E17AEB /* NowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				A1BDC44B2BB46FA90007AE79 /* ThenViewModel.swift */,
+				A1E268332C0F95D900E17AEB /* NowViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				A1069B8A2B62CBCF00D4E11C /* ErrorMessage.swift in Sources */,
 				A165B5A72B45B5EF00E47BD9 /* NowWeather.swift in Sources */,
 				A150F3242B19B4650007C285 /* wotdApp.swift in Sources */,
+				A1E268342C0F95D900E17AEB /* NowViewModel.swift in Sources */,
 				A1287D9D2B75427200D5B119 /* +LinearGradient.swift in Sources */,
 				A148AF4F2BB5EC3100FF97B9 /* DefaultVStack.swift in Sources */,
 				A164B0FF2BA32BBD009C972B /* AddSheet.swift in Sources */,

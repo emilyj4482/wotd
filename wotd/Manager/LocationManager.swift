@@ -9,10 +9,8 @@ import CoreLocation
 
 final class LocationManager: NSObject, ObservableObject {
     
-    static let shared = LocationManager()
-    private let networkManager = NetworkManager.shared
-    
-    @Published var location: String = "-"
+    private let networkManager = NetworkManager()
+    private let vm = NowViewModel.shared
     
     let locationManager = CLLocationManager()
     
@@ -22,11 +20,11 @@ final class LocationManager: NSObject, ObservableObject {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
 
-    func getCityname(_ location: CLLocation) {
+    private func getCityname(_ location: CLLocation) {
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
             guard error == nil, let cityName = placemarks?[0].locality else { return }
-            self?.location = cityName
+            self?.vm.location = cityName
         }
     }
 }
@@ -56,12 +54,18 @@ extension LocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
+        // 1. 수집한 위치정보의 행정구역명을 view model에 전송
         getCityname(location)
+        // 2. 좌표 정보를 view model에 전송
         let x = String(location.coordinate.longitude)
         let y = String(location.coordinate.latitude)
-        self.networkManager.setCoordinates(x: x, y: y)
+        vm.today.setCoordinates(x: x, y: y)
+        vm.yesterday.setCoordinates(x: x, y: y)
+        vm.tomorrow.setCoordinates(x: x, y: y)
+        // 3. 위치 정보 수집 중지
         manager.stopUpdatingLocation()
-        self.networkManager.requestWeatherInfo()
+        // 4. weather api 통신
+        networkManager.requestWeatherInfo()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
