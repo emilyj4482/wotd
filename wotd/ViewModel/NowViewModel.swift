@@ -20,11 +20,7 @@ final class NowViewModel: ObservableObject {
     init() {
         setDateInfo()
     }
-    
-    
-}
 
-extension NowViewModel {
     private func setDateInfo() {
         // 현재 시간 기준 day/night 여부를 today, yesterday, tomorrow의 프로퍼티에 전달
         let now: Date = .now

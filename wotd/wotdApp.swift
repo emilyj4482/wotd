@@ -11,7 +11,7 @@ import SwiftUI
 struct wotdApp: App {
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            MainTabView(lm: LocationManager())
         }
     }
 }

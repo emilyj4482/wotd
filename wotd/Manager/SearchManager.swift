@@ -9,17 +9,13 @@ import MapKit
 
 final class SearchManager {
     
-    static let shared = SearchManager()
-    
     /* city search */
-    @Published var cities: [City] = []
-    
-    func searchCities(searchText: String) {
-        request(resultType: .address, searchText: searchText)
-    }
     
     // keyword가 해당되는 행정구역명 검색
-    private func request(resultType: MKLocalSearch.ResultType = .pointOfInterest, searchText: String) {
+    func request(resultType: MKLocalSearch.ResultType = .pointOfInterest, searchText: String) -> [City] {
+        
+        var cities = [City]()
+        
         let request = MKLocalSearch.Request()
         
         request.naturalLanguageQuery = searchText
@@ -28,13 +24,15 @@ final class SearchManager {
         
         let search = MKLocalSearch(request: request)
         
-        search.start { [weak self] response, error in
+        search.start { response, error in
             guard let response = response else {
                 print("[ERROR] \(error?.localizedDescription ?? "Unknown error occured")")
                 return
             }
-            self?.cities = response.mapItems.map(City.init)
+            cities = response.mapItems.map(City.init)
         }
+        
+        return cities
     }
 
     // city name으로 좌표 검색
@@ -52,8 +50,6 @@ final class SearchManager {
     }
     
     /* weather search */
-    private let vm = ThenViewModel.shared
-    
     private var request = Request.day
     
     func searchWeather(date: Date, city: City?) {
@@ -78,7 +74,7 @@ final class SearchManager {
                 self?.requestData(date: date, city: city.name, { weather in
                     print("request success")
                     // single source of truth에 추가
-                    self?.vm.addWeather(weather)
+                    ThenViewModel.shared.addWeather(weather)
                 })
             } else if let error = error {
                 print(error.localizedDescription)

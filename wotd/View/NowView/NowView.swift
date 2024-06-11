@@ -9,7 +9,8 @@ import SwiftUI
 
 struct NowView: View {
     
-    // @StateObject var lm = LocationManager()
+    @EnvironmentObject var lm: LocationManager
+    
     @StateObject var vm = NowViewModel.shared
     
     @State private var isPresented: Bool = false

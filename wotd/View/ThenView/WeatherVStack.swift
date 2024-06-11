@@ -9,6 +9,8 @@ import SwiftUI
 
 struct WeatherVStack: View {
     
+    @EnvironmentObject var lm: LocationManager
+    
     @StateObject var vm = ThenViewModel.shared
     
     @State private var weatherToDelete: ThenWeather? = nil
@@ -54,7 +56,7 @@ struct WeatherVStack: View {
                 ComparisionView(weather: weather)
             }
             .onAppear(perform: {
-                if LocationManager.shared.locationManager.authorizationStatus == .denied {
+                if lm.locationManager.authorizationStatus == .denied {
                     isAlertPresented = true
                 }
             })
