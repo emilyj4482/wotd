@@ -14,14 +14,14 @@ struct TempProgressView: View {
     
     var body: some View {
         HStack {
-            Text("\(weather.min)")
+            Text(weather.min.toString)
             
             ProgressView()
                 .progressViewStyle(RangedProgressView(range: tempRange, foregroundColor: AnyShapeStyle(gradient), backgroundColor: backgroundColor))
                 .frame(maxWidth: 250, maxHeight: 7)
                 .padding(.horizontal)
             
-            Text("\(weather.max)")
+            Text(weather.max.toString)
         }
         .padding(.horizontal, 20)
     }

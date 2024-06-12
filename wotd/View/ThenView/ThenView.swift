@@ -11,7 +11,7 @@ struct ThenView: View {
     
     @StateObject var vm = ThenViewModel.shared
     
-    @State private var isPresented: Bool = false
+    @State private var isSheetPresented: Bool = false
     
     var body: some View {
         ZStack {
@@ -26,7 +26,7 @@ struct ThenView: View {
                 Spacer()
                 
                 Button {
-                    isPresented.toggle()
+                    isSheetPresented.toggle()
                 } label: {
                     if !vm.isAddButtonHidden {
                         Image(systemName: "plus.circle.fill")
@@ -42,8 +42,7 @@ struct ThenView: View {
         }
         .frame(maxWidth: .infinity)
         .background(.black.opacity(0.05))
-        
-        .sheet(isPresented: $isPresented, content: {
+        .sheet(isPresented: $isSheetPresented, content: {
             AddSheet()
                 .presentationDetents([.height(300)])
         })

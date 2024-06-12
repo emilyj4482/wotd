@@ -7,19 +7,14 @@
 
 import MapKit
 
-final class SearchManager: ObservableObject {
-    
-    static let shared = SearchManager()
+final class SearchManager {
     
     /* city search */
-    @Published var cities: [City] = []
-    
-    func searchCities(searchText: String) {
-        request(resultType: .address, searchText: searchText)
-    }
+    private var cities: [City] = []
     
     // keyword가 해당되는 행정구역명 검색
-    private func request(resultType: MKLocalSearch.ResultType = .pointOfInterest, searchText: String) {
+    func request(resultType: MKLocalSearch.ResultType = .pointOfInterest, searchText: String) -> [City] {
+        
         let request = MKLocalSearch.Request()
         
         request.naturalLanguageQuery = searchText
@@ -35,6 +30,7 @@ final class SearchManager: ObservableObject {
             }
             self?.cities = response.mapItems.map(City.init)
         }
+        return cities
     }
 
     // city name으로 좌표 검색
@@ -52,12 +48,10 @@ final class SearchManager: ObservableObject {
     }
     
     /* weather search */
-    private let vm = ThenViewModel.shared
-    
     private var request = Request.day
     
     func searchWeather(date: Date, city: City?) {
-        let date = date.string()
+        let date = date.dateString
         // date parameter set
         request.setDate(date: date)
         
@@ -78,7 +72,7 @@ final class SearchManager: ObservableObject {
                 self?.requestData(date: date, city: city.name, { weather in
                     print("request success")
                     // single source of truth에 추가
-                    self?.vm.addWeather(weather)
+                    ThenViewModel.shared.addWeather(weather)
                 })
             } else if let error = error {
                 print(error.localizedDescription)
@@ -90,7 +84,7 @@ final class SearchManager: ObservableObject {
         request.dataTask(WeatherInfo.self) { information, error in
             DispatchQueue.main.async {
                 if let temp = information?.temperature {
-                    let weather = ThenWeather(date: date, city: city, min: temp.min.int(), max: temp.max.int(), morning: temp.morning.int(), afternoon: temp.afternoon.int(), evening: temp.evening.int(), night: temp.night.int())
+                    let weather = ThenWeather(date: date, city: city, min: temp.min.toInt, max: temp.max.toInt, morning: temp.morning.toInt, afternoon: temp.afternoon.toInt, evening: temp.evening.toInt, night: temp.night.toInt)
                     completionHandler(weather)
                 } else if let error = error {
                     print(error.localizedDescription)

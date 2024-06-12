@@ -9,8 +9,9 @@ import SwiftUI
 
 struct NowView: View {
     
-    @StateObject var nm = NetworkManager.shared
-    @StateObject var lm = LocationManager.shared
+    @EnvironmentObject var lm: LocationManager
+    
+    @StateObject var vm = NowViewModel.shared
     
     @State private var isPresented: Bool = false
     
@@ -22,7 +23,7 @@ struct NowView: View {
                     .scaledToFit()
                     .frame(width: 30, alignment: .leading)
                 
-                Text(lm.location)
+                Text(vm.location)
                     .font(.title)
                     .bold()
                 
@@ -37,7 +38,6 @@ struct NowView: View {
         }
         .padding(.horizontal, 17)
         .onAppear(perform: {
-            nm.setDateInfo()
             if lm.locationManager.authorizationStatus == .denied {
                 isPresented = true
             }

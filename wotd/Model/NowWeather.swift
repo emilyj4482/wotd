@@ -13,35 +13,10 @@ class NowWeather {
     var isDaytime: Bool
     
     var temp: Double
-    var formattedTemp: String {
-        if temp == 1000.0 {
-            return "-"
-        } else if temp > -0.05 && temp <= 0 {
-            // -0.0°로 표시되는 것 방지
-            return "0.0°"
-        } else {
-            return "\(String(format: "%.1f", temp))°"
-        }
-    }
     
     var maxTemp: Int
-    var formattedMaxTemp: String {
-        if maxTemp == 1000 {
-            return "-"
-        } else {
-            return "\(maxTemp)°"
-        }
-    }
-    
     var minTemp: Int
-    var formattedMinTemp: String {
-        if minTemp == 1000 {
-            return "-"
-        } else {
-            return "\(minTemp)°"
-        }
-    }
-    
+
     var code: Int
     var icon: String {
         // https://openweathermap.org/weather-conditions 참고 weather condition code에 따라 띄울 icon 반환

@@ -11,7 +11,7 @@ struct AddSheet: View {
     
     @Environment(\.dismiss) var dismiss
     
-    @StateObject private var sm = SearchManager.shared
+    @StateObject private var vm = AddSheetViewModel()
     
     @State var date: Date = .now
     @State var city: String = ""
@@ -38,7 +38,7 @@ struct AddSheet: View {
                     if !city.isEmpty {
                         Button {
                             city = ""
-                            sm.cities = []
+                            vm.cities = []
                             tapped = false
                         } label: {
                             Image(systemName: "x.circle.fill")
@@ -48,7 +48,7 @@ struct AddSheet: View {
                     }
                 }
                 
-                List(sm.cities) { city in
+                List(vm.cities) { city in
                     HStack {
                         Text(city.fullName)
                         
@@ -71,7 +71,7 @@ struct AddSheet: View {
                     .listRowSeparator(.visible, edges: .all)
                 }
                 .onChange(of: city) { oldValue, newValue in
-                    sm.searchCities(searchText: newValue)
+                    vm.searchCities(searchText: newValue)
                 }
                 .listStyle(.plain)
                 .padding(.leading, 64)
@@ -79,7 +79,7 @@ struct AddSheet: View {
             Spacer()
             
             Button {
-                sm.searchWeather(date: date, city: selectedCity)
+                vm.searchWeather(date: date, city: selectedCity)
                 dismiss()
             } label: {
                 Text("Add")
@@ -94,7 +94,7 @@ struct AddSheet: View {
         .padding(.vertical)
         .frame(height: 300)
         .onDisappear {
-            sm.cities = []
+            vm.cities = []
         }
     }
 }

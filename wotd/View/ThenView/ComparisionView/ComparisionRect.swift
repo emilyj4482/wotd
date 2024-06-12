@@ -59,10 +59,10 @@ struct ComparisionRect: View {
                     .padding(.leading, 5)
                     
                     VStack(alignment: .trailing, spacing: 10) {
-                        Text("\(weather.morning)°")
-                        Text("\(weather.afternoon)°")
-                        Text("\(weather.evening)°")
-                        Text("\(weather.night)°")
+                        Text(weather.morning.toString)
+                        Text(weather.afternoon.toString)
+                        Text(weather.evening.toString)
+                        Text(weather.night.toString)
                     }
                     .padding(.trailing, 10)
                 }

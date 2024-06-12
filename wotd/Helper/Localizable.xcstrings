@@ -1,12 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%lld" : {
-
-    },
-    "%lld°" : {
-
-    },
     "6PM" : {
 
     },
@@ -432,6 +426,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "화산재"
+          }
+        }
+      }
+    },
+    "We cannot compare weathers as access to location infomation is not allowed. Please go to Settings and allow the authorization." : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위치정보를 수집할 수 없어 날씨 비교가 불가합니다. 설정 > 권한에 들어가서 위치정보에 대한 접근을 허용해주세요."
           }
         }
       }

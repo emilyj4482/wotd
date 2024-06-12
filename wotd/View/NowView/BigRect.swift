@@ -9,38 +9,38 @@ import SwiftUI
 
 struct BigRect: View {
     
-    @ObservedObject private var nm = NetworkManager.shared
+    @ObservedObject var vm = NowViewModel.shared
     
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(.bigRectGradient(nm.today.colors))
+                .fill(.bigRectGradient(vm.today.colors))
                 .frame(height: 220)
                 .clipShape(.rect(cornerRadius: 15))
                 .shadow(color: .black.opacity(0.4), radius: 20, x: 10, y: 10)
                 
             HStack {
                 VStack(alignment: .leading) {
-                    Text(nm.today.day)
+                    Text(vm.today.day)
                         .font(.title)
                         .bold()
                     
-                    Text(nm.today.formattedTemp)
+                    Text(vm.today.temp.toString)
                         .font(.system(size: 60))
                     
-                    Text("max \(nm.today.formattedMaxTemp) min \(nm.today.formattedMinTemp)")
+                    Text("max \(vm.today.maxTemp.toString) min \(vm.today.minTemp.toString)")
                         .font(.callout)
                 }
                 
                 Spacer()
                 
                 VStack {
-                    Image(systemName: nm.today.icon)
+                    Image(systemName: vm.today.icon)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100, height: 100)
                         .symbolRenderingMode(.multicolor)
-                    Text(nm.today.description)
+                    Text(vm.today.description)
                         .font(.callout)
                         .fontWeight(.medium)
                         .multilineTextAlignment(.leading)

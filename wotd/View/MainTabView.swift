@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct MainTabView: View {
+    
+    @StateObject var lm: LocationManager
+    
     var body: some View {
         TabView {
             NowView()
@@ -23,9 +26,10 @@ struct MainTabView: View {
                 }
         }
         .tint(.black2)
+        .environmentObject(lm)
     }
 }
 
 #Preview {
-    MainTabView()
+    MainTabView(lm: LocationManager())
 }
