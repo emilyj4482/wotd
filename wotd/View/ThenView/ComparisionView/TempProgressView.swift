@@ -20,6 +20,7 @@ struct TempProgressView: View {
                 .progressViewStyle(RangedProgressView(range: tempRange, foregroundColor: AnyShapeStyle(gradient), backgroundColor: backgroundColor))
                 .frame(maxWidth: 250, maxHeight: 7)
                 .padding(.horizontal)
+                .shadow(radius: 1)
             
             Text(weather.max.toString)
         }
