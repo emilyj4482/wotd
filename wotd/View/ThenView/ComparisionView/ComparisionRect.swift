@@ -20,7 +20,7 @@ struct ComparisionRect: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(.mint.opacity(0.6))
+                .fill(.bigRectGradient(weather.colors))
                 .frame(height: 260)
                 .clipShape(.rect(cornerRadius: 20))
             
@@ -82,5 +82,5 @@ struct ComparisionRect: View {
 }
 
 #Preview {
-    ComparisionView(weather: ThenWeather(date: "2023-10-20", city: "London", min: -1, max: 13, morning: -1, afternoon: 2, evening: 11, night: 33))
+    ComparisionView(weather: ThenWeather(date: "2023-10-20", city: "London", min: -1, max: 18, morning: -1, afternoon: 2, evening: 11, night: 33))
 }

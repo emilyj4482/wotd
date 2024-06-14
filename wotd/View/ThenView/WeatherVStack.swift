@@ -71,4 +71,5 @@ struct WeatherVStack: View {
 
 #Preview {
     WeatherVStack()
+        .environmentObject(LocationManager())
 }
