@@ -14,11 +14,24 @@ struct ComparisionView: View {
     @ObservedObject var vm = ThenViewModel.shared
     
     var body: some View {
-        VStack(spacing: 15) {
+        VStack {
+            let diff: Int = abs(weather.max - vm.nowWeather.max)
+            
+            var text: LocalizedStringResource {
+                vm.nowWeather.max > weather.max ? "warmer" : "cooler"
+            }
+            
+            Text("Today is \(diff)° \(text)\nthan \(weather.date).")
+                .font(.title2)
+                .fontWeight(.semibold)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 25)
+            
             ComparisionRect(weather: $weather, tempRange: vm.getRange(then: weather, now: vm.nowWeather).then, isThen: true)
             
             ComparisionRect(weather: $vm.nowWeather, tempRange: vm.getRange(then: weather, now: vm.nowWeather).now, isThen: false)
         }
+        .offset(y: -30)
         .onAppear {
             vm.isAddButtonHidden = true
         }

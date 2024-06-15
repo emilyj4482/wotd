@@ -93,6 +93,16 @@
         }
       }
     },
+    "cooler" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "춥습니다."
+          }
+        }
+      }
+    },
     "Date" : {
       "localizations" : {
         "ko" : {
@@ -400,6 +410,22 @@
         }
       }
     },
+    "Today is %lld° %@\nthan %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Today is %1$lld° %2$@\nthan %3$@."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오늘은 %3$@보다 %1$lld° 더 %2$@"
+          }
+        }
+      }
+    },
     "Tomorrow" : {
       "localizations" : {
         "ko" : {
@@ -426,6 +452,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "화산재"
+          }
+        }
+      }
+    },
+    "warmer" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "덥습니다."
           }
         }
       }
