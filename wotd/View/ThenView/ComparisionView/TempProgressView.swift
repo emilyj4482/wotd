@@ -28,10 +28,7 @@ struct TempProgressView: View {
     }
     
     var gradientColors: [Color] {
-        return [
-            Color(red: 0.39, green: 0.8, blue: 0.74),
-            Color(red: 0.96, green: 0.8, blue: 0.0)
-        ]
+        return [weather.min.toTempColor, weather.max.toTempColor]
     }
     
     var gradient: LinearGradient {
