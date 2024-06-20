@@ -25,16 +25,16 @@ extension Int {
             return Color(#colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1))
         } else if self >= 5 && self < 10 {
             return Color(#colorLiteral(red: 0, green: 0.9810667634, blue: 0.5736914277, alpha: 1))
-        } else if self >= 10 && self < 15 {
-            return Color(#colorLiteral(red: 0, green: 0.9768045545, blue: 0, alpha: 1))
-        } else if self >= 15 && self < 20 {
-            return Color(#colorLiteral(red: 0.5563425422, green: 0.9793455005, blue: 0, alpha: 1))
-        } else if self >= 20 && self < 25 {
-             return Color(#colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1))
-        } else if self >= 25 && self < 30 {
+        } else if self >= 10 && self < 13 {
+            return Color(#colorLiteral(red: 0.8321695924, green: 0.985483706, blue: 0.4733308554, alpha: 1))
+        } else if self >= 13 && self < 16 {
+            return Color(#colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1))
+        } else if self >= 16 && self < 23 {
             return Color(#colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1))
-        } else if self >= 30 && self < 35 {
+        } else if self >= 23 && self < 27 {
             return Color(#colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1))
+        }else if self >= 27 && self < 35 {
+            return Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
         } else {
             return Color(#colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1))
         }
