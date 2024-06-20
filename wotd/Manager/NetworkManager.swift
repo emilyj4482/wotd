@@ -32,7 +32,7 @@ final class NetworkManager {
                     day.minTemp = temp.min.toInt
                     // 수집된 현재 날씨를 then view를 위해 now weather에 저장한다
                     if day.day == "Now" {
-                        ThenViewModel.shared.nowWeather = ThenWeather(date: day.maxAndMinTempRequest.params["date"]!, city: NowViewModel.shared.location, min: temp.min.toInt, max: temp.max.toInt, morning: temp.morning.toInt, afternoon: temp.afternoon.toInt, evening: temp.evening.toInt, night: temp.night.toInt)
+                        ThenViewModel.shared.nowWeather = ThenWeather(date: .now, city: NowViewModel.shared.location, min: temp.min.toInt, max: temp.max.toInt, morning: temp.morning.toInt, afternoon: temp.afternoon.toInt, evening: temp.evening.toInt, night: temp.night.toInt)
                     }
                     print(day.maxTemp)
                     self?.nvm.objectWillChange.send()

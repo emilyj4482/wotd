@@ -41,5 +41,5 @@ struct TempProgressView: View {
 }
 
 #Preview {
-    ComparisionView(weather: ThenWeather(date: "2020-02-01", city: "수원시", min: 3, max: 10, morning: 0, afternoon: 3, evening: 2, night: 1))
+    ComparisionView(weather: ThenWeather(date: Date(), city: "수원시", min: 3, max: 10, morning: 0, afternoon: 3, evening: 2, night: 1))
 }

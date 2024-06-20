@@ -33,7 +33,7 @@ extension Int {
             return Color(#colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1))
         } else if self >= 23 && self < 27 {
             return Color(#colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1))
-        }else if self >= 27 && self < 35 {
+        } else if self >= 27 && self < 35 {
             return Color(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
         } else {
             return Color(#colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1))

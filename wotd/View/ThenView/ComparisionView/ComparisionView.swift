@@ -21,7 +21,7 @@ struct ComparisionView: View {
                 vm.nowWeather.max > weather.max ? "warmer" : "cooler"
             }
             
-            Text("Today is \(diff)° \(text)\nthan \(weather.date).")
+            Text("Today is \(diff)° \(text) than\n\(weather.city) in \(weather.date.dateString2).")
                 .font(.title2)
                 .fontWeight(.semibold)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -42,5 +42,5 @@ struct ComparisionView: View {
 }
 
 #Preview {
-    ComparisionView(weather: ThenWeather(date: "2023-10-20", city: "London", min: -1, max: 13, morning: -1, afternoon: 2, evening: 11, night: 13))
+    ComparisionView(weather: ThenWeather(date: Date(), city: "London", min: -1, max: 13, morning: -1, afternoon: 2, evening: 11, night: 13))
 }

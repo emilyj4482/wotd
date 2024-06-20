@@ -23,7 +23,7 @@ struct WeatherVStack: View {
                 ForEach(vm.weathers, id: \.self) { weather in
                     NavigationLink(value: weather) {
                         VStack(alignment: .leading) {
-                            Text(weather.date)
+                            Text(weather.date.dateString)
                                 .font(.title3).bold()
                             Text(weather.city)
                                 .font(.title)

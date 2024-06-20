@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ThenWeather: Hashable, Codable {
-    var date: String
+    var date: Date
     var city: String
     
     var min: Int

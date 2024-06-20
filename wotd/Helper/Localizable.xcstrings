@@ -410,18 +410,18 @@
         }
       }
     },
-    "Today is %lld° %@\nthan %@." : {
+    "Today is %lld° %@ than\n%@ in %@." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Today is %1$lld° %2$@\nthan %3$@."
+            "value" : "Today is %1$lld° %2$@ than\n%3$@ in %4$@."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "오늘은 %3$@보다 %1$lld° 더 %2$@"
+            "value" : "오늘은 %4$@의 %3$@보다 %1$lld도 더 %2$@"
           }
         }
       }

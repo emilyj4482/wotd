@@ -27,7 +27,7 @@ final class ThenViewModel: ObservableObject {
     // UserDefaults 저장 key 값
     let dataKey: String = "dataKey"
     
-    init(nowWeather: ThenWeather = ThenWeather(date: "", city: "-", min: 1000, max: 1000, morning: 1000, afternoon: 1000, evening: 1000, night: 1000)) {
+    init(nowWeather: ThenWeather = ThenWeather(date: Date(), city: "-", min: 1000, max: 1000, morning: 1000, afternoon: 1000, evening: 1000, night: 1000)) {
         self.nowWeather = nowWeather
         getData()
     }
