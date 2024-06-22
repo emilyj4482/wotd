@@ -34,13 +34,13 @@ struct ComparisionView: View {
             
 
                 Text(
-                    diff == 0 ? "Today is as warm or cool as\n\(weather.city) in \(weather.date.dateString2)."
-                    : "Today is \(diff)° \(text) than\n\(weather.city) in \(weather.date.dateString2)."
+                    diff == 0 ? "Today is\nas warm or cool as\n\(weather.city) in \(weather.date.dateString2)."
+                    : "Today is\n\(diff)° \(text) than\n\(weather.city) in \(weather.date.dateString2)."
                 )
-                .font(.title2)
+                .font(.headline)
                 .fontWeight(.semibold)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 25)
+                .padding(.horizontal, 20)
             
             ComparisionRect(weather: $weather, tempRange: vm.getRange(then: weather, now: vm.nowWeather).then, isThen: true)
             

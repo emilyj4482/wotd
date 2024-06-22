@@ -17,7 +17,7 @@ struct TempProgressView: View {
             Text(weather.min.toString)
             
             ProgressView()
-                .progressViewStyle(RangedProgressView(range: tempRange, foregroundColor: AnyShapeStyle(gradient), backgroundColor: backgroundColor))
+                .progressViewStyle(RangedProgressView(range: tempRange, foregroundColor: AnyShapeStyle(gradient), backgroundColor: .progressBar))
                 .frame(maxWidth: 250, maxHeight: 7)
                 .padding(.horizontal)
                 .shadow(radius: 1)
@@ -27,16 +27,8 @@ struct TempProgressView: View {
         .padding(.horizontal, 20)
     }
     
-    var gradientColors: [Color] {
-        return [weather.min.toTempColor, weather.max.toTempColor]
-    }
-    
     var gradient: LinearGradient {
-        return LinearGradient(colors: gradientColors, startPoint: .leading, endPoint: .trailing)
-    }
-    
-    var backgroundColor: Color {
-        return Color(red: 0.25, green: 0.35, blue: 0.72).opacity(0.13)
+        return LinearGradient(colors: [weather.min.toTempColor, weather.max.toTempColor], startPoint: .leading, endPoint: .trailing)
     }
 }
 

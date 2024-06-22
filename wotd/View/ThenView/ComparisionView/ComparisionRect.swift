@@ -20,9 +20,10 @@ struct ComparisionRect: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(.bigRectGradient(weather.colors))
+                .fill(Color(.secondarySystemBackground))
                 .frame(height: 260)
                 .clipShape(.rect(cornerRadius: 20))
+                
             
             VStack {
                 
