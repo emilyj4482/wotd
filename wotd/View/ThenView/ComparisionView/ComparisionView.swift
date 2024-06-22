@@ -25,7 +25,11 @@ struct ComparisionView: View {
             }
             
             var text: LocalizedStringResource {
-                vm.nowWeather.max > weather.max ? "warmer" : "cooler"
+                if abs(weather.max - vm.nowWeather.max) != 0 {
+                    vm.nowWeather.max > weather.max ? "warmer" : "cooler"
+                } else {
+                    vm.nowWeather.min > weather.min ? "warmer" : "cooler"
+                }
             }
             
 
