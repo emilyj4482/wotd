@@ -426,6 +426,22 @@
         }
       }
     },
+    "Today is as warm or cool as\n%@ in %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Today is as warm or cool as\n%1$@ in %2$@."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오늘 기온은 %2$@의 %1$@와(과) 같습니다."
+          }
+        }
+      }
+    },
     "Tomorrow" : {
       "localizations" : {
         "ko" : {
