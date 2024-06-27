@@ -20,9 +20,10 @@ struct ComparisionRect: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(.mint.opacity(0.6))
+                .fill(Color(.secondarySystemBackground))
                 .frame(height: 260)
                 .clipShape(.rect(cornerRadius: 20))
+                
             
             VStack {
                 
@@ -34,7 +35,7 @@ struct ComparisionRect: View {
                 HStack {
                     VStack(alignment: .leading) {
                         if isThen {
-                            Text(weather.date)
+                            Text(weather.date.dateString)
                                 .font(.title)
                         } else {
                             Text("Today")
@@ -82,5 +83,5 @@ struct ComparisionRect: View {
 }
 
 #Preview {
-    ComparisionView(weather: ThenWeather(date: "2023-10-20", city: "London", min: -1, max: 13, morning: -1, afternoon: 2, evening: 11, night: 33))
+    ComparisionView(weather: ThenWeather(date: Date(), city: "London", min: -1, max: 18, morning: -1, afternoon: 2, evening: 11, night: 33))
 }

@@ -5,10 +5,10 @@
 //  Created by EMILY on 25/03/2024.
 //
 
-import CoreLocation
+import SwiftUI
 
 struct ThenWeather: Hashable, Codable {
-    var date: String
+    var date: Date
     var city: String
     
     var min: Int

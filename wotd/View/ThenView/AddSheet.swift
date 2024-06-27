@@ -59,7 +59,7 @@ struct AddSheet: View {
                         }
                     }
                     // background를 넣어야 tap gesture 인식이 list row 전체에 적용됨
-                    .background(.white)
+                    .background(Color(.systemBackground))
                     .onTapGesture {
                         tapped.toggle()
                         if tapped {

@@ -27,7 +27,7 @@ final class ThenViewModel: ObservableObject {
     // UserDefaults 저장 key 값
     let dataKey: String = "dataKey"
     
-    init(nowWeather: ThenWeather = ThenWeather(date: "", city: "-", min: 1000, max: 1000, morning: 1000, afternoon: 1000, evening: 1000, night: 1000)) {
+    init(nowWeather: ThenWeather = ThenWeather(date: Date(), city: "-", min: 1000, max: 1000, morning: 1000, afternoon: 1000, evening: 1000, night: 1000)) {
         self.nowWeather = nowWeather
         getData()
     }
@@ -56,7 +56,7 @@ extension ThenViewModel {
         let max = max(thenMax, nowMax)
         let min = min(thenMin, nowMin)
 
-        // 범위가 1...max가 되도록 조정
+        // 범위가 0...max가 되도록 조정
         let thenMinDouble = rerangeTemp(min: min, max: max, temp: thenMin)
         let thenMaxDouble = rerangeTemp(min: min, max: max, temp: thenMax)
         let nowMinDouble = rerangeTemp(min: min, max: max, temp: nowMin)
@@ -76,7 +76,7 @@ extension ThenViewModel {
         let lowerBound = min/rangeMax
         let upperBound = max/rangeMax
         
-        return lowerBound...upperBound/1
+        return lowerBound...upperBound
     }
     
     // 온도 범위 정제
@@ -84,11 +84,11 @@ extension ThenViewModel {
         var temp = temp
         
         if min < 0 {
-            temp = temp + abs(min) + 1
+            temp = temp + abs(min)
         } else if min == 0 {
-            temp += 1
+            
         } else {
-            temp = temp - abs(min) + 1
+            temp = temp - abs(min)
         }
         return Double(temp)
     }

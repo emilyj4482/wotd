@@ -51,9 +51,9 @@ final class SearchManager {
     private var request = Request.day
     
     func searchWeather(date: Date, city: City?) {
-        let date = date.dateString
+        let dateParam = date.dateString
         // date parameter set
-        request.setDate(date: date)
+        request.setDate(date: dateParam)
         
         guard let city = city else {
             print("[ERROR] no city selected")
@@ -80,7 +80,7 @@ final class SearchManager {
         }
     }
     
-    private func requestData(date: String, city: String, _ completionHandler: @escaping (ThenWeather) -> Void) {
+    private func requestData(date: Date, city: String, _ completionHandler: @escaping (ThenWeather) -> Void) {
         request.dataTask(WeatherInfo.self) { information, error in
             DispatchQueue.main.async {
                 if let temp = information?.temperature {

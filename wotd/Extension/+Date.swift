@@ -36,4 +36,16 @@ extension Date {
             return false
         }
     }
+    
+    var dateString2: String {
+        guard let code = Locale.current.language.languageCode else { return "" }
+        switch code {
+        case .korean:
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy년 M월 d일"
+            return dateFormatter.string(from: self)
+        default:
+            return self.formatted(Date.FormatStyle().year().day().month().locale(Locale(identifier: "en")))
+        }
+    }
 }

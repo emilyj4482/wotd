@@ -93,6 +93,16 @@
         }
       }
     },
+    "cooler" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "춥습니다."
+          }
+        }
+      }
+    },
     "Date" : {
       "localizations" : {
         "ko" : {
@@ -400,6 +410,38 @@
         }
       }
     },
+    "Today is\n%lld° %@ than\n%@ in %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Today is\n%1$lld° %2$@ than\n%3$@ in %4$@."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오늘은 %4$@의 %3$@보다 %1$lld도 더 %2$@"
+          }
+        }
+      }
+    },
+    "Today is\nas warm or cool as\n%@ in %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Today is\nas warm or cool as\n%1$@ in %2$@."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오늘 기온은 %2$@의 %1$@와(과) 같습니다."
+          }
+        }
+      }
+    },
     "Tomorrow" : {
       "localizations" : {
         "ko" : {
@@ -426,6 +468,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "화산재"
+          }
+        }
+      }
+    },
+    "warmer" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "덥습니다."
           }
         }
       }
