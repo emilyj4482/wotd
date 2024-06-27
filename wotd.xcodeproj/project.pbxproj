@@ -13,6 +13,7 @@
 		A11E00332B37365E006EE103 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11E00322B37365E006EE103 /* Icon.swift */; };
 		A1287D9D2B75427200D5B119 /* +LinearGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1287D9C2B75427100D5B119 /* +LinearGradient.swift */; };
 		A131106F2B1DBC7500F8437E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A131106E2B1DBC7500F8437E /* NetworkManager.swift */; };
+		A145ED022C2D863000568297 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A145ED012C2D863000568297 /* SettingView.swift */; };
 		A148AF4F2BB5EC3100FF97B9 /* DefaultVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A148AF4E2BB5EC3100FF97B9 /* DefaultVStack.swift */; };
 		A150F3242B19B4650007C285 /* wotdApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A150F3232B19B4650007C285 /* wotdApp.swift */; };
 		A150F3282B19B4670007C285 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A150F3272B19B4670007C285 /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		A11E00322B37365E006EE103 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		A1287D9C2B75427100D5B119 /* +LinearGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+LinearGradient.swift"; sourceTree = "<group>"; };
 		A131106E2B1DBC7500F8437E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		A145ED012C2D863000568297 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		A148AF4E2BB5EC3100FF97B9 /* DefaultVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultVStack.swift; sourceTree = "<group>"; };
 		A150F3202B19B4650007C285 /* wotd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wotd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A150F3232B19B4650007C285 /* wotdApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wotdApp.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				A17AD8352BA04E53002489CE /* MainTabView.swift */,
 				A17AD8372BA054D5002489CE /* NowView */,
 				A17AD83A2BA0A097002489CE /* ThenView */,
+				A145ED012C2D863000568297 /* SettingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				A1E268342C0F95D900E17AEB /* NowViewModel.swift in Sources */,
 				A1287D9D2B75427200D5B119 /* +LinearGradient.swift in Sources */,
 				A148AF4F2BB5EC3100FF97B9 /* DefaultVStack.swift in Sources */,
+				A145ED022C2D863000568297 /* SettingView.swift in Sources */,
 				A164B0FF2BA32BBD009C972B /* AddSheet.swift in Sources */,
 				A15E89F92BB2B662000E193E /* +Double.swift in Sources */,
 				A1C030092BC06B9600EC4CFA /* WeatherVStack.swift in Sources */,

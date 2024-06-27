@@ -24,6 +24,12 @@ struct MainTabView: View {
                     Image(systemName: "calendar.badge.plus")
                     Text("Then")
                 }
+            
+            SettingView()
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
+                }
         }
         .tint(.black2)
         .environmentObject(lm)
