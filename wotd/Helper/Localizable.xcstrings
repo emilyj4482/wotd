@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
     "6PM" : {
 
     },
@@ -103,6 +113,16 @@
         }
       }
     },
+    "Data source" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정보 제공"
+          }
+        }
+      }
+    },
     "Date" : {
       "localizations" : {
         "ko" : {
@@ -133,6 +153,26 @@
         }
       }
     },
+    "Developer" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "개발자"
+          }
+        }
+      }
+    },
+    "Display" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "화면 설정"
+          }
+        }
+      }
+    },
     "Drizzle" : {
       "localizations" : {
         "ko" : {
@@ -152,6 +192,12 @@
           }
         }
       }
+    },
+    "Emily👩🏻‍💻" : {
+
+    },
+    "emilyj4482@outlook.com" : {
+
     },
     "Enter a city name." : {
       "localizations" : {
@@ -183,6 +229,9 @@
         }
       }
     },
+    "github.com/emilyj4482" : {
+
+    },
     "Haze" : {
       "localizations" : {
         "ko" : {
@@ -209,6 +258,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "폭설"
+          }
+        }
+      }
+    },
+    "Info" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정보"
+          }
+        }
+      }
+    },
+    "is up to date" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최신 버전입니다."
           }
         }
       }
@@ -259,6 +328,16 @@
         }
       }
     },
+    "needs update" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "업데이트 필요"
+          }
+        }
+      }
+    },
     "Now" : {
       "localizations" : {
         "ko" : {
@@ -268,6 +347,12 @@
           }
         }
       }
+    },
+    "OpenWeather API" : {
+
+    },
+    "openweathermap.org" : {
+
     },
     "Overcast clouds" : {
       "localizations" : {
@@ -305,6 +390,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "모래"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정"
           }
         }
       }
@@ -375,6 +470,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "그 날"
+          }
+        }
+      }
+    },
+    "This app's weather data comes from:" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 앱의 날씨 정보 출처:"
           }
         }
       }
@@ -462,6 +567,16 @@
         }
       }
     },
+    "Version" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "버전"
+          }
+        }
+      }
+    },
     "Volcanic ash" : {
       "localizations" : {
         "ko" : {
@@ -501,6 +616,9 @@
           }
         }
       }
+    },
+    "wotd" : {
+
     },
     "Yesterday" : {
       "localizations" : {
