@@ -30,6 +30,7 @@ struct AppearanceSettingView: View {
                 
             }
         }
+        .preferredColorScheme(vm.appearance.colorScheme)
     }
 }
 
