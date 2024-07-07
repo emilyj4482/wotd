@@ -34,7 +34,7 @@ struct SettingView: View {
                 }
                 Section("Settings") {
                     NavigationLink("Appearance") {
-                        AppearanceSettingView()
+                        AppearanceSettingView(vm: SettingViewModel())
                     }
                 }
             }

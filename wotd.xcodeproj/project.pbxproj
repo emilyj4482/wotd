@@ -44,6 +44,8 @@
 		A1C0300B2BC07B1A00EC4CFA /* ComparisionRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0300A2BC07B1A00EC4CFA /* ComparisionRect.swift */; };
 		A1C078A52B30A163008885F9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C078A42B30A163008885F9 /* LocationManager.swift */; };
 		A1E268342C0F95D900E17AEB /* NowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E268332C0F95D900E17AEB /* NowViewModel.swift */; };
+		A1F55CA82C3B11A6002F6929 /* AppearanceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F55CA72C3B11A6002F6929 /* AppearanceType.swift */; };
+		A1F55CAA2C3B18B0002F6929 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F55CA92C3B18B0002F6929 /* SettingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +87,8 @@
 		A1C0300A2BC07B1A00EC4CFA /* ComparisionRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparisionRect.swift; sourceTree = "<group>"; };
 		A1C078A42B30A163008885F9 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A1E268332C0F95D900E17AEB /* NowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowViewModel.swift; sourceTree = "<group>"; };
+		A1F55CA72C3B11A6002F6929 /* AppearanceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceType.swift; sourceTree = "<group>"; };
+		A1F55CA92C3B18B0002F6929 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,7 @@
 			children = (
 				A11E00322B37365E006EE103 /* Icon.swift */,
 				A1135D122B8F5F1F001E351C /* Localizable.xcstrings */,
+				A1F55CA72C3B11A6002F6929 /* AppearanceType.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 				A1E268332C0F95D900E17AEB /* NowViewModel.swift */,
 				A1BDC44B2BB46FA90007AE79 /* ThenViewModel.swift */,
 				A1B2CEAE2C1896EE00BE527A /* AddSheetViewModel.swift */,
+				A1F55CA92C3B18B0002F6929 /* SettingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -325,6 +331,8 @@
 				A1866BDE2BA84322002A3DB8 /* City.swift in Sources */,
 				A10C16EB2BCB09A700BE258D /* RangedProgressView.swift in Sources */,
 				A1ABF7242B29E70800AE6428 /* WeatherInfo.swift in Sources */,
+				A1F55CAA2C3B18B0002F6929 /* SettingViewModel.swift in Sources */,
+				A1F55CA82C3B11A6002F6929 /* AppearanceType.swift in Sources */,
 				A180832E2B3332F200CDFA86 /* NowView.swift in Sources */,
 				A186318F2BB17446001695F9 /* ThenWeather.swift in Sources */,
 				A131106F2B1DBC7500F8437E /* NetworkManager.swift in Sources */,
