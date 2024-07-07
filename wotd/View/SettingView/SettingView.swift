@@ -33,7 +33,9 @@ struct SettingView: View {
                     }
                 }
                 Section("Settings") {
-                    Text("Display")
+                    NavigationLink("Appearance") {
+                        AppearanceSettingView()
+                    }
                 }
             }
             .navigationTitle("wotd")

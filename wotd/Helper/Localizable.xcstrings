@@ -53,6 +53,16 @@
         }
       }
     },
+    "Appearance" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "화면 모드"
+          }
+        }
+      }
+    },
     "Authorization Denied" : {
       "localizations" : {
         "ko" : {
@@ -113,6 +123,16 @@
         }
       }
     },
+    "Dark Mode" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다크 모드"
+          }
+        }
+      }
+    },
     "Data source" : {
       "localizations" : {
         "ko" : {
@@ -159,16 +179,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "개발자"
-          }
-        }
-      }
-    },
-    "Display" : {
-      "localizations" : {
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "화면 설정"
           }
         }
       }
@@ -278,6 +288,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "최신 버전입니다."
+          }
+        }
+      }
+    },
+    "Light Mode" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "라이트 모드"
           }
         }
       }
@@ -460,6 +480,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "돌풍"
+          }
+        }
+      }
+    },
+    "System Mode" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시스템 모드"
           }
         }
       }
