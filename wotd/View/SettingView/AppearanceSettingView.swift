@@ -12,23 +12,30 @@ struct AppearanceSettingView: View {
     @StateObject var vm: SettingViewModel
     
     var body: some View {
-        HStack {
-            ForEach(vm.modes, id: \.self) { mode in
-                Button(action: {
-                    vm.changeAppearance(mode)
-                    print(vm.appearance)
-                }, label: {
-                    VStack {
-                        mode.image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30)
-                        
-                        Text(mode.label)
-                    }
-                })
-                
+        VStack {
+            Spacer()
+                .frame(height: 100)
+            
+            HStack(spacing: 10) {
+                ForEach(vm.modes, id: \.self) { mode in
+                    Button(action: {
+                        vm.changeAppearance(mode)
+                        print(vm.appearance)
+                    }, label: {
+                        VStack(spacing: 5) {
+                            mode.image
+                                .font(.largeTitle)
+                            
+                            Text(mode.label)
+                        }
+                        .frame(width: 100, height: 100)
+                        .background(Color(.secondarySystemBackground).clipShape(.rect(cornerRadius: 20)))
+                    })
+                    
+                }
             }
+            
+            Spacer()
         }
         .preferredColorScheme(vm.appearance.colorScheme)
     }

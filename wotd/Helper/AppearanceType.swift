@@ -23,14 +23,14 @@ enum AppearanceType: CaseIterable {
         }
     }
     
-    var image: Image {
+    var image: Text {
         switch self {
         case .system:
-            Image("system")
+            Text("🌗")
         case .light:
-            Image(systemName: "sun.max")
+            Text("🌝")
         case .dark:
-            Image(systemName: "moon.circle")
+            Text("🌚")
         }
     }
     
