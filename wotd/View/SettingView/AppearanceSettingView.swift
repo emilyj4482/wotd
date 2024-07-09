@@ -29,9 +29,14 @@ struct AppearanceSettingView: View {
                                 .font(.subheadline)
                         }
                         .frame(width: 110, height: 110)
-                        .background(Color(.secondarySystemBackground).clipShape(.rect(cornerRadius: 20)))
+                        .background(
+                            Color(
+                                vm.appearance.colorScheme == mode.colorScheme ? .systemGray2
+                                : .systemGray6)
+                            .clipShape(.rect(cornerRadius: 20))
+                        )
+                        .shadow(color: Color(.systemGray2), radius: 1.5)
                     })
-                    
                 }
             }
             
