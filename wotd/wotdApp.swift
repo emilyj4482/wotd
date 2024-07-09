@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct wotdApp: App {
+    
+    @AppStorage(AppStorageKey.key) var colorSchemeValue: Int = AppStorageKey.defaultValue
+    
     var body: some Scene {
         WindowGroup {
-            MainTabView(lm: LocationManager())
+            MainTabView(lm: LocationManager(), settingVM: SettingViewModel(colorSchemeValue))
         }
     }
 }

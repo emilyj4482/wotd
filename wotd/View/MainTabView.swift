@@ -10,6 +10,7 @@ import SwiftUI
 struct MainTabView: View {
     
     @StateObject var lm: LocationManager
+    @StateObject var settingVM: SettingViewModel
     
     var body: some View {
         TabView {
@@ -25,7 +26,7 @@ struct MainTabView: View {
                     Text("Then")
                 }
             
-            SettingView()
+            SettingView(vm: settingVM)
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
@@ -33,9 +34,10 @@ struct MainTabView: View {
         }
         .tint(.black2)
         .environmentObject(lm)
+        .preferredColorScheme(settingVM.appearance.colorScheme)
     }
 }
 
 #Preview {
-    MainTabView(lm: LocationManager())
+    MainTabView(lm: LocationManager(), settingVM: SettingViewModel(0))
 }

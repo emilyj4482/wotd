@@ -9,26 +9,26 @@ import SwiftUI
 
 struct AppearanceSettingView: View {
     
-    @StateObject var vm: SettingViewModel
+    @ObservedObject var vm: SettingViewModel
     
     var body: some View {
         VStack {
             Spacer()
                 .frame(height: 100)
             
-            HStack(spacing: 10) {
+            HStack(spacing: 11) {
                 ForEach(vm.modes, id: \.self) { mode in
                     Button(action: {
                         vm.changeAppearance(mode)
-                        print(vm.appearance)
                     }, label: {
                         VStack(spacing: 5) {
                             mode.image
                                 .font(.largeTitle)
                             
                             Text(mode.label)
+                                .font(.subheadline)
                         }
-                        .frame(width: 100, height: 100)
+                        .frame(width: 110, height: 110)
                         .background(Color(.secondarySystemBackground).clipShape(.rect(cornerRadius: 20)))
                     })
                     
@@ -37,10 +37,9 @@ struct AppearanceSettingView: View {
             
             Spacer()
         }
-        .preferredColorScheme(vm.appearance.colorScheme)
     }
 }
 
 #Preview {
-    AppearanceSettingView(vm: SettingViewModel())
+    AppearanceSettingView(vm: SettingViewModel(0))
 }

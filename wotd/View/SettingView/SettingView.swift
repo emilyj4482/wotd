@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SettingView: View {
     
+    @ObservedObject var vm: SettingViewModel
+    
     @State private var version: String = "1.0.0"
     @State private var isLatest: Bool = true
     
@@ -34,7 +36,7 @@ struct SettingView: View {
                 }
                 Section("Settings") {
                     NavigationLink("Appearance") {
-                        AppearanceSettingView(vm: SettingViewModel())
+                        AppearanceSettingView(vm: vm)
                     }
                 }
             }
@@ -87,6 +89,6 @@ private struct DeveloperView: View {
 
 #Preview {
     NavigationView {
-        SettingView()
+        SettingView(vm: SettingViewModel(0))
     }
 }

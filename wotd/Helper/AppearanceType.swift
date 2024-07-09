@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum AppearanceType: CaseIterable {
+enum AppearanceType: Int, CaseIterable {
     case system
     case light
     case dark
@@ -44,4 +44,9 @@ enum AppearanceType: CaseIterable {
             return .dark
         }
     }
+}
+
+struct AppStorageKey {
+    static let key: String = "colorScheme"
+    static let defaultValue: Int = UserDefaults.standard.integer(forKey: key)
 }
