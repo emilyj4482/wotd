@@ -30,8 +30,8 @@ struct SettingView: View {
                     NavigationLink("Data source") {
                         DataSourceView()
                     }
-                    NavigationLink("Developer") {
-                        DeveloperView()
+                    NavigationLink("About this App") {
+                        AppInfoView()
                     }
                 }
                 Section("Settings") {
@@ -40,7 +40,7 @@ struct SettingView: View {
                     }
                 }
             }
-            .navigationTitle("wotd")
+            .navigationTitle("Settings")
         }
     }
 }
@@ -58,32 +58,6 @@ private struct DataSourceView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(.systemGray6))
-    }
-}
-
-private struct DeveloperView: View {
-    fileprivate var body: some View {
-        VStack {
-            List {
-                HStack(spacing: 13) {
-                    Image(systemName: "envelope.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 20)
-                    Text("emilyj4482@outlook.com")
-                }
-                HStack(spacing: 13) {
-                    Image("github")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 20)
-                    Link(destination: URL(string: "https://github.com/emilyj4482")!, label: {
-                        Text("github.com/emilyj4482")
-                    })
-                }
-            }
-        }
-        .navigationTitle("Emily👩🏻‍💻")
     }
 }
 

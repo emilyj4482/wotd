@@ -20,6 +20,9 @@
     "🌝" : {
 
     },
+    "👩🏻‍💻" : {
+
+    },
     "6PM" : {
 
     },
@@ -31,6 +34,16 @@
     },
     "12PM" : {
 
+    },
+    "About this App" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱 정보"
+          }
+        }
+      }
     },
     "Access to location infomation is not allowed. Please go to Settings and allow the authorization." : {
       "localizations" : {
@@ -58,6 +71,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "오늘 날씨와 비교하고 싶은 특정한 날짜와 도시의 날씨를 추가해보세요."
+          }
+        }
+      }
+    },
+    "App" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱"
           }
         }
       }
@@ -131,6 +154,9 @@
           }
         }
       }
+    },
+    "D" : {
+
     },
     "Dark Mode" : {
       "localizations" : {
@@ -212,7 +238,7 @@
         }
       }
     },
-    "Emily👩🏻‍💻" : {
+    "Emily" : {
 
     },
     "emilyj4482@outlook.com" : {
@@ -377,6 +403,9 @@
         }
       }
     },
+    "O" : {
+
+    },
     "OpenWeather API" : {
 
     },
@@ -503,6 +532,9 @@
         }
       }
     },
+    "T" : {
+
+    },
     "Then" : {
       "localizations" : {
         "ko" : {
@@ -626,6 +658,9 @@
         }
       }
     },
+    "W" : {
+
+    },
     "warmer" : {
       "localizations" : {
         "ko" : {
@@ -657,6 +692,25 @@
       }
     },
     "wotd" : {
+
+    },
+    "wotd is short for %@eather %@f %@he %@ay.\nIt started from the idea that how I want to compare today's weather to specific day's weather I remember whether it's colder or hotter." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "wotd is short for %1$@eather %2$@f %3$@he %4$@ay.\nIt started from the idea that how I want to compare today's weather to specific day's weather I remember whether it's colder or hotter."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "wotd는 %1$@eather %2$@f %3$@he %4$@ay의 줄임말입니다. 오늘의 날씨를 내가 기억하는 특별한 날의 날씨와 비교하여 그날보다 더 추운지, 더운지를 알고 싶다는 생각에서 출발하였습니다."
+          }
+        }
+      }
+    },
+    "wotd?" : {
 
     },
     "Yesterday" : {
