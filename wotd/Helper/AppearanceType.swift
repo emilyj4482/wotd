@@ -45,8 +45,3 @@ enum AppearanceType: Int, CaseIterable {
         }
     }
 }
-
-struct AppStorageKey {
-    static let key: String = "colorScheme"
-    static let defaultValue: Int = UserDefaults.standard.integer(forKey: key)
-}
