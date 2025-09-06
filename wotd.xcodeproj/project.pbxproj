@@ -6,6 +6,12 @@
 	objectVersion = 70;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A10975042E6C7A3E00C54D75 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A10975032E6C7A3E00C54D75 /* Alamofire */; };
+		A10975072E6C7AA300C54D75 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = A10975062E6C7AA300C54D75 /* CombineMoya */; };
+		A10975092E6C7AA300C54D75 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = A10975082E6C7AA300C54D75 /* Moya */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		A150F3202B19B4650007C285 /* wotd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wotd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -19,6 +25,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10975072E6C7AA300C54D75 /* CombineMoya in Frameworks */,
+				A10975042E6C7A3E00C54D75 /* Alamofire in Frameworks */,
+				A10975092E6C7AA300C54D75 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +98,10 @@
 				ko,
 			);
 			mainGroup = A150F3172B19B4650007C285;
+			packageReferences = (
+				A10975022E6C7A3E00C54D75 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				A10975052E6C7AA300C54D75 /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			productRefGroup = A150F3212B19B4650007C285 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -334,6 +347,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A10975022E6C7A3E00C54D75 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+		A10975052E6C7AA300C54D75 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A10975032E6C7A3E00C54D75 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10975022E6C7A3E00C54D75 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		A10975062E6C7AA300C54D75 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10975052E6C7AA300C54D75 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		A10975082E6C7AA300C54D75 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10975052E6C7AA300C54D75 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A150F3182B19B4650007C285 /* Project object */;
 }
