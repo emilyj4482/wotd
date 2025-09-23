@@ -81,7 +81,7 @@ final class SearchManager {
     }
     
     private func requestData(date: Date, city: String, _ completionHandler: @escaping (ThenWeather) -> Void) {
-        request.dataTask(WeatherInfo.self) { information, error in
+        request.dataTask(DailyTemperature.self) { information, error in
             DispatchQueue.main.async {
                 if let temp = information?.temperature {
                     let weather = ThenWeather(date: date, city: city, min: temp.min.toInt, max: temp.max.toInt, morning: temp.morning.toInt, afternoon: temp.afternoon.toInt, evening: temp.evening.toInt, night: temp.night.toInt)

@@ -3,21 +3,21 @@
 //  wotd
 //
 //  Created by EMILY on 04/01/2024.
+//  Refactored by EMILY on 22/09/2025.
 //
 
 import Foundation
 import SwiftUI
 
-class NowWeather {
-    var day: LocalizedStringResource
-    var isDaytime: Bool
+struct NowWeather {
+    let isDaytime: Bool
     
-    var temp: Double
+    let temp: Double
+    let maxTemp: Int
+    let minTemp: Int
     
-    var maxTemp: Int
-    var minTemp: Int
-
-    var code: Int
+    let code: Int
+    
     var icon: String {
         // https://openweathermap.org/weather-conditions 참고 weather condition code에 따라 띄울 icon 반환
         switch code {
@@ -162,29 +162,5 @@ class NowWeather {
         }
     }
     
-    // x, y 좌표 및 timestamp >>> 그 시각 온도 및 날씨 코드
-    var currentTempAndCodeRequest = Request.moment
-    
-    // x, y 좌표 및 날짜 >>> 최고, 최저 온도
-    var maxAndMinTempRequest = Request.day
-    
-    // data를 전송 받지 못했을 경우 formatted String을 통해 view에 -로 출력하기 위해 기본값을 1000도로 설정
-    init(day: LocalizedStringResource, temp: Double = 1000.0, code: Int = 800, isDaytime: Bool = true, maxTemp: Int = 1000, minTemp: Int = 1000) {
-        self.day = day
-        self.temp = temp
-        self.code = code
-        self.isDaytime = isDaytime
-        self.maxTemp = maxTemp
-        self.minTemp = minTemp
-    }
-    
-    func setDate(dt: String, date: String) {
-        currentTempAndCodeRequest.setDt(dt: dt)
-        maxAndMinTempRequest.setDate(date: date)
-    }
-    
-    func setCoordinates(x: String, y: String) {
-        currentTempAndCodeRequest.setCoordinate(x: x, y: y)
-        maxAndMinTempRequest.setCoordinate(x: x, y: y)
-    }
+    static let empty = NowWeather(isDaytime: true, temp: 0, maxTemp: 0, minTemp: 0, code: 0)
 }

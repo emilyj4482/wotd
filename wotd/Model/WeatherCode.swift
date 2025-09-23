@@ -1,5 +1,5 @@
 //
-//  WeatherDescription.swift
+//  WeatherCode.swift
 //  wotd
 //
 //  Created by EMILY on 01/12/2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeatherDescription: Decodable {
+struct WeatherCode: Decodable {
     let x: Double
     let y: Double
     let weather: [Weather]

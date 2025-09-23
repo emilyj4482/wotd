@@ -1,5 +1,5 @@
 //
-//  WeatherInfo.swift
+//  DailyTemperature.swift
 //  wotd
 //
 //  Created by EMILY on 13/12/2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeatherInfo: Decodable {
+struct DailyTemperature: Decodable {
     let x: Double
     let y: Double
     let date: String

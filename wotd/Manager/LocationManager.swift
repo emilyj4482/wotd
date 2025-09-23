@@ -6,13 +6,16 @@
 //
 
 import CoreLocation
+import Combine
 
 final class LocationManager: NSObject, ObservableObject {
     
-    private let networkManager = NetworkManager()
-    private let vm = NowViewModel.shared
+    private let locationManager = CLLocationManager()
+    private var cancellables = Set<AnyCancellable>()
     
-    let locationManager = CLLocationManager()
+    private static let defaultLocation = CLLocation(latitude: 37.5665851, longitude: 126.9782038)
+    
+    let location = PassthroughSubject<CLLocation, Never>()
     
     override init() {
         super.init()
@@ -20,12 +23,23 @@ final class LocationManager: NSObject, ObservableObject {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
 
-    private func getCityname(_ location: CLLocation) {
-        let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
-            guard error == nil, let cityName = placemarks?[0].locality else { return }
-            self?.vm.location = cityName
+    func getCityname() -> AnyPublisher<String, LocationError> {
+        return Future<String, LocationError> { [weak self] promise in
+            guard let self else { return }
+            self.location
+                .sink { completion in
+
+                } receiveValue: { location in
+                    let geocoder = CLGeocoder()
+                    geocoder.reverseGeocodeLocation(location) { placemarks, error in
+                        guard error == nil, let cityName = placemarks?[0].locality else { return promise(.failure(.geocoderFailed)) }
+                        
+                        return promise(.success(cityName))
+                    }
+                }
+                .store(in: &self.cancellables)
         }
+        .eraseToAnyPublisher()
     }
 }
 
@@ -37,16 +51,16 @@ extension LocationManager: CLLocationManagerDelegate {
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
             print("[AUTH] Restricted")
+            location.send(LocationManager.defaultLocation)
         case .denied:
             print("[AUTH] Denied")
+            location.send(LocationManager.defaultLocation)
         case .authorizedAlways:
             print("[AUTH] Always")
             locationManager.startUpdatingLocation()
-            // locationManager.stopUpdatingLocation()
         case .authorizedWhenInUse:
             print("[AUTH] When in use")
             locationManager.startUpdatingLocation()
-            // locationManager.stopUpdatingLocation()
         @unknown default:
             break
         }
@@ -54,21 +68,12 @@ extension LocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
-        // 1. 수집한 위치정보의 행정구역명을 view model에 전송
-        getCityname(location)
-        // 2. 좌표 정보를 view model에 전송
-        let x = String(location.coordinate.longitude)
-        let y = String(location.coordinate.latitude)
-        vm.today.setCoordinates(x: x, y: y)
-        vm.yesterday.setCoordinates(x: x, y: y)
-        vm.tomorrow.setCoordinates(x: x, y: y)
-        // 3. 위치 정보 수집 중지
+        self.location.send(location)
         manager.stopUpdatingLocation()
-        // 4. weather api 통신
-        networkManager.requestWeatherInfo()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error.localizedDescription)
+        print("[LocationManager] \(error.localizedDescription) >>> sending default location")
+        location.send(LocationManager.defaultLocation)
     }
 }

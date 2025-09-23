@@ -8,39 +8,38 @@
 import SwiftUI
 
 struct BigRect: View {
-    
-    @ObservedObject var vm = NowViewModel.shared
+    @Binding var weather: NowWeather
     
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(.bigRectGradient(vm.today.colors))
+                .fill(.bigRectGradient(weather.colors))
                 .frame(height: 220)
                 .clipShape(.rect(cornerRadius: 15))
                 .shadow(color: .black.opacity(0.4), radius: 20, x: 10, y: 10)
                 
             HStack {
                 VStack(alignment: .leading) {
-                    Text(vm.today.day)
+                    Text("Today")
                         .font(.title)
                         .bold()
                     
-                    Text(vm.today.temp.toString)
+                    Text(weather.temp.toString)
                         .font(.system(size: 60))
                     
-                    Text("max \(vm.today.maxTemp.toString) min \(vm.today.minTemp.toString)")
+                    Text("max \(weather.maxTemp.toString) min \(weather.minTemp.toString)")
                         .font(.callout)
                 }
                 
                 Spacer()
                 
                 VStack {
-                    Image(systemName: vm.today.icon)
+                    Image(systemName: weather.icon)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100, height: 100)
                         .symbolRenderingMode(.multicolor)
-                    Text(vm.today.description)
+                    Text(weather.description)
                         .font(.callout)
                         .fontWeight(.medium)
                         .multilineTextAlignment(.leading)
@@ -53,8 +52,4 @@ struct BigRect: View {
             .foregroundStyle(.white)
         }
     }
-}
-
-#Preview {
-    NowView()
 }

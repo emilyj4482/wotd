@@ -8,12 +8,10 @@
 import SwiftUI
 
 struct NowView: View {
-    
-    @EnvironmentObject var lm: LocationManager
-    
-    @StateObject var vm = NowViewModel.shared
+    @StateObject var viewModel = NowViewModel()
     
     @State private var isPresented: Bool = false
+    @State private var errorMessage: LocalizedStringResource = ""
     
     var body: some View {
         VStack {
@@ -23,33 +21,36 @@ struct NowView: View {
                     .scaledToFit()
                     .frame(width: 30, alignment: .leading)
                 
-                Text(vm.location)
+                Text(viewModel.cityName)
                     .font(.title)
                     .bold()
                 
                 Spacer()
             }
             
-            SmallRect(isYesterday: true)
+            SmallRect(weather: $viewModel.yesterday, isYesterday: true)
             
-            BigRect()
+            BigRect(weather: $viewModel.today)
             
-            SmallRect(isYesterday: false)
+            SmallRect(weather: $viewModel.tomorrow, isYesterday: false)
         }
         .padding(.horizontal, 17)
-        .onAppear(perform: {
-            if lm.locationManager.authorizationStatus == .denied {
-                isPresented = true
+        .onReceive(viewModel.$error, perform: { error in
+            guard let error else { return }
+            switch error {
+            case let locationError as LocationError:
+                errorMessage = locationError.errorMessage
+            case let networkError as NetworkError:
+                errorMessage = networkError.errorMessage
+            default:
+                errorMessage = "Unknown Error occured. Please try again later."
             }
+            isPresented = true
         })
-        .alert("Authorization Denied", isPresented: $isPresented) {
+        .alert("Error", isPresented: $isPresented) {
             
         } message: {
-            Text("Access to location infomation is not allowed. Please go to Settings and allow the authorization.")
+            Text(errorMessage)
         }
     }
-}
-
-#Preview {
-    NowView()
 }

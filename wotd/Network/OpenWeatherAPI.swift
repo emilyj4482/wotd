@@ -9,8 +9,8 @@ import Foundation
 import Moya
 
 enum OpenWeatherAPI {
-    case fetchThreeDayWeather(lat: Double, lon: Double, dt: Int)
-    case fetchDailyWeather(lat: Double, lon: Double, date: String)
+    case fetchWeatherCode(lat: Double, lon: Double, dt: Int)
+    case fetchDailyTemperature(lat: Double, lon: Double, date: String)
 }
 
 extension OpenWeatherAPI: TargetType {
@@ -20,9 +20,9 @@ extension OpenWeatherAPI: TargetType {
     
     var path: String {
         switch self {
-        case .fetchThreeDayWeather:
+        case .fetchWeatherCode:
             return "/timemachine?"
-        case .fetchDailyWeather:
+        case .fetchDailyTemperature:
             return "/day_summary?"
         }
     }
@@ -33,7 +33,7 @@ extension OpenWeatherAPI: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .fetchThreeDayWeather(let lat, let lon, let dt):
+        case .fetchWeatherCode(let lat, let lon, let dt):
                 .requestParameters(
                     parameters: [
                         "lat": "\(lat)",
@@ -43,7 +43,7 @@ extension OpenWeatherAPI: TargetType {
                         "units": "metric"
                     ],
                     encoding: URLEncoding.queryString)
-        case .fetchDailyWeather(let lat, let lon, let date):
+        case .fetchDailyTemperature(let lat, let lon, let date):
                 .requestParameters(
                     parameters: [
                         "lat": "\(lat)",

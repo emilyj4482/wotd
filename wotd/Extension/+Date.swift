@@ -9,13 +9,13 @@ import Foundation
 
 extension Date {
     // 날짜 + 현재 시각을 timestamp로 변환
-    var dtString: String {
+    var timestampInteger: Int {
         // Date type을 TimeInterval 형태로 변환
-        let dt = self.timeIntervalSince1970
+        let timestamp = self.timeIntervalSince1970
         // 소수점 버리고 정수로 변환
-        let dtInteger = Int(floor(dt))
+        let timestampInteger = Int(floor(timestamp))
         
-        return String(dtInteger)
+        return timestampInteger
     }
     
     // 날짜를 yyyy-mm-dd 형태의 문자열로 변환

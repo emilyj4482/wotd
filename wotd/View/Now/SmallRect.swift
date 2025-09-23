@@ -8,41 +8,39 @@
 import SwiftUI
 
 struct SmallRect: View {
-    
-    @ObservedObject var vm = NowViewModel.shared
-    
+    @Binding var weather: NowWeather
     let isYesterday: Bool
     
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(.smallRectGradient(isYesterday ? vm.yesterday.colors : vm.tomorrow.colors))
+                .fill(.smallRectGradient(weather.colors))
                 .frame(height: 180)
                 .clipShape(.rect(cornerRadius: 15))
                 .shadow(color: .black.opacity(0.2), radius: 50, x: -10, y: -10)
                 
             HStack {
                 VStack(alignment: .leading) {
-                    Text(isYesterday ? vm.yesterday.day : vm.tomorrow.day)
+                    Text(isYesterday ? "Yesterday" : "Tomorrow")
                         .font(.title2)
                         .fontWeight(.semibold)
                     
-                    Text(isYesterday ? vm.yesterday.temp.toString : vm.tomorrow.temp.toString)
+                    Text(weather.temp.toString)
                         .font(.system(size: 50))
                     
-                    Text("max \(isYesterday ? vm.yesterday.maxTemp.toString : vm.tomorrow.maxTemp.toString) min \(isYesterday ? vm.yesterday.minTemp.toString : vm.tomorrow.minTemp.toString)")
+                    Text("max \(weather.maxTemp.toString) min \(weather.minTemp.toString)")
                         .font(.subheadline)
                 }
                 Spacer()
                 
                 VStack {
-                    Image(systemName: isYesterday ? vm.yesterday.icon : vm.tomorrow.icon)
+                    Image(systemName: weather.icon)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 75, height: 75)
                         .symbolRenderingMode(.multicolor)
                     
-                    Text(isYesterday ? vm.yesterday.description : vm.tomorrow.description)
+                    Text(weather.description)
                         .font(.caption)
                         .fontWeight(.medium)
                         .padding(.top, 5)
@@ -54,8 +52,4 @@ struct SmallRect: View {
             .foregroundStyle(.white)
         }
     }
-}
-
-#Preview {
-    NowView()
 }

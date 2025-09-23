@@ -1,18 +1,16 @@
 //
-//  MoyaManager.swift
+//  NetworkManager.swift
 //  wotd
 //
-//  Created by EMILY on 06/09/2025.
-//
+//  Created by EMILY on 04/12/2023.
+//  Refactored by EMILY on 06/09/2025.
 
 import Foundation
 import Alamofire
 import Combine
 
-/// NetworkManager tobe
-
-class MoyaManager {
-    static let shared = MoyaManager()
+final class NetworkManager {
+    static let shared = NetworkManager()
     
     private init() {}
     
