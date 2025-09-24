@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct WeatherVStack: View {
-    
-    @EnvironmentObject var lm: LocationManager
-    
     @StateObject var vm = ThenViewModel.shared
     
     @State private var weatherToDelete: ThenWeather? = nil
     @State private var isActionSheetPresented: Bool = false
+    
     @State private var isAlertPresented: Bool = false
     
     var body: some View {
@@ -55,21 +53,15 @@ struct WeatherVStack: View {
             .navigationDestination(for: ThenWeather.self) { weather in
                 ComparisionView(weather: weather)
             }
-            .onAppear(perform: {
-                if lm.locationManager.authorizationStatus == .denied {
-                    isAlertPresented = true
-                }
-            })
-            .alert("Authorization Denied", isPresented: $isAlertPresented) {
-                
-            } message: {
-                Text("We cannot compare weathers as access to location infomation is not allowed. Please go to Settings and allow the authorization.")
-            }
+//            .alert("Authorization Denied", isPresented: $isAlertPresented) {
+//                
+//            } message: {
+//                Text("We cannot compare weathers as access to location infomation is not allowed. Please go to Settings and allow the authorization.")
+//            }
         }
     }
 }
 
 #Preview {
     WeatherVStack()
-        .environmentObject(LocationManager())
 }

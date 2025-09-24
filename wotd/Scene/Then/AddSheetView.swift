@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddSheet: View {
+struct AddSheetView: View {
     
     @Environment(\.dismiss) var dismiss
     
@@ -100,5 +100,5 @@ struct AddSheet: View {
 }
 
 #Preview {
-    AddSheet(date: .now)
+    AddSheetView(date: .now)
 }

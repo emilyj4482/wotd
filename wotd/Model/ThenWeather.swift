@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ThenWeather: Hashable, Codable {
-    var date: Date
-    var city: String
+    let date: Date
+    let city: String
     
-    var min: Int
-    var max: Int
+    let min: Int
+    let max: Int
     
-    var morning: Int
-    var afternoon: Int
-    var evening: Int
-    var night: Int
+    let morning: Int
+    let afternoon: Int
+    let evening: Int
+    let night: Int
+    
+    static let empty = ThenWeather(date: Date(), city: "-", min: 1000, max: 1000, morning: 1000, afternoon: 1000, evening: 1000, night: 1000)
 }

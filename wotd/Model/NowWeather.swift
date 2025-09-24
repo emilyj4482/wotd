@@ -162,5 +162,5 @@ struct NowWeather {
         }
     }
     
-    static let empty = NowWeather(isDaytime: true, temp: 0, maxTemp: 0, minTemp: 0, code: 0)
+    static let empty = NowWeather(isDaytime: true, temp: 1000, maxTemp: 1000, minTemp: 1000, code: 0)
 }

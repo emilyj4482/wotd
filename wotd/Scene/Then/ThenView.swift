@@ -43,7 +43,7 @@ struct ThenView: View {
         .frame(maxWidth: .infinity)
         .background(.black.opacity(0.05))
         .sheet(isPresented: $isSheetPresented, content: {
-            AddSheet()
+            AddSheetView()
                 .presentationDetents([.height(300)])
         })
     }

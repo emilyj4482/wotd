@@ -13,8 +13,6 @@ final class AddSheetViewModel: ObservableObject {
     
     @Published var cities: [City] = []
     
-    private var request = Request.day
-    
     func searchCities(searchText: String) {
         cities = searchManager.request(resultType: .address, searchText: searchText)
     }
